@@ -14,4 +14,4 @@ def solutions(request):
     return render(request, 'products/solutions_all.html')
 
 def Genesis_stu_reg(request):
-    return render(request, 'products/product_genesis.html')
+    return render(request, 'products/Genesis_stu_reg.html')
