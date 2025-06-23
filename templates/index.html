@@ -116,17 +116,17 @@
         <!-- Slide 1 -->
         <div class="hero-slide active" >
           
-          <div class="container">
-            <div class="hero-content">
+          <div class="container" style="height: 100vh;">
+            <div class="hero-content" >
               <h1 class="animate-on-scroll" style="color: var(--primary-dark);">Transforming learning experiences with People and AI.
-            </h1>
-            <p class="animate-on-scroll">Industry-first global learning curriculum designed with academicians and employers from across the globe and implemented with AI
-            </p>
-              <!-- <p class="animate-on-scroll" style="font-size: 1.24rem; margin-top: 17px;">= difference</p> -->
-              <div class="hero-buttons animate-on-scroll">
-                <a href="{% url 'index' %}#solutions-overview" class="cta-button primary">View Programs</a>
-                <a href="{% url 'contact' %}" class="cta-button secondary">Partner With Us</a>
-              </div>
+                </h1>
+                <p class="animate-on-scroll">Industry-first global learning curriculum designed with academicians and employers from across the globe and implemented with AI
+                </p>
+                <!-- <p class="animate-on-scroll" style="font-size: 1.24rem; margin-top: 17px;">= difference</p> -->
+                <div class="hero-buttons animate-on-scroll">
+                    <a href="{% url 'index' %}#solutions-overview" class="cta-button primary">View Programs</a>
+                    <a href="{% url 'contact' %}" class="cta-button secondary">Partner With Us</a>
+                </div>
             </div>
           </div>
         </div>
@@ -673,20 +673,6 @@ Students in school and college face very different challenges, and companies nee
 
     {% block Script %}
         <script src="{% static "js/index.js" %}"></script>
-
-        <script>
-        fetch("https://websitev1-3bc9.onrender.com/api/products/")
-          .then(res => res.json())
-          .then(data => {
-            const ul = document.getElementById("product-list");
-            data.forEach(product => {
-              const li = document.createElement("li");
-              li.innerText = product.name;
-              ul.appendChild(li);
-            });
-          });
-        </script>
-
     {% endblock Script %}
 </body>
 </html>
