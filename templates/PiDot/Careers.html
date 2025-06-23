@@ -1,0 +1,424 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}
+  Careers | PI DOT | Build Your Career With Purpose
+{% endblock title %}
+
+{% block Style %}
+    <link rel="stylesheet" href="{% static "css/PiDot/extra-about.css" %}">
+    <link rel="stylesheet" href="{% static "css/products/extra.css" %}">
+{% endblock Style %} 
+
+
+{% block Body %}
+
+    <!-- Careers Hero -->
+    <section class="careers-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-on-scroll" >Build Your Career With Purpose</h1>
+                <p class="animate-on-scroll">Join us in transforming education and business across India</p>
+                <a href="#open-positions" class="cta-button primary animate-on-scroll">View Open Positions</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Us -->
+    <section class="why-join">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Why Join PI DOT?</h2>
+                <p>We're building more than a company - we're building a movement</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Mission-Driven Work</h3>
+                    <p>Contribute to meaningful projects that impact millions of lives</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Growth Opportunities</h3>
+                    <p>Continuous learning and career advancement programs</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative Culture</h3>
+                    <p>Work with talented, passionate professionals</p>
+                </div>
+
+                <div class="benefit-card animate-on-scroll">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Comprehensive Benefits</h3>
+                    <p>Health, wellness, and financial benefits for all employees</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Life at PI DOT -->
+    <section class="life-at-pidot">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Life at PI DOT</h2>
+                <p>Experience our vibrant workplace culture</p>
+            </div>
+
+            <div class="gallery-grid">
+                <div class="gallery-item animate-on-scroll">
+                    <img src="{% static 'images\Life_at_PiDot\Team_Office.jpg' %}" alt="Team Meeting">
+                    <div class="gallery-caption">Collaborative Workspaces</div>
+                </div>
+                <div class="gallery-item animate-on-scroll">
+                    <img src="{% static 'images\Life_at_PiDot\Team_annual_celebration.jpg' %}" alt="Team Event">
+                    <div class="gallery-caption">Team Building Events</div>
+                </div>
+                <div class="gallery-item animate-on-scroll">
+                    <img src="{% static 'images\Life_at_PiDot\Team02.jpg' %}" alt="Learning Session">
+                    <div class="gallery-caption">Continuous Learning</div>
+                </div>
+                <div class="gallery-item animate-on-scroll">
+                    <img src="{% static 'images\Life_at_PiDot\TeamMeet05.jpg' %}" alt="Celebration">
+                    <div class="gallery-caption">Celebrating Success</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Open Positions -->
+    <section class="open-positions" id="open-positions">
+    <div class="container">
+        <div class="section-header animate-on-scroll">
+            <h2>Open Positions</h2>
+            <p>Explore current opportunities to join our team</p>
+        </div>
+
+        <div class="position-filters animate-on-scroll">
+            <div class="filter-group">
+                <label for="department">Department:</label>
+                <select id="department">
+                    <option value="all">All Departments</option>
+                    {% for dept in departments %}
+                        <option value="{{ dept|lower }}">{{ dept }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+            <div class="filter-group">
+                <label for="location">Location:</label>
+                <select id="location">
+                    <option value="all">All Locations</option>
+                    {% for loc in locations %}
+                        <option value="{{ loc|lower }}">{{ loc }}</option>
+                    {% endfor %}
+                </select>
+
+            </div>
+        </div>
+
+        <div class="positions-list-wrapper">
+            <div class="positions-list">
+                <!-- All your .position-card items go here (same as before) -->
+                <!-- Example: -->
+
+            {% for job in jobs %}
+                <div class="position-card animate-on-scroll" data-department="{{ job.department|lower }}" data-location="{{ job.job_location|lower }}">
+                    <div class="position-info">
+                        <h3>{{ job.job_title }}</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i>{{ job.job_location }}</span>
+                            <span><i class="fas fa-briefcase"></i> {{ job.basic_qualification }}</span>
+                            <span><i class="fas fa-clock"></i>{{ job.job_type }}</span>
+                        </div>
+                    </div>
+                    <div class="position-actions">
+                        <a href="{% url 'job_description' job.slug %}" class="view-button">View Details</a>
+                        <a href="{% url 'PiDot_careers_register'%}" class="apply-button">Apply Now</a>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+                {% comment %} <div class="position-card animate-on-scroll" data-department="marketing" data-location="hyderabad">
+                    <div class="position-info">
+                        <h3>Sales Intern</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-briefcase"></i> Graduate</span>
+                            <span><i class="fas fa-clock"></i> Full-time / Part-time</span>
+                        </div>
+                    </div>
+                    <div class="position-actions">
+                        <a href="position-detail.html" class="view-button">View Details</a>
+                        <a href="{% url 'PiDot_careers_register'%}" class="apply-button">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="position-card animate-on-scroll" data-department="technology" data-location="hyderabad">
+                    <div class="position-info">
+                        <h3>Product Development Intern</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-briefcase"></i> B.Tech</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-actions" >
+                        <a href="position-detail.html" class="view-button">View Details</a>
+                        <a href="{% url 'PiDot_careers_register'%}" class="apply-button">Apply Now</a>
+                    </div>
+                </div>
+
+                <div class="position-card animate-on-scroll" data-department="technology" data-location="hyderabad">
+                    <div class="position-info">
+                        <h3>HR Intern</h3>
+                        <div class="position-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Hyderabad</span>
+                            <span><i class="fas fa-briefcase"></i> B.Tech</span>
+                            <span><i class="fas fa-clock"></i> Full-time</span>
+                        </div>
+                    </div>
+                    <div class="position-actions" >
+                        <a href="{% url 'careers_HR_Intern'%}" class="view-button">View Details</a>
+                        <a href="{% url 'PiDot_careers_register'%}" class="apply-button">Apply Now</a>
+                    </div>
+                </div> {% endcomment %}
+
+                
+
+                <!-- Add other .position-card blocks here -->
+            </div>
+
+            <!-- Pagination controls -->
+            <div class="pagination-container">
+                <button id="prevPage" class="pagination-btn">&larr;</button>
+                <span id="pageIndicator">1 / 1</span>
+                <button id="nextPage" class="pagination-btn">&rarr;</button>
+            </div>
+            <!-- <div class="pagination-numbers" id="pageNumbers"></div> -->
+        </div>
+    </div>
+</section>
+
+  
+    <!-- Internship Program -->
+    <section class="internship-program">
+        <div class="container">
+            <div class="program-content">
+                <div class="program-text animate-on-scroll">
+                    <h2>Internship Program</h2>
+                    <p>Launch your career with our immersive internship program designed to give you real-world experience and mentorship from industry leaders.</p>
+                    <ul class="program-benefits">
+                        <li><i class="fas fa-check-circle"></i> Hands-on project experience</li>
+                        <li><i class="fas fa-check-circle"></i> Mentorship from senior leaders</li>
+                        <li><i class="fas fa-check-circle"></i> Potential for full-time placement</li>
+                        <li><i class="fas fa-check-circle"></i> Stipend and benefits</li>
+                    </ul>
+                    <a href="#" class="cta-button primary">Learn About Internships</a>
+                </div>
+                <div class="program-image animate-on-scroll" style="display: flex; justify-content: center; align-items: center;">
+                    <img src="{% static "images\banners\Internship_Program.jpg" %}" width="450px"  alt="Internship Program">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Process -->
+    <section class="application-process">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2>Our Hiring Process</h2>
+                <p>What to expect when you apply</p>
+            </div>
+
+            <div class="process-steps">
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">1</div>
+                    <h3>Application Review</h3>
+                    <p>Our team reviews your submission carefully</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">2</div>
+                    <h3>Screening Call</h3>
+                    <p>A quick chat to discuss your background</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">3</div>
+                    <h3>Interviews</h3>
+                    <p>Meet with team members and leadership</p>
+                </div>
+                <div class="process-step animate-on-scroll">
+                    <div class="step-number">4</div>
+                    <h3>Offer</h3>
+                    <p>Welcome to the PI DOT team!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock Body %}
+
+{% block Script %}
+    <script src="{% static "js\scroll.js" %}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const departmentFilter = document.getElementById('department');
+            const locationFilter = document.getElementById('location');
+            const positionCards = document.querySelectorAll('.position-card');
+            const positionsList = document.querySelector('.positions-list');
+        
+            // Create and add a "No results found" message
+            const noResultsMessage = document.createElement('div');
+            noResultsMessage.classList.add('no-results');
+            noResultsMessage.textContent = 'No positions found for the selected filters.';
+            noResultsMessage.style.display = 'none';
+            positionsList.appendChild(noResultsMessage);
+        
+            function filterPositions() {
+                const selectedDepartment = departmentFilter.value.toLowerCase();
+                const selectedLocation = locationFilter.value.toLowerCase();
+                let anyVisible = false;
+        
+                positionCards.forEach(card => {
+                    const cardDepartment = (card.getAttribute('data-department') || '').toLowerCase();
+                    const cardLocation = (card.getAttribute('data-location') || '').toLowerCase();
+        
+                    const departmentMatches = selectedDepartment === 'all' || cardDepartment === selectedDepartment;
+                    const locationMatches = selectedLocation === 'all' || cardLocation === selectedLocation;
+        
+                    if (departmentMatches && locationMatches) {
+                        card.style.display = 'block';
+                        anyVisible = true;
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+        
+                // Show or hide the "No results" message
+                noResultsMessage.style.display = anyVisible ? 'none' : 'block';
+            }
+        
+            // Attach event listeners
+            departmentFilter.addEventListener('change', filterPositions);
+            locationFilter.addEventListener('change', filterPositions);
+        
+            // Run filter once on page load
+            filterPositions();
+        });
+    </script>
+
+   <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const allCards = Array.from(document.querySelectorAll(".position-card"));
+        const departmentSelect = document.getElementById("department");
+        const locationSelect = document.getElementById("location");
+        const prevBtn = document.getElementById("prevPage");
+        const nextBtn = document.getElementById("nextPage");
+        const pageIndicator = document.getElementById("pageIndicator");
+        const pageNumbersContainer = document.getElementById("pageNumbers");
+
+        const pageSize = 3;
+        let currentPage = 1;
+        let filteredCards = [];
+
+        function filterCards() {
+            const department = departmentSelect.value;
+            const location = locationSelect.value;
+
+            filteredCards = allCards.filter(card => {
+                const matchesDept = department === "all" || card.dataset.department === department;
+                const matchesLoc = location === "all" || card.dataset.location === location;
+                return matchesDept && matchesLoc;
+            });
+
+            currentPage = 1;
+            showPage(currentPage);
+        }
+
+        function showPage(page) {
+            // Hide all cards
+            allCards.forEach(card => {
+                card.classList.remove("visible");
+                card.style.display = "none";
+            });
+
+            const totalPages = Math.ceil(filteredCards.length / pageSize);
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+
+            for (let i = start; i < end && i < filteredCards.length; i++) {
+                const card = filteredCards[i];
+                card.style.display = "flex";
+                setTimeout(() => {
+                    card.classList.add("visible");
+                }, 50);
+            }
+
+            // Update page indicator and buttons
+            pageIndicator.textContent = `${page} / ${totalPages || 1}`;
+            prevBtn.disabled = page <= 1;
+            nextBtn.disabled = page >= totalPages;
+
+            renderPageNumbers(page, totalPages);
+        }
+
+        function renderPageNumbers(current, total) {
+            pageNumbersContainer.innerHTML = "";
+            for (let i = 1; i <= total; i++) {
+                const btn = document.createElement("button");
+                btn.textContent = i;
+                if (i === current) btn.classList.add("active");
+                btn.addEventListener("click", () => {
+                    currentPage = i;
+                    showPage(currentPage);
+                    scrollToTop();
+                });
+                pageNumbersContainer.appendChild(btn);
+            }
+        }
+
+        function scrollToTop() {
+            const section = document.getElementById("open-positions");
+            if (section) section.scrollIntoView({ behavior: "smooth" });
+        }
+
+        prevBtn.addEventListener("click", () => {
+            if (currentPage > 1) {
+                currentPage--;
+                showPage(currentPage);
+                scrollToTop();
+            }
+        });
+
+        nextBtn.addEventListener("click", () => {
+            const totalPages = Math.ceil(filteredCards.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                showPage(currentPage);
+                scrollToTop();
+            }
+        });
+
+        departmentSelect.addEventListener("change", filterCards);
+        locationSelect.addEventListener("change", filterCards);
+
+        // Initial setup
+        filterCards();
+    });
+</script>
+
+
+
+{% endblock Script %}

@@ -1,0 +1,1368 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block Style %}
+    <!-- <link rel="stylesheet" href="{% static "css/PiDot/extra-about.css" %}"> -->
+    <style>
+        :root {
+            /* Primary Colors */
+            /* --primary: #FFB13B;
+            --primary-dark: #F69507;
+            --primary-light: #FFD08A;
+            --primary-extra-light: #FFF5E8; */
+            
+            /* Text Colors */
+            --text-dark: #0B0B0B;
+            --text-light: #FFFFFF;
+            --text-gray: #6D6D6D;
+            --text-gray-light: #AAAAAA;
+            
+            /* Background Colors */
+            --bg-white: #FFFFFF;
+            --bg-light: #F9F9F9;
+            --bg-dark: #0B0B0B;
+            
+            /* Card Colors */
+            --card-bg: #FFFFFF;
+            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            
+            /* Section Colors */
+            /* --section-light: #F9F9F9;
+            --section-dark: #0B0B0B;
+            --section-primary: rgba(255, 177, 59, 0.1); */
+            
+            /* Borders */
+            --border-radius: 12px;
+            --border-light: 1px solid #EEEEEE;
+            
+            /* Spacing */
+            --section-padding: 6rem 0;
+            --container-padding: 0 2rem;
+            
+            /* Transitions */
+            --transition-fast: 0.2s ease;
+            --transition-medium: 0.3s ease;
+            --transition-slow: 0.5s ease;
+        }
+        
+        /* Base Styles */
+        /* .about-page {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+        
+        .about-page h1, 
+        .about-page h2, 
+        .about-page h3, 
+        .about-page h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-page h1 {
+            font-size: 3rem;
+        }
+        
+        .about-page h2 {
+            font-size: 2.5rem;
+        }
+        
+        .about-page h3 {
+            font-size: 1.75rem;
+        } */
+        
+        .about-page p {
+            /* margin-bottom: 1.5rem; */
+            color: var(--text-dark);
+        }
+        .about-page h2 {
+            color: var(--primary-dark);
+        } 
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--container-padding);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section {
+            padding: var(--section-padding);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+        
+        .bg-primary-light {
+            background-color: #FFF5E8;
+        }
+        
+        .bg-dark {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            text-align: center;
+            transition: var(--transition-medium);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(246, 149, 7, 0.3);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(246, 149, 7, 0.4);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+        }
+        
+        /* Background Patterns */
+        .bg-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            opacity: 0.05;
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .bg-pattern-dots {
+            background-image: radial-gradient(var(--primary-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .bg-pattern-lines {
+            background-image: linear-gradient(to right, var(--primary-color) 1px, transparent 1px),
+                              linear-gradient(to bottom, var(--primary-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        
+        .bg-pattern-circles {
+            background-image: radial-gradient(circle, var(-color) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        /* Hero Section */
+        .about-hero {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('{% static "images/banners/Pi_banner.png" %}');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--text-light);
+            padding: 10rem 0 8rem;
+            position: relative;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,177,59,0.1) 0%, rgba(255,177,59,0) 100%);
+            z-index: 1;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .hero-content p {
+            font-size: 1.25rem;
+            color: rgba(255,255,255,0.9);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+        }
+        
+        /* Floating Animation */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        /* About Sections */
+        .about-section {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            position: relative;
+        }
+        
+        .about-section.reverse {
+            flex-direction: row-reverse;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            width: 100px;
+            
+            /* box-shadow: var(--card-shadow); */
+            transform: perspective(1000px) rotateY(0deg);
+            transition: var(--transition-slow);
+            position: relative;
+
+            display: flex;                /* Enable flex layout */
+            align-items: center;          /* Vertical centering */
+            justify-content: center;      /* Horizontal centering */
+        }
+        
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(5deg);
+        }
+        
+        .about-image img {
+            width: 80%;
+            height: auto;
+            display: block;
+            /* box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); */
+            transition: var(--transition-slow);
+        }
+        
+        .about-image:hover img {
+            /* box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3); */
+            transform: scale(1.05);
+        }
+        
+        .about-content {
+            flex: 1;
+            position: relative;
+        }
+        
+        .highlight-box {
+            /* background-color: #FFF5E8; */
+            border-left: 4px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255,177,59,0.1) 0%, rgba(255,177,59,0) 100%);
+            z-index: 0;
+        }
+
+        @media (max-width: 768px) {
+    .about-section {
+        flex-direction: column !important;  /* override row or row-reverse */
+        gap: 2rem;
+        padding: 2rem 1rem;
+    }
+
+    .about-image,
+    .about-content {
+        flex: unset;
+        width: 100%;
+    }
+
+    .about-image {
+        border-radius: 12px;
+        box-shadow: none;
+        transform: none;
+    }
+
+    .about-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 12px;
+        object-fit: cover;
+    }
+
+    .about-content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .about-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .highlight-box {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-left-width: 3px;
+        font-size: 0.95rem;
+    }
+}
+
+
+        
+        /* Team Section */
+        .team-section {
+            position: relative;
+        }
+        
+        .team-section .section-header {
+            margin-bottom: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .team-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .team-photo {
+            width: 100%;
+            max-width: 900px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transform: scale(0.98);
+            transition: var(--transition-slow);
+        }
+        
+        .team-photo:hover {
+            transform: scale(1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        
+        .team-description {
+            max-width: 800px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+        }
+        
+        /* Approach Section */
+        .approach-section {
+            position: relative;
+        }
+        
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .approach-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .approach-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,177,59,0.05) 0%, rgba(255,177,59,0) 100%);
+            z-index: -1;
+        }
+        
+        .approach-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .approach-icon {
+            width: 70px;
+            height: 70px;
+            background: #FFF5E8;
+            color: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            transition: var(--transition-medium);
+        }
+        
+        .approach-card:hover .approach-icon {
+            transform: rotate(15deg) scale(1.1);
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+        
+        /* Mission Vision Section */
+        .mv-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            /* color: var(--text-light); */
+            color: black;
+            position: relative;
+        }
+
+        .mv-section p{
+            color: black;
+        }
+        
+        .mv-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{% static "images/patterns/dot-pattern.png" %}');
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .mv-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .mv-card {
+            padding: 3rem 2rem;
+            border-radius: var(--border-radius);
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition-medium);
+        }
+        
+        .mv-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.15);
+        }
+        
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-light);
+            color: var(--primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            transition: var(--transition-medium);
+        }
+        
+        .mv-card:hover .mv-icon {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* CEO Message */
+        .ceo-message-section {
+    position: relative;
+}
+
+.ceo-message {
+    display: flex;
+    align-items: center;
+    gap: 2rem; /* Reduced gap */
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap; /* Stack on smaller screens */
+}
+
+.ceo-image {
+    flex: 0 0 40%; /* Reduce width */
+    max-width: 300px;
+    /* border-radius: var(--border-radius); */
+    border-radius: 12px 0 0px 12px;
+    overflow: hidden;
+    box-shadow: var(--card-shadow);
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: var(--transition-slow);
+}
+
+.ceo-image:hover {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.ceo-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.ceo-text {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.ceo-text blockquote {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    position: relative;
+    font-style: italic;
+    padding-left: 1.5rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.ceo-info h4 {
+    font-size: 1.2rem;
+    margin-bottom: 0rem;
+    text-align: right;
+}
+
+.ceo-info p {
+    color: var(--text-gray);
+    text-align: right;
+    font-size: 0.85rem;
+}
+
+/* 🔽 Responsive styles for mobile */
+@media (max-width: 768px) {
+    .ceo-message {
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    .ceo-image {
+        flex: none;
+        width: 100%;
+        max-width: 250px;
+        margin: 0 auto;
+        transform: none;
+        border-radius: var(--border-radius);
+    }
+
+    .ceo-image:hover {
+        transform: none;
+    }
+
+    .ceo-text blockquote {
+        font-size: 1.1rem;
+        padding-left: 1rem;
+    }
+
+    .ceo-info h4 {
+        font-size: 1.2rem;
+    }
+}
+
+        
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.3;
+            z-index: 1;
+        }
+        
+        .floating-1 {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-color);
+            top: 10%;
+            left: 5%;
+            animation: float 8s ease-in-out infinite;
+        }
+        
+        /* .floating-2 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-dark);
+            bottom: 15%;
+            right: 10%;
+            animation: float 10s ease-in-out infinite 2s;
+        } */
+        
+        /* Milestones */
+        .milestones-section {
+            position: relative;
+        }
+        
+        .milestones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .milestone-card {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+        
+        .milestone-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,177,59,0.05) 0%, rgba(255,177,59,0) 100%);
+            z-index: -1;
+        }
+        
+        .milestone-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .milestone-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            transition: var(--transition-medium);
+        }
+        
+        .milestone-card:hover .milestone-number {
+            transform: scale(1.1);
+        }
+        
+        /* Leadership */
+        .leadership-section {
+            position: relative;
+        }
+        
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .leader-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition-medium);
+            position: relative;
+        }
+        
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(255,177,59,0) 70%, rgba(255,177,59,0.1) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .leader-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .leader-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 100%);
+        }
+        
+        .leader-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-slow);
+        }
+        
+        .leader-card:hover .leader-image img {
+            transform: scale(1.05);
+        }
+        
+        .leader-info {
+            padding: 1.5rem;
+            text-align: center;
+            border-top: var(--border-light);
+            position: relative;
+            z-index: 2;
+            background: var(--card-bg);
+        }
+        
+        /* Join Team */
+        .join-team {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: var(--text-light);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .join-team::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('{% static "images/patterns/dot-pattern-white.png" %}');
+            opacity: 0.1;
+            z-index: 1;
+        }
+        
+        .join-content {
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .join-content p {
+            color: rgba(255,255,255,0.9);
+        }
+        
+        /* Animation Classes */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-section, 
+            .ceo-message {
+                flex-direction: column;
+            }
+            
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .ceo-image {
+                margin-bottom: 2rem;
+                transform: perspective(1000px) rotateY(0deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .approach-grid,
+            .leadership-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .section {
+                padding: 4rem 0;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .approach-grid,
+            .leadership-grid,
+            .milestones-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+            
+            .ceo-text blockquote {
+                font-size: 1.2rem;
+                padding-left: 1rem;
+            }
+        }
+    </style>
+    <style>
+    /* Add these styles to your existing CSS */
+    .company-family {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+        border-top: 1px dashed rgba(246, 149, 7, 0.3);
+    }
+    
+    .family-tree {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    
+    .parent-company {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        position: relative;
+        z-index: 2;
+    }
+    
+    .parent-company::after {
+        content: '';
+        position: absolute;
+        bottom: -1rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 1.5rem;
+        background: var(--primary);
+    }
+    
+    .children-companies {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+    
+    .sub-children {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.5rem;
+        /* margin-top: 1.5rem; */
+        position: relative;
+    }
+    
+    .sub-children::before {
+        content: '';
+        position: absolute;
+        top: -1.5rem;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--primary);
+        width: 80%;
+        margin: 0 auto;
+    }
+    
+    .company-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+        padding: 0.8rem;
+        border-radius: 8px;
+        width: 70px;
+        height: 70px;
+        box-shadow: var(--card-shadow);
+        margin-bottom: 30px;
+    }
+    
+    .company-item:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 177, 59, 0.05);
+    }
+    
+    .company-logo {
+        width: 50px;
+        height: 50px;
+        object-fit: contain;
+        margin-bottom: 0.5rem;
+        filter: grayscale(30%);
+        transition: all 0.3s ease;
+    }
+    
+    .company-item:hover .company-logo {
+        filter: grayscale(0%);
+        transform: scale(1.1);
+    }
+    
+    .company-name {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--text-gray);
+        text-align: center;
+        margin-top: 10px;
+        
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .sub-children {
+            gap: 1rem;
+        }
+        
+        .company-logo {
+            width: 40px;
+            height: 40px;
+        }
+        
+        .company-name {
+            font-size: 0.7rem;
+        }
+    }
+</style>
+{% endblock Style %} 
+
+{% block Script %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/ScrollTrigger.min.js"></script>
+    <script>
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger);
+            
+            // Animate on scroll elements
+            gsap.utils.toArray('.animate-on-scroll').forEach((element, index) => {
+                gsap.fromTo(element, 
+                    { opacity: 0, y: 50 },
+                    {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: element,
+                            start: "top 80%",
+                            toggleActions: "play none none none",
+                        }
+                    }
+                );
+            });
+            
+            // Floating elements animation
+            const floatingElements = document.querySelectorAll('.floating-element');
+            floatingElements.forEach(el => {
+                gsap.to(el, {
+                    y: 20,
+                    duration: 3 + Math.random() * 2,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            });
+            
+            // Hero text animation
+            gsap.from('.hero-content h1', {
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                delay: 0.3,
+                ease: "power3.out"
+            });
+            
+            gsap.from('.hero-content p', {
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                delay: 0.6,
+                ease: "power3.out"
+            });
+            
+            // Section background animations
+            gsap.utils.toArray('.bg-pattern').forEach(pattern => {
+                gsap.to(pattern, {
+                    x: 10,
+                    y: 10,
+                    duration: 20,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "none"
+                });
+            });
+        });
+    </script>
+{% endblock Script %}
+
+{% block Body %}
+<div class="about-page">
+    <!-- Hero Section -->
+    <section class="about-hero section">
+        <div class="floating-element floating-1"></div>
+        <!-- <div class="floating-element floating-2"></div> -->
+        <div class="container">
+            <div class="hero-content">
+                <h1>Empower Elevate Excelerate</h1>
+                <p>PI DOT is where empowerment meets innovation, and where exceleration (excel + acceleration) shapes the future. We're committed to driving people, businesses, and communities beyond conventional boundaries into realms of exceptional potential.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About PI DOT Section -->
+    <section class="about-section section" style="background-color: var(--card-bg); padding: 40px 0px;">
+        <div class="bg-pattern bg-pattern-dots"></div>
+        <div class="container">
+            <div class="about-section">
+                <div class="about-image animate-on-scroll">
+                    <img src="{% static "logos\PI dot.png" %}" alt="About PI DOT">
+                </div>
+                <div class="about-content animate-on-scroll delay-1">
+                    <h2>About PI DOT</h2>
+                    <p>PI DOT is a dynamic innovation hub dedicated to transforming how India consumes knowledge and develops talent. Through our ecosystems, services, and tools, we're creating accessible pathways to opportunity for millions of Indians.</p>
+                    <div class="highlight-box" >
+                        <p >PI DOT is a part of EMELEX Business Solutions LLP, a forward-thinking organization committed to creating impactful business solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About EMELEX Section -->
+    <!-- <section class="about-section section bg-light" style="background-color: var(--bg-light);">
+        <div class="bg-pattern bg-pattern-lines"></div>
+        <div class="container">
+            <div class="about-section reverse">
+                <div class="about-image animate-on-scroll">
+                    <img src="{% static "images/about/emelex-about.jpg" %}" alt="About EMELEX">
+                </div>
+                <div class="about-content animate-on-scroll delay-1">
+                    <h2>About EMELEX</h2>
+                    <p>EMELEX Business Solutions LLP is the parent organization behind PI DOT, providing strategic direction and operational support. With a vision to create sustainable business ecosystems, EMELEX fosters innovation across multiple domains including education, technology, and business automation.</p>
+                    <p>Our combined strength allows us to deliver comprehensive solutions that address complex challenges in the Indian market.</p>
+                </div>
+            </div>
+        </div>
+    </section> -->
+    <section class="about-section section bg-light" style="background-color: var(--bg-light); ">
+        <div class="bg-pattern bg-pattern-lines"></div>
+        <div class="container">
+            <div class="about-section reverse">
+                <div class="about-image animate-on-scroll">
+                    <img src="{% static "logos\EmElEx_BlackLogo.png" %}" alt="About EMELEX" style="border-radius: 30px;">
+                </div>
+                <div class="about-content animate-on-scroll delay-1">
+                    <h2>About EMELEX</h2>
+                    <p>EMELEX Business Solutions LLP is the parent organization behind PI DOT, providing strategic direction and operational support. With a vision to create sustainable business ecosystems, EMELEX fosters innovation across multiple domains including education, technology, and business automation.</p>
+                    <p>Our combined strength allows us to deliver comprehensive solutions that address complex challenges in the Indian market.</p>
+                    
+                    <!-- Company Logo Showcase -->
+                    <div class="company-family">
+                        <div class="family-tree">
+                            <!-- <div class="parent-company">
+                                <img src="{% static "images/logos/emelex-logo.png" %}" alt="EMELEX" class="company-logo">
+                                <span class="company-name">EMELEX</span>
+                            </div> -->
+                            <div class="children-companies">
+                                <!-- <div class="company-item">
+                                    <img src="{% static "images/logos/pidot-logo.png" %}" alt="PiDot" class="company-logo">
+                                    <span class="company-name">PiDot</span>
+                                </div> -->
+                                <div class="sub-children">
+                                    <div class="company-item">
+                                    <img src="{% static "logos\PI dot.png" %}" alt="PiDot" class="company-logo">
+                                    <span class="company-name">PiDot</span>
+                                </div>
+                                    <div class="company-item">
+                                        <img src="{% static 'logos\Edusphere.svg' %}" alt="Edusphere" class="company-logo">
+                                        <span class="company-name">Edusphere</span>
+                                    </div>
+                                    <div class="company-item">
+                                        <img src="{% static 'logos\Genesis.svg' %}" alt="Genesis" class="company-logo">
+                                        <span class="company-name">Genesis</span>
+                                    </div>
+                                    <div class="company-item">
+                                        <img src="{% static "logos\Axiom-icon-black.svg" %}" alt="Axiom" class="company-logo">
+                                        <span class="company-name">Axiom</span>
+                                    </div>
+                                    <div class="company-item">
+                                        <img src="{% static "logos\FERMION.svg" %}" alt="Fermion" class="company-logo">
+                                        <span class="company-name">Fermion</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+
+    <!-- Our Team Section -->
+    <section class="team-section section" style="background-color: var(--card-bg);">
+        <div class="bg-pattern bg-pattern-circles"></div>
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Our Team</h2>
+                <p>The passionate minds behind our success</p>
+            </div>
+            <div class="team-group">
+                <div style="width: 750px; height: 300px; overflow: hidden;">
+                    <img src="{% static "images\Life_at_PiDot\TeamMeet01.jpg" %}" alt="PI DOT Team" class="team-photo animate-on-scroll" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div class="team-description animate-on-scroll delay-1" >
+                    <p>At PI DOT, we've assembled a diverse team of innovators, educators, and technologists who share a common vision of transforming India's knowledge landscape. Our team combines deep industry expertise with fresh perspectives to create solutions that truly make a difference.</p>
+                    <p>Collaboration is at our core - we believe that the best ideas emerge when passionate people work together towards a shared goal.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Approach Section -->
+    <section class="approach-section section bg-light"  >
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Our Approach</h2>
+                <p>How we create impact</p>
+            </div>
+            <div class="approach-grid">
+                <div class="approach-card animate-on-scroll">
+                    <div class="approach-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation First</h3>
+                    <p>We challenge conventional thinking to develop groundbreaking solutions that create real impact.</p>
+                </div>
+                <div class="approach-card animate-on-scroll delay-1">
+                    <div class="approach-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaborative</h3>
+                    <p>We partner with institutions, corporations, and communities to achieve transformative change at scale.</p>
+                </div>
+                <div class="approach-card animate-on-scroll delay-2">
+                    <div class="approach-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Data-Driven</h3>
+                    <p>Our decisions are guided by insights and analytics to ensure maximum effectiveness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="mv-section section" >
+        <div class="container">
+            <div class="mv-grid">
+                <div class="mv-card mission animate-on-scroll">
+                    <div class="mv-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>Changing how India consumes knowledge and trains talent by creating accessible pathways to opportunity.</p>
+                </div>
+                <div class="mv-card vision animate-on-scroll delay-1">
+                    <div class="mv-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To introduce the cofactor of luck in the form of opportunities, security, and optimization to unlock humankind's ultimate potential.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CEO Message Section -->
+    <section class="ceo-message-section section bg-light">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Message From Our CEO</h2>
+                <p>Words from our visionary leader</p>
+            </div>
+            <div class="ceo-message">
+                <div class="ceo-image animate-on-scroll">
+                    <img src="{% static "images/team/Vamshi-c.jpg" %}" alt="M Vamshi Krishna">
+                </div>
+                <div class="ceo-text animate-on-scroll delay-1">
+                    <blockquote>
+                        "I believe the opportunities we get, the lifestyle we live, and the experiences we gather are all limited by the amount of 'luck' we have as individuals. PI DOT brings the cofactor of luck into people's lives, transforming it into an experiential journey."
+                    </blockquote>
+                    <div class="ceo-info">
+                        <h4>M Vamshi Krishna</h4>
+                        <p>Founder & CEO, PI DOT</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section section" style="background-color: var(--card-bg)";>
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Our Mission</h2>
+                <p>Key goals for Pi Dot Growth</p>
+            </div>
+            <div class="milestones-grid">
+                <div class="milestone-card animate-on-scroll">
+                    <div class="milestone-number">314M+</div>
+                    <div class="milestone-text">People to Impact</div>
+                </div>
+                <div class="milestone-card animate-on-scroll delay-1">
+                    <div class="milestone-number">500+</div>
+                    <div class="milestone-text">Corporate Partners</div>
+                </div>
+                <div class="milestone-card animate-on-scroll delay-2">
+                    <div class="milestone-number">50+</div>
+                    <div class="milestone-text">Countries of Existance</div>
+                </div>
+                <!-- <div class="milestone-card animate-on-scroll delay-3">
+                    <div class="milestone-number">25</div>
+                    <div class="milestone-text">States Reached</div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership Team Section -->
+    {% comment %} <section class="leadership-section section bg-light">
+        <div class="container">
+            <div class="section-header text-center animate-on-scroll">
+                <h2>Leadership Team</h2>
+                <p>The visionary minds driving our mission forward</p>
+            </div>
+            <div class="leadership-grid">
+                <div class="leader-card animate-on-scroll">
+                    <div class="leader-image">
+                        <img src="{% static "images/team/Vamshi-c.jpg" %}" alt="M Vamshi Krishna">
+                    </div>
+                    <div class="leader-info">
+                        <h3>M Vamshi Krishna</h3>
+                        <p>Founder & CEO</p>
+                    </div>
+                </div>
+                <div class="leader-card animate-on-scroll delay-1">
+                    <div class="leader-image">
+                        <img src="{% static "images/team/Dinesh_img.JPG" %}" alt="Dinesh Paridala">
+                    </div>
+                    <div class="leader-info">
+                        <h3>Dinesh Paridala</h3>
+                        <p>Chief of Staff</p>
+                    </div>
+                </div>
+                <div class="leader-card animate-on-scroll delay-2">
+                    <div class="leader-image">
+                        <img src="{% static "images/team/Laasya.jpeg" %}" alt="Laasya Vellamayina">
+                    </div>
+                    <div class="leader-info">
+                        <h3>Laasya Vellamayina</h3>
+                        <p>Director of Finance</p>
+                    </div>
+                </div>
+                <div class="leader-card animate-on-scroll delay-3">
+                    <div class="leader-image">
+                        <img src="{% static "images/team/praneeth.png" %}" alt="Prannet Pathrudu">
+                    </div>
+                    <div class="leader-info">
+                        <h3>Prannet Pathrudu</h3>
+                        <p>Director of Axiom</p>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center animate-on-scroll" style="margin-top: 3rem;">
+                <a href="leadership.html" class="btn btn-secondary">View Full Leadership Team</a>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Join Our Team Section -->
+    <section class="join-team section">
+        <div class="container">
+            <div class="join-content animate-on-scroll">
+                <h2 style="color: var(--primary-light);">Join Our Mission</h2>
+                <p>We're always looking for passionate individuals who want to make a difference. Explore opportunities to be part of our growing team.</p>
+                <a href="{% url 'PiDot_careers' %}" class="btn btn-primary">View Career Opportunities</a>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock Body %}

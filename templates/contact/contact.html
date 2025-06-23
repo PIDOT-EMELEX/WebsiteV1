@@ -1,0 +1,206 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block Style %}
+<link rel="stylesheet" href="{% static "css\contact\contact.css" %}">
+{% endblock Style %} 
+
+
+{% block Body %}
+        <!-- Contact Hero -->
+        <section class="contact-hero">
+            <div class="container">
+                <div class="contact-hero-content">
+                    <h1 class="animate-on-scroll">Let's Build Something Great Together</h1><br><br><br><br>
+                    <p class="animate-on-scroll">Get in touch with our team to discuss how PI DOT can transform your organization</p>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Contact Main -->
+        <section class="contact-main">
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-form animate-on-scroll">
+                        <h2>Send Us a Message</h2>
+                        <form action="https://api.web3forms.com/submit" method="POST" id="contactForm">
+    <!-- Replace the value below with your actual Web3Forms access key -->
+    <input type="hidden" name="access_key" value="bb6682ff-f2bc-4c9a-953e-254d36359a56"> <!-- dinesh@pidot.in -->
+    <input type="hidden" name="access_key" value="ab90e6df-a152-4760-a2aa-6a2a3a3efcbc"> <!-- info@pidot.in// -->
+
+    <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required>
+    </div>
+
+    <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone">
+    </div>
+
+    <div class="form-group">
+        <label for="subject">Subject</label>
+        <select id="subject" name="subject" required>
+            <option value="">Select a topic</option>
+            <option value="general">General Inquiry</option>
+            <option value="sales">Sales Inquiry</option>
+            <option value="support">Technical Support</option>
+            <option value="partnership">Partnership Opportunity</option>
+            <option value="careers">Careers</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+    </div>
+
+    <button type="submit" class="cta-button primary">Send Message</button>
+    </form>
+
+                    </div>
+    
+                    <div class="contact-info animate-on-scroll">
+                        <div class="info-card">
+                            <h3>Contact Information</h3>
+                            <ul class="contact-details">
+                                <li>
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    <div>
+                                        <strong>Headquarters</strong>
+                                        <p>Hyderabad, Telangana, India</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone"></i>
+                                    <div>
+                                        <strong>Phone</strong>
+                                        <p>+91 91547 76110</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    <div>
+                                        <strong>Email</strong>
+                                        <p>info@pidot.in</p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <i class="fas fa-clock"></i>
+                                    <div>
+                                        <strong>Working Hours</strong>
+                                        <p style="margin-bottom: 0px;">Monday - Friday: 9:00 - 18:00</p>
+                                        <p>Saturday: 10:00 - 14:00</p>
+                                    </div>
+                                </li>
+                            </ul>
+    
+                            <div class="social-links-2">
+                                <h4>Follow Us</h4>
+                                <div class="social-icons-2" >
+                                    <a href="https://www.linkedin.com/company/pi-dot/">
+                                        <i class="fab fa-linkedin-in" ></i>
+                                    </a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.instagram.com/pidot.in/"><i class="fab fa-instagram"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <!-- Map Section -->
+        <section class="map-section animate-on-scroll">
+            <div class="container">
+                <h2>Our Locations</h2>
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.995125676186!2d78.45038401088439!3d17.459947400641415!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x23cecb531bb01a03%3A0x87df5e37668f568b!2sPi%20Dot!5e0!3m2!1sen!2sin!4v1745779238298!5m2!1sen!2sin" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+        
+    
+        <!-- CTA Section -->
+        <section class="contact-cta">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Schedule a Consultation</h2>
+                    <p>Book a meeting with our experts to discuss your specific needs</p>
+                    <a href="#" class="cta-button primary">Book Now</a>
+                </div>
+            </div>
+        </section>    
+
+{% endblock Body %}
+
+
+
+{% block Script %}
+    <script src="{% static "js\scroll.js" %}"></script>
+    <script src="{% static "js/contact-form.js" %}"></script>
+    <script>
+    // FAQ functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Close all other open items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+
+        // Scroll animation
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                // Add your form submission logic here
+                // e.preventDefault();
+                // Submit form via AJAX or let it submit normally
+            });
+        }
+    });
+</script>
+{% endblock Script %}

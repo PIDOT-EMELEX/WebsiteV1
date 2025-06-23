@@ -1,0 +1,290 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block Style %}
+    <style>
+        :root {
+            --primary-color: #FFB13B;
+            --primary-dark: #F69507;
+            --primary-light: #FFD08A;
+            --text-dark: #0B0B0B;
+            --text-light: #FFFFFF;
+            --text-gray: #AAAAAA;
+            --bg-light: #FFFFFF;
+            --bg-dark: #0B0B0B;
+            --card-bg: #F5F5F5;
+            --genesis-color: #56848C;
+            --genesis-dark: #122E32;
+            --edusphere-color: #38B6FF;
+            --edusphere-dark: #00A3FF;
+            --axiom-color: #0B0B0B;
+            --axiom-dark: #333333;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            margin: 0;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            line-height: 1.6;
+        }
+
+        .container-2 {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cookie-header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+            color: var(--text-light);
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+
+        .cookie-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .last-updated {
+            font-style: italic;
+            opacity: 0.9;
+            color: var(--primary-light);
+        }
+
+        .cookie-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--card-bg);
+        }
+
+        .section h3 {
+            font-size: 1.4rem;
+            margin: 30px 0 15px;
+            color: var(--text-dark);
+        }
+
+        .section p, .section ul {
+            margin-bottom: 20px;
+        }
+
+        .section ul {
+            padding-left: 20px;
+        }
+
+        .section li {
+            margin-bottom: 10px;
+        }
+
+        .cookie-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+
+        .cookie-table th {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: left;
+            padding: 12px 15px;
+        }
+
+        .cookie-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--card-bg);
+        }
+
+        .cookie-table tr:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        .cookie-controls {
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+
+        .contact-info-2 {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .cookie-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section h2 {
+                font-size: 1.6rem;
+            }
+            
+            .section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .cookie-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
+{% endblock Style %}
+
+{% block Body %}
+<!-- Cookie Policy Header -->
+<section class="cookie-header">
+    <div class="container-2">
+        <h1>Cookie Policy</h1>
+        <p class="last-updated">Last Updated: [Insert Date]</p>
+    </div>
+</section>
+
+<!-- Cookie Policy Content -->
+<section class="cookie-content">
+    <div class="container-2">
+        <div class="section">
+            <p>This Cookie Policy explains how BMEEX Business Solutions LLP ("we," "us," or "our") uses cookies and similar tracking technologies when you visit our websites and use our services within the PI DOT ecosystem, including Edusphere, Genesis, and Axiom platforms (collectively, the "Services").</p>
+        </div>
+
+        <div class="section">
+            <h2>1. What Are Cookies?</h2>
+            <p>Cookies are small text files that are placed on your computer, smartphone, or other device when you visit a website. They are widely used to make websites work more efficiently and to provide information to website owners.</p>
+            
+            <p>We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device for a set period or until you delete them).</p>
+        </div>
+
+        <div class="section">
+            <h2>2. How We Use Cookies</h2>
+            <p>We use cookies for the following purposes:</p>
+            
+            <h3>Essential Cookies</h3>
+            <p>These are necessary for the website to function and cannot be switched off. They are usually only set in response to actions you take such as logging in or filling in forms.</p>
+            
+            <h3>Performance Cookies</h3>
+            <p>These allow us to count visits and traffic sources so we can measure and improve the performance of our site.</p>
+            
+            <h3>Functional Cookies</h3>
+            <p>These enable the website to provide enhanced functionality and personalization.</p>
+            
+            <h3>Targeting Cookies</h3>
+            <p>These cookies may be set through our site by our advertising partners to build a profile of your interests.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Types of Cookies We Use</h2>
+            <table class="cookie-table">
+                <thead>
+                    <tr>
+                        <th>Cookie Name</th>
+                        <th>Purpose</th>
+                        <th>Duration</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>session_id</td>
+                        <td>Maintains your session state across page requests</td>
+                        <td>Session</td>
+                        <td>Essential</td>
+                    </tr>
+                    <tr>
+                        <td>user_preferences</td>
+                        <td>Stores your language and display preferences</td>
+                        <td>1 year</td>
+                        <td>Functional</td>
+                    </tr>
+                    <tr>
+                        <td>_ga</td>
+                        <td>Google Analytics - distinguishes unique users</td>
+                        <td>2 years</td>
+                        <td>Performance</td>
+                    </tr>
+                    <tr>
+                        <td>_gid</td>
+                        <td>Google Analytics - distinguishes unique users</td>
+                        <td>24 hours</td>
+                        <td>Performance</td>
+                    </tr>
+                    <tr>
+                        <td>_gat</td>
+                        <td>Google Analytics - throttles request rate</td>
+                        <td>1 minute</td>
+                        <td>Performance</td>
+                    </tr>
+                    <tr>
+                        <td>fr</td>
+                        <td>Facebook Pixel - advertising and conversion tracking</td>
+                        <td>3 months</td>
+                        <td>Targeting</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>4. Third-Party Cookies</h2>
+            <p>We may also use various third-party cookies, including:</p>
+            <ul>
+                <li><strong>Google Analytics:</strong> To understand how visitors engage with our Services</li>
+                <li><strong>Hotjar:</strong> To better understand user behavior and improve user experience</li>
+                <li><strong>Facebook Pixel:</strong> To measure the effectiveness of our advertising</li>
+                <li><strong>LinkedIn Insight Tag:</strong> For advertising and analytics</li>
+            </ul>
+            <p>These third-party services may use cookies and similar technologies that are subject to their own privacy policies.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Your Cookie Choices</h2>
+            <div class="cookie-controls">
+                <h3>Browser Controls</h3>
+                <p>Most browsers allow you to control cookies through their settings preferences. However, if you limit the ability of websites to set cookies, you may worsen your overall user experience.</p>
+                
+                <h3>Opt-Out Tools</h3>
+                <p>You can opt out of certain third-party cookies:</p>
+                <ul>
+                    <li><a href="https://tools.google.com/dlpage/gaoptout" style="color: var(--primary-color);">Google Analytics Opt-out</a></li>
+                    <li><a href="https://www.facebook.com/ads/preferences" style="color: var(--primary-color);">Facebook Ad Preferences</a></li>
+                    <li><a href="https://www.linkedin.com/psettings/guest-controls" style="color: var(--primary-color);">LinkedIn Cookie Settings</a></li>
+                </ul>
+                
+                <h3>Our Cookie Consent Tool</h3>
+                <p>When you first visit our website, you will be presented with a cookie consent banner where you can manage your preferences.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Changes to This Cookie Policy</h2>
+            <p>We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page and updating the "Last Updated" date.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Contact Us</h2>
+            <div class="contact-info-2">
+                <p>If you have any questions about this Cookie Policy, please contact us:</p>
+                <ul>
+                    <li><strong>By email:</strong> privacy@pidot.in</li>
+                    <li><strong>By mail:</strong> BMEEX Business Solutions LLP, Mykotabad, India</li>
+                    <li><strong>By phone:</strong> +91 0154 77610</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock Body %}

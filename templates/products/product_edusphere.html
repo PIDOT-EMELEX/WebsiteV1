@@ -1,0 +1,589 @@
+{% extends "index.html" %}
+
+{% load static %}
+{% block title %}
+  Edusphere | PI DOT | Introducing Education Beyod Borders
+{% endblock title %}
+
+{% block Style %}
+
+    <link rel="stylesheet" href="{% static 'css\products\edusphere.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+{% endblock Style %}
+
+{% block Body %}
+    <!-- Animated Gradient Hero -->
+    {% comment %} <section class="hero">
+        <div class="container hero-content">
+            <div class="logo-container">
+                <img src="{% static 'logos/Edusphere.svg' %}" style="width: 50%;" alt="Edusphere Logo">
+            </div>
+            <h1>Experiential Learning for Global Readiness</h1>
+            <p>
+                Blending education, technology, and psychology to make learning a reality for 200 million students in India
+            </p>
+        </div>
+    </section> {% endcomment %}
+
+
+    <section class="edusphere-hero">
+        <div class="hero-container">
+        <div class="hero-slider">
+            <div class="hero-slide active">
+                <div class="hero-text">
+                    <h1>Bridging Classrooms & the Real World</h1>
+                    <p>A globally-inspired curriculum transforming how India learns, lives, and leads.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn primary">Know more</a>
+                        <a href="#" class="btn secondary">Partner With Us</a>
+                    </div>
+                    <div class="hero-slide-lower">
+                        <i><b>#introducing</b>educationbeyondborders</i>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-text">
+                    <h1>Reimagining School Education for the Real World </h1>
+                    
+                    <p>An integrated, future-ready curriculum that brings global skills and experiential learning right into your classrooms. </p>
+                  
+                    <div class="hero-buttons">
+                        <a href="#" class="btn primary">Discover More</a>
+                        <a href="#" class="btn secondary">Collaborate</a>
+                    </div>
+                    <div class="hero-slide-lower">
+                        <i><b>#introducing</b>educationbeyondborders</i>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-slide">
+                <div class="hero-text">
+                    <h1 style="margin-bottom: 0px;">Future-Ready Students, AI first Schools</h1>
+                    <p>With Edusphere, your students gain clarity, confidence, and capability from Day One.</p>
+                    <div class="hero-buttons">
+                        <a href="#" class="btn primary">Discover More</a>
+                        <a href="#" class="btn secondary">Get Started</a>
+                    </div>
+                    <div class="hero-slide-lower">
+                        <i><b>#introducing</b>educationbeyondborders</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-logo">
+            <img src="{% static 'logos\Edusphere.svg' %}" alt="Edusphere Logo">
+        </div>
+
+        <div class="hero-dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+
+
+    <!-- PI DOT Connection -->
+    <!-- <section class="pidot-connection">
+        <div class="container">
+            <img src="{% static 'assets/images/pidot-logo.svg' %}" alt="PI DOT">
+            <p>
+                Edusphere is PI DOT's educational initiative, transforming how children learn by combining global standards with experiential methodologies.
+            </p>
+        </div>
+    </section> -->
+
+    <section class="pidot-connection" id="for-students">
+        <div class="connection-row">
+            <!-- Corporate: Image Left -->
+            <div class="connection-image">
+                <img src="{% static 'images\Genesis\Partner_hiring.jpg' %}" alt="Corporate">
+            </div>
+            <div class="connection-text">
+                <h3>For Students</h3>
+                <h2>Your Partner in Delivering Global-Standard, Future-Ready Education</h2>
+                <p>Edusphere empowers schools to deliver globally-relevant, experiential learning by integrating education, technology, psychology—and now, artificial intelligence. Our curriculum brings international exposure and AI-enhanced learning directly into classrooms, helping students build real-world skills for a rapidly evolving world.<br><br>
+                    With a strong focus on teacher upskilling, personalized learning, and future-ready tools, we help schools increase enrollment, strengthen outcomes, and unlock new growth through innovation and strategic partnerships.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="pidot-connection" style="background-color: var(--bg-light);" id="for-parents">
+        <div class="connection-row reverse">
+            <!-- Student: Image Right -->
+            <div class="connection-image">
+                <img src="{% static 'images/genesis/students.jpg' %}" alt="parent">
+            </div>
+            <div class="connection-text">
+                <h3>For Parent</h3>
+                <h2>Empowering Your Child with Global Skills and Real-World Learning</h2>
+                <p>
+                    Edusphere brings your child more than just traditional education—we blend global standards with technology, psychology, and AI-powered learning to help them thrive in today’s fast-changing world.<br><br>
+                    Our curriculum is designed to build confidence, creativity, and critical thinking through hands-on, experiential learning—preparing your child not just for exams, but for life.<br><br>
+                    With Edusphere, your child learns beyond textbooks, discovers their potential, and gains the skills needed to lead in a global future.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="simple-timeline-container">
+        <ul class="simple-timeline">
+            <li class="timeline-step active">
+            <div class="timeline-dot"><i class="fas fa-vr-cardboard" title="Experiential Learning"></i></div>
+            <div class="timeline-label">Experiential</div>
+            <div class="timeline-label" style="margin-top: 0px;">Learning</div>
+            </li>
+            <li class="timeline-step">
+            <div class="timeline-dot"><i class="fas fa-robot" title="Artificial Intelligence"></i></div>
+            <div class="timeline-label" >AI</div>
+            <div class="timeline-label" style="margin-top: 0px;">Integration</div>
+            </li>
+            <li class="timeline-step">
+            <div class="timeline-dot"><i class="fas fa-globe" title="Global Exposure"></i></div>
+            <div class="timeline-label">Global</div>
+            <div class="timeline-label" style="margin-top: 0px;">Exposure</div>
+
+            </li>
+            <li class="timeline-step">
+            <div class="timeline-dot"><i class="fas fa-seedling" title="Holistic Development"></i></div>
+            <div class="timeline-label">Holistic</div>
+            <div class="timeline-label" style="margin-top: 0px;">Development</div>
+            </li>
+        </ul>
+    </section>
+
+    <!-- ===== OUR SERVICES ===== -->
+    {% comment %} <section class="interactive-grid-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">
+                <span>Our</span> 
+                <span>Programs</span>
+            </h2>
+            
+            <div class="interactive-grid">
+                <!-- Service 1 -->
+                <div class="grid-item">
+                    <img src="{% static 'images/Edusphere/Learning_beyond_school.jpg' %}" alt="Learning Beyond School">
+                    <div class="grid-content">
+                        <h3>Learning Beyond School</h3>
+                        <p>Enrichment activities outside traditional classrooms that enhance development</p>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="grid-item">
+                    <img src="{% static 'images/Edusphere/Leadership_conclave.jpg' %}" alt="Leadership Conclave">
+                    <div class="grid-content">
+                        <h3>Leadership Conclave</h3>
+                        <p>Holistic learning through public speaking, entrepreneurship, and critical thinking</p>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="grid-item">
+                    <img src="{% static 'assets/images/interest-learning.jpg' %}" alt="Interest Based Learning">
+                    <div class="grid-content">
+                        <h3>Interest Based Learning</h3>
+                        <p>Year-long immersion in specialized clubs for deep expertise development</p>
+                    </div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="grid-item">
+                    <img src="{% static 'assets/images/empathy-education.jpg' %}" alt="Empathy Integrated Education">
+                    <div class="grid-content">
+                        <h3>Empathy Education</h3>
+                        <p>Integrating compassion and understanding with real-life scenarios</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Core Programs Grid -->
+    <section class="programs-section" style="background-color: var(--card-bg);">
+    <div class="programs-section container" style="background-color: var(--card-bg); padding: 0px 0px;">
+        <h2 class="section-title">
+            Our <span>Flagship</span> Programs
+        </h2>
+        
+        <div class="card-grid">
+            <!-- Program 1 -->
+            <div class="edu-card">
+                <div class="card-image">
+                    <img src="{% static 'images/Edusphere/Learning_beyond_school.jpg' %}" alt="Learning Beyond School">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">For All Students</span>
+                    <h3>Learning Beyond School</h3>
+                    <p>Real-world experiences like family workshops, excursions, and conferences that enrich learning beyond the classroom.</p>
+                    <a href="#">
+                        Explore Program <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Program 2 -->
+            <div class="edu-card">
+                <div class="card-image">
+                    <img src="{% static 'images/Edusphere/Leadership_conclave.jpg' %}" alt="Leadership Program">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">For Grades 6-12</span>
+                    <h3>Leadership Conclave</h3>
+                    <p>A dynamic in-school program that builds everyday life skills through public speaking, entrepreneurship, technology, and more.</p>
+                    <a href="#">
+                        Explore Program <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Program 3 -->
+            <div class="edu-card">
+                <div class="card-image">
+                    <img src="{% static 'images/Edusphere/Intrest_based_learning.jpg' %}" alt="Interest Program">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">For Grades 3-12</span>
+                    <h3>Interest Based Learning</h3>
+                    <p>Year-long club-based learning that helps students explore and master areas they’re truly passionate about.</p>
+                    <a href="#">
+                        Explore Program <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Program 4 -->
+            <div class="edu-card">
+                <div class="card-image">
+                    <img src="{% static 'images/Edusphere/Empathy_education.jpg' %}" alt="Empathy Program">
+                </div>
+                <div class="card-content">
+                    <span class="card-tag">For All Ages</span>
+                    <h3>Empathy Integrated Education</h3>
+                    <p>Education rooted in compassion—supporting diverse learning needs through real-life scenarios and inclusive practices.</p>
+                    <a href="#">
+                        Explore Program <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="floating-number-section">
+        <div class="container">
+            <h2 class="section-title">
+                Why <span>Edusphere</span>?
+            </h2>
+            
+            <div class="floating-cards-container">
+                <!-- Reason 1 -->
+                <div class="number-card" data-number="1">
+                    <h3>Globally-Relevant Curriculum</h3>
+                    <p>Expose students to international standards through a future-ready, skill-based learning framework.</p>
+                </div>
+                
+                <!-- Reason 2 -->
+                <div class="number-card" data-number="2">
+                    <h3>AI-Integrated Learning</h3>
+                    <p>Boost academic outcomes with the power of technology and AI-enhanced personalized learning.</p>
+                </div>
+                
+                <!-- Reason 3 -->
+                <div class="number-card" data-number="3">
+                    <h3>Teacher Upskilling</h3>
+                    <p>Empower educators with modern tools, strategies, and professional growth opportunities.</p>
+                </div>
+                
+                <!-- Reason 4 -->
+                <div class="number-card" data-number="4">
+                    <h3>Increased Student Engagement</h3>
+                    <p>Hands-on, real-world learning that makes education exciting, meaningful, and impactful.</p>
+                </div>
+                
+                <!-- Reason 5 -->
+                <div class="number-card" data-number="5">
+                    <h3>Higher Enrollment Rates</h3>
+                    <p>Attract parents seeking holistic, forward-thinking education for their children.</p>
+                </div>
+                
+                <!-- Reason 6 -->
+                <div class="number-card" data-number="6">
+                    <h3>Stronger School Reputation</h3>
+                    <p>Position your institution as a pioneer in experiential, inclusive, and future-focused education.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% comment %} <!-- ===== VALUE FOR STUDENTS ===== -->
+    <section class="floating-cards-section">
+        <div class="container">
+            <h2 class="section-title">
+                <span>Student</span> 
+                <span>Benefits</span>
+            </h2>
+            
+            <div class="floating-cards-container">
+                <!-- Card 1 -->
+                <div class="floating-card">
+                    <div class="floating-card-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Global Exposure</h3>
+                    <p>Education aligned with international standards, offering a broader perspective on learning.</p>
+                    <div class="highlight">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Curriculum from 15+ countries</span>
+                    </div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="floating-card">
+                    <div class="floating-card-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>Experiential Learning</h3>
+                    <p>Hands-on, real-world experiences that build practical and essential life skills.</p>
+                    <div class="highlight">
+                        <i class="fas fa-chart-line"></i>
+                        <span>300% better retention than traditional methods</span>
+                    </div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="floating-card">
+                    <div class="floating-card-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Tech Integration</h3>
+                    <p>Early exposure to learning technologies, equipping students with future-ready skills.</p>
+                    <div class="highlight">
+                        <i class="fas fa-chart-line"></i>
+                        <span>50+ tech tools integrated</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== VALUE FOR INSTITUTIONS ===== -->
+    <section class="gradient-section">
+        <div class="container">
+            <h2 class="section-title">
+                School <span>Advantages</span>
+            </h2>
+            
+            <div class="gradient-cards-container">
+                <div class="gradient-card">
+                    <div>
+                        <i class="fas fa-chalkboard-teacher"></i>
+                    </div>
+                    <h3>Teacher Upskilling</h3>
+                    <p>Improves instructional quality and effectiveness, directly enhancing student outcomes.</p>
+                    <div class="highlight">
+                        <i class="fas fa-award"></i>
+                        <span>Global standard training</span>
+                    </div>
+                </div>
+                
+                <div class="gradient-card">
+                    <div>
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <h3>Increased Enrollment</h3>
+                    <p>Attracts families looking for personalized, holistic education experiences.</p>
+                    <div class="highlight">
+                        <i class="fas fa-network-wired"></i>
+                        <span>30% average enrollment growth</span>
+                    </div>
+                </div>
+                
+                <div class="gradient-card">
+                    <div>
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <h3>Competitive Edge</h3>
+                    <p>Distinguishes your institution with future-focused, tailored education programs.</p>
+                    <div class="highlight">
+                        <i class="fas fa-headset"></i>
+                        <span>Unique market positioning</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <!-- Impact Stats -->
+    <section class="stats-section">
+        <div class="container">
+            <h2 class="section-title">Our Educational Impact</h2>
+            
+            <div class="stat-item">
+                <div class="stat-value" style="margin-bottom: 0px;">
+                    <span class="stat-number" data-count="15">0</span>
+                    <span class="stat-suffix">+</span>
+                </div>
+                <!-- <div class="stat-number">200M+</div> -->
+                <div>Global Partners</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value" style="margin-bottom: 0px;">
+                    <span class="stat-number" data-count="1000">0</span>
+                    <span class="stat-suffix">+</span>
+                </div>
+                <!-- <div class="stat-number">87%</div> -->
+                <div>Students Engaged</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value" style="margin-bottom: 0px;">
+                    <span class="stat-number" data-count="10">0</span>
+                    <span class="stat-suffix">+</span>
+                </div>
+                <!-- <div class="stat-number">50+</div> -->
+                <div>Schools of Collaboration</div>
+            </div>
+            
+            <div class="stat-item">
+                <div class="stat-value" style="margin-bottom: 0px;">
+                    <span class="stat-number" data-count="20">0</span>
+                    <span class="stat-suffix">+</span>
+                </div>
+                <!-- <div class="stat-number">1K+</div> -->
+                <div>Industry Partners</div>
+            </div>
+        </div>
+    </section>
+
+
+<!-- Founder's Vision -->
+<section class="founder-section">
+    <div class="container">
+        <div class="founder-content">
+            <img src="assets/images/quote-icon.svg" alt="" style="width: 50px; margin-bottom: 30px;">
+            <p class="founder-quote">
+                "Edusphere was born from a simple belief - that every Indian child deserves access to world-class learning experiences, regardless of their geographic or economic circumstances. We're not just teaching students; we're building India's future problem-solvers."
+            </p>
+            <div style="margin-top: 40px;">
+                <!-- <img src="assets/images/vamshi-signature.png" alt="Signature" class="founder-signature"> -->
+                <p style="font-size: 1.4rem; font-weight: 500; line-height: 1.8; position: relative; color: var(--primary-dark); margin-bottom: 0rem;">M Vamshi Krishna</p>
+                <p>Founder & CEO, PI DOT</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Carousel -->
+<section class="testimonial-carousel">
+    <div class="container">
+        <div class="testimonial-card">
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; position: relative; z-index: 1;">
+                "Implementing Edusphere's Future Skills Lab transformed our rural school into a technology hub. Our students are now creating AI projects that solve local agricultural challenges - something we never imagined possible."
+            </p>
+            <div style="display: flex; align-items: center;">
+                <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Principal" class="testimonial-avatar">
+                <div style="margin-left: 20px;">
+                    <p style="font-weight: 600; margin: 0;">Priya Mehta</p>
+                    <p style="margin: 0; color: var(--primary-dark); font-weight: 600;">Principal, Sunshine Public School</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="section-title">Ready to Transform Your School?</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px;">
+            Join the 25,000+ institutions revolutionizing education with Edusphere
+        </p>
+        <a href="{% url 'contact' %}" class="cta-button">
+            Get Started Today
+        </a>
+    </div>
+</section>
+
+<section class="faq-section">
+        <div class="container">
+            <h2 class="animate-on-scroll">Frequently Asked Questions</h2>
+            <div class="faq-container" hidden-faqs>
+                <!-- FAQ Item 1 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        What is Edusphere?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Edusphere is PI DOT’s global experiential learning curriculum for students from Grade 5 to 10. It teaches life skills, public speaking, innovation, empathy, AI, global awareness, and more — in a fun, hands-on way.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Is Edusphere a replacement for school education?
+                    </div>
+                    <div class="faq-answer">
+                        <p>No. Edusphere complements school learning by adding essential life and 21st-century skills that regular academics often miss.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        How is the Edusphere curriculum taught?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Through workshops, activity books, global facilitator sessions, and immersive learning experiences that are age-appropriate, practical, and emotionally intelligent.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Can Edusphere be implemented in any school?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! We customize and integrate our curriculum into schools across India, adapting to their academic structure and student needs.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        How can our school partner with PI DOT?
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can reach out via the Contact Us section. Our team will set up a meeting to understand your needs and design a partnership model tailored to your institution.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Is the curriculum customizable for different boards or student levels?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely. All content is designed to be adaptable across CBSE, ICSE, State Boards, and international curricula, with grading and structure based on student needs.</p>
+                    </div>
+                </div>
+            </div>
+            <button class="see-more-btn animate-on-scroll">See More FAQs</button>
+        </d
+        iv>
+    </section>
+{% endblock Body %}
+
+{% block Script %}
+
+    <script src="{% static 'js\products\product.js' %}"></script>
+
+{% endblock Script %}

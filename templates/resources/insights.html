@@ -1,0 +1,394 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}
+  News & Insights | PI DOT 
+{% endblock title %}
+
+{% block Style %}
+    <style>
+        :root {
+            /* Colors */
+            --primary-color: #FFB13B;
+            --primary-dark: #F69507;
+            --primary-light: #FFD08A;
+            --text-dark: #0B0B0B;
+            --text-light: #FFFFFF;
+            --text-gray: #AAAAAA;
+            --bg-light: #FFFFFF;
+            --bg-dark: #0B0B0B;
+            --card-bg: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            /* padding: 20px; */
+        }
+        
+        .page-title {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--primary-dark);
+            font-size: 2.5rem;
+        }
+        
+        .news-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .news-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-image {
+            height: 200px;
+            background-color: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-weight: bold;
+        }
+        .news-image {
+            width: 100%;
+            
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the container without distortion */
+            display: block;
+        }
+
+        
+        .news-content {
+            padding: 20px;
+        }
+        
+        .news-category {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .news-title {
+            font-size: 1.2rem;
+            margin: 10px 0;
+            line-height: 1.4;
+        }
+        
+        .news-date {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .news-excerpt {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .read-more {
+            color: var(--primary-dark);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            
+        }
+        
+        .read-more:hover {
+            text-decoration: underline;
+        }
+        
+        .read-more::after {
+            content: '→';
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+        
+        .read-more:hover::after {
+            transform: translateX(3px);
+        }
+        
+        .highlight-card {
+            background: var(--card-bg);
+            color: var(--text-dark);
+            padding: 30px;
+            border-radius: 8px;
+            margin: 40px 0;
+        }
+        
+        .highlight-title {
+            color: var(--primary-dark);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .highlight-content {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+        
+        .highlight-text {
+            flex: 2;
+        }
+        
+        .highlight-image {
+            flex: 1;
+            height: 200px;
+            {% comment %} background-color: var(--primary-light); {% endcomment %}
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dark);
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .highlight-content {
+                flex-direction: column;
+            }
+            
+            .highlight-image {
+                width: 100%;
+            }
+        }
+    </style>
+{% endblock Style %} 
+
+
+{% block Body %}
+    
+    
+    <!-- Header would be included here -->
+    
+    <div class="container" style="padding-top: 50px;">
+        <h1 class="page-title">Pi Dot Insights & News</h1>
+        
+        <div class="highlight-card">
+            <h2 class="highlight-title">Featured Story</h2>
+            <div class="highlight-content">
+                <div class="highlight-text">
+                    <h3>In India, education without employment</h3>
+                    <p> Despite a significant increase in the number of graduates, the job market has not kept pace, leading to high unemployment rates among educated youth. The piece emphasizes the need for systemic reforms to align educational outcomes with market demands, ensuring that the country's demographic dividend does not turn into a liability.</p>
+                    <a href="https://www.thehindu.com/opinion/lead/in-india-education-without-employment/article69572290.ece" class="read-more" style="color: var(--primary-dark);">Read full story</a>
+                </div>
+                <div class="highlight-image" style="border-radius: 30px;">
+                    <img src="https://th-i.thgim.com/public/opinion/op-ed/t86bee/article69572295.ece/alternates/LANDSCAPE_1200/iStock-661318146.jpg" style="border-radius: 10px;" alt="">
+                </div>
+            </div>
+        </div>
+        
+        <div class="news-section">
+            <h2 class="section-title">EduSphere Updates</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://peregrineglobal.com/wp-content/uploads/PD-Blog-Hero-Image.png" width="100%" height="100%" alt="">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">EduSphere</span>
+                        <h3 class="news-title">What is Experiential Learning and Why is it Important?</h3>
+                        <div class="news-date">March 7, 2023</div>
+                        <p class="news-excerpt">Experiential learning is a type of educational philosophy in which educators provide students with the opportunity to apply the curricular knowledge gained from their academic coursework to real-world situations. </p>
+                        <a href="https://peregrineglobal.com/experiential-learning/#:~:text=Experiential%20learning%20is%20important%20because%20it%20creates,knowledge%20and%20skills%20in%20a%20practical%20context.&text=Experiential%20learning%20also%20provides%20students%20with%20opportunities,learners%20build%20their%20confidence%2C%20resilience%2C%20and%20self%2Dawareness" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <!-- EduSphere Conference -->
+                         <img src="https://aimlay.com/wp-content/uploads/2023/01/Skill-Development-Courses-in-India.webp" alt="">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">EduSphere</span>
+                        <h3 class="news-title">India Skills Report 2024: Key Highlights From the Report</h3>
+                        <div class="news-date">December 22, 2023</div>
+                        <p class="news-excerpt">The India Skills Report 2024, released by Wheebox in collaboration with AICTE, CII, and the Association of Indian Universities, highlights a modest improvement in youth employability, reaching 51.25% nationwide.</p>
+                        <a href="https://pwonlyias.com/current-affairs/india-skills-report-2024/" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://www.class24.study/assets/frontend/img/capsule/1733913551_english.jpeg" alt="">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">EduSphere</span>
+                        <h3 class="news-title">India Skills Report 2025, Key Findings and Gov. Initiatives</h3>
+                        <div class="news-date">December 13, 2024</div>
+                        <p class="news-excerpt">The India Skills Report 2025, titled “Global Talent Mobility: India’s Decade”, underscores India's pivotal role in the evolving global talent landscape. The report is based on data from over 6.5 lakh candidates</p>
+                        <a href="https://www.studyiq.com/articles/india-skills-report-2025/?utm_source=chatgpt.com" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="news-section">
+            <h2 class="section-title">Genesis Network News</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        
+                        <img src="https://bsmedia.business-standard.com/_media/bs/img/article/2024-07/08/full/1720457188-4156.jpg" height="100%" width="100%">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Genesis</span>
+                        <h3 class="news-title">Only 16% of corporates believe graduates are industry-ready</h3>
+                        <div class="news-date">August 07, 2024</div>
+                        <p class="news-excerpt">HirePro's report highlighted a gap between academia and corporate expectations, with only 16% of companies considering graduates industry-ready. </p>
+                        <a href="https://economictimes.indiatimes.com/jobs/hr-policies-trends/only-16-of-corporates-believe-graduates-are-industry-ready-report/articleshow/112352167.cms" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <!-- Genesis Partnership -->
+                         <img src="https://www.livemint.com/lm-img/img/2024/12/26/600x338/2-0-748746119-20130322-PFG-E-Yantra-003-0_1680331307028_1735203413990.JPG" alt="">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Genesis</span>
+                        <h3 class="news-title">The Great Skills Shift: Building a workforce for India’s future, today</h3>
+                        <div class="news-date">April 10, 2025</div>
+                        <p class="news-excerpt">India's burgeoning workforce faces a critical skills gap, hindering economic progress despite a demographic advantage.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="https://www.financialexpress.com/wp-content/uploads/2024/08/Image-2024-08-14T181648.764.jpg?w=1024" alt="">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Genesis</span>
+                        <h3 class="news-title">Bridging Skills Gap: Crucial role of industry-academia collab</h3>
+                        <div class="news-date">August 14, 2024</div>
+                        <p class="news-excerpt">As of 2022, a mere 4.69% of India's workforce has received formal skill training, according to the National Skill Development Corporation. </p>
+                        <a href="https://www.financialexpress.com/jobs-career/education-bridging-skills-gap-crucial-role-of-industry-academia-collaboration-in-indias-workforce-development-3583081/?utm_source=chatgpt.com" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        {% comment %} <div class="news-section">
+            <h2 class="section-title">Axiom Platform Developments</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-image">
+                        Axiom Dashboard
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Axiom</span>
+                        <h3 class="news-title">Axiom Platform Releases New Developer Tools</h3>
+                        <div class="news-date">June 8, 2023</div>
+                        <p class="news-excerpt">The latest Axiom SDK includes enhanced debugging features and template contracts for faster dApp development on PI DOT.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        Axiom Integration
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Axiom</span>
+                        <h3 class="news-title">Axiom Now Supports Multi-Chain Smart Contracts</h3>
+                        <div class="news-date">May 18, 2023</div>
+                        <p class="news-excerpt">PI DOT's Axiom platform introduces cross-chain capabilities, allowing contracts to interact with Ethereum and Binance Smart Chain.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+                
+                <div class="news-card">
+                    <div class="news-image">
+                        Axiom Case Study
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category">Axiom</span>
+                        <h3 class="news-title">Case Study: Financial Institution Adopts Axiom for Settlements</h3>
+                        <div class="news-date">April 5, 2023</div>
+                        <p class="news-excerpt">Major European bank reports 60% reduction in settlement times after implementing PI DOT's Axiom platform for internal transactions.</p>
+                        <a href="#" class="read-more">Read more</a>
+                    </div>
+                </div>
+            </div>
+        </div> {% endcomment %}
+        
+        {% comment %} <div class="highlight-card">
+            <h2 class="highlight-title">Upcoming Events</h2>
+            <div class="highlight-content">
+                <div class="highlight-text">
+                    <h3>PI DOT Global Conference 2023</h3>
+                    <p>Join us in Berlin for the premier PI DOT ecosystem event, featuring keynotes on EduSphere advancements, Genesis network roadmap, and Axiom platform innovations. Special workshops will cover developer training and enterprise implementation strategies.</p>
+                    <p><strong>Date:</strong> September 15-17, 2023</p>
+                    <a href="#" class="read-more" style="color: var(--primary-light);">Register Now</a>
+                </div>
+                <div class="highlight-image">
+                    PI DOT Conference 2023
+                </div>
+            </div>
+        </div> {% endcomment %}
+    </div>
+    
+    <!-- Footer would be included here -->
+</body>
+</html>
+    
+{% endblock Body %}
+
+{% block Script %}
+    
+    <script>
+        // This is where you would add JavaScript to render actual charts
+        // For example using Chart.js, D3.js, or other visualization libraries
+        console.log("Insights page loaded. Charts would be rendered here.");
+    </script>
+    {% endblock Script %}

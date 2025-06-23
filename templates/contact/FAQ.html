@@ -1,0 +1,519 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block Style %}
+<style>
+    /* FAQ Page Styles */
+    .faq-hero {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        color: var(--text-light);
+        padding: 120px 0 80px;
+        text-align: center;
+        position: relative;
+    }
+
+    .faq-hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .faq-hero h1 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .faq-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 80px 20px;
+    }
+
+    .faq-tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .faq-tab {
+        padding: 12px 24px;
+        background: var(--card-bg);
+        border-radius: 50px;
+        cursor: pointer;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .faq-tab:hover {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .faq-tab.active {
+        background: var(--primary-dark);
+        color: white;
+        border-color: var(--primary-light);
+    }
+
+    .faq-category {
+        margin-bottom: 60px;
+    }
+
+    .faq-category h2 {
+        color: var(--primary-dark);
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    .faq-item {
+        background: var(--bg-light);
+        border-radius: 8px;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .faq-item:hover {
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .faq-question {
+        padding: 20px 25px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--bg-dark);
+    }
+
+    .faq-question:hover {
+        background:rgba(246, 150, 7, 0.08)
+    }
+
+    .faq-question::after {
+        content: '+';
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-question::after {
+        content: '-';
+    }
+
+    .faq-answer {
+        padding: 0 25px;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease, padding 0.3s ease;
+    }
+
+    .faq-item.active .faq-answer {
+        padding: 0 25px 20px;
+        max-height: 500px;
+    }
+
+    .faq-answer p {
+        margin-bottom: 15px;
+    }
+
+    .faq-answer ul {
+        padding-left: 20px;
+        margin-bottom: 15px;
+    }
+
+    .faq-answer li {
+        margin-bottom: 8px;
+    }
+
+    .search-container {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        position: relative;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 15px 20px;
+        border: 2px solid #ddd;
+        border-radius: 50px;
+        font-size: 1rem;
+        padding-right: 50px;
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--primary-color);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .faq-hero h1 {
+            font-size: 2.2rem;
+        }
+        
+        .faq-tabs {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .faq-tab {
+            width: 100%;
+            text-align: center;
+        }
+    }
+</style>
+{% endblock Style %}
+
+{% block Body %}
+    <!-- FAQ Hero -->
+    <section class="faq-hero">
+        <div class="container">
+            <div class="faq-hero-content">
+                <h1>PI DOT FAQs</h1>
+                <p>Find answers to common questions about our products, services, and initiatives</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Main Content -->
+    <section class="faq-container">
+    <div class="search-container">
+        <input type="text" class="search-input" placeholder="Search FAQs...">
+        <i class="fas fa-search search-icon"></i>
+    </div>
+
+    <div class="faq-tabs">
+        <div class="faq-tab active" data-tab="all">All FAQs</div>
+        <div class="faq-tab" data-tab="general">General</div>
+        <div class="faq-tab" data-tab="edusphere">Edusphere</div>
+        <div class="faq-tab" data-tab="genesis">Genesis</div>
+        <div class="faq-tab" data-tab="other">Other Services</div>
+    </div>
+
+    <!-- General PI DOT FAQs -->
+    <div class="faq-category" data-category="general">
+        <h2>General PI DOT Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What is PI DOT?
+            </div>
+            <div class="faq-answer">
+                <p>PI DOT is a social-impact driven organization focused on transforming education and career readiness. We build experiential curriculums and industry-led training programs to bridge the gap between what is taught in schools and colleges and what the real world demands.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Who can benefit from PI DOT?
+            </div>
+            <div class="faq-answer">
+                <p>Students (Grades 5–10 and college), parents, educational institutions, and companies looking for industry-ready talent can all benefit from PI DOT’s offerings.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What makes PI DOT different from other education platforms?
+            </div>
+            <div class="faq-answer">
+                <p>We combine education, technology, psychology, and empathy to offer globally aware, India-rooted experiential learning that goes beyond the classroom. Our curriculums are practical, skill-driven, and mentorship-led — not exam-focused.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Which PI DOT program is built for schools?
+            </div>
+            <div class="faq-answer">
+                <p>Edusphere is PI DOT’s global experiential learning curriculum for students from Grade 5 to 10. It teaches life skills, public speaking, innovation, empathy, AI, global awareness, and more — in a fun, hands-on way.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Which program connects companies to trained, job-ready talent?
+            </div>
+            <div class="faq-answer">
+                <p>That’s Genesis — our corporate-led education and hiring platform. Genesis trains college students in real-world skills through industry-backed modules and connects them directly to companies looking for pre-trained, role-specific talent.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Why does PI DOT offer multiple programs instead of just one?
+            </div>
+            <div class="faq-answer">
+                <p>Because one-size-fits-none.</p>
+                <p>Students in school and college face very different challenges, and companies need talent that’s ready on day one. PI DOT is built to bridge these gaps across all levels — from school to career — with focused, purpose-driven programs that create real impact where it’s needed most.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edusphere FAQs -->
+    <div class="faq-category" data-category="edusphere">
+        <h2>Edusphere Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What is Edusphere?
+            </div>
+            <div class="faq-answer">
+                <p>Edusphere is PI DOT’s global experiential learning curriculum for students from Grade 5 to 10. It teaches life skills, public speaking, innovation, empathy, AI, global awareness, and more — in a fun, hands-on way.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is Edusphere a replacement for school education?
+            </div>
+            <div class="faq-answer">
+                <p>No. Edusphere complements school learning by adding essential life and 21st-century skills that regular academics often miss.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How is the Edusphere curriculum taught?
+            </div>
+            <div class="faq-answer">
+                <p>Through workshops, activity books, global facilitator sessions, and immersive learning experiences that are age-appropriate, practical, and emotionally intelligent.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can Edusphere be implemented in any school?
+            </div>
+            <div class="faq-answer">
+                <p>Yes! We customize and integrate our curriculum into schools across India, adapting to their academic structure and student needs.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How can our school partner with PI DOT?
+            </div>
+            <div class="faq-answer">
+                <p>You can reach out via the Contact Us section. Our team will set up a meeting to understand your needs and design a partnership model tailored to your institution.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is the curriculum customizable for different boards or student levels?
+            </div>
+            <div class="faq-answer">
+                <p>Absolutely. All content is designed to be adaptable across CBSE, ICSE, State Boards, and international curricula, with grading and structure based on student needs.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Genesis FAQs -->
+    <div class="faq-category" data-category="genesis">
+        <h2>Genesis Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                What is Genesis?
+            </div>
+            <div class="faq-answer">
+                <p>Genesis is a corporate-led education and placement platform for college students. It trains them in sales, HR, marketing, product management, and more — while connecting them directly to job opportunities.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How is Genesis different from regular college training programs?
+            </div>
+            <div class="faq-answer">
+                <p>Genesis is led by real industry experts and companies. Students work on live cases, build portfolios, and get mentored — not just taught theory.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Do students get job offers through Genesis?
+            </div>
+            <div class="faq-answer">
+                <p>Yes. Genesis is designed to prepare students for specific roles and connect them to hiring companies that need job-ready talent.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How can our college partner with PI DOT?
+            </div>
+            <div class="faq-answer">
+                <p>Through Genesis, we provide companies with pre-trained, role-ready talent. Companies can also co-create training programs or host sessions as mentors.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Is the curriculum customizable for different boards or student levels?
+            </div>
+            <div class="faq-answer">
+                <p>Yes. Genesis adapts its training modules based on the student’s year of study and career goals. First-year students receive foundational exposure, while final-year students undergo advanced, role-specific training. This ensures every student gets the right skills at the right stage of their journey.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                How do companies collaborate with PI DOT?
+            </div>
+            <div class="faq-answer">
+                <p>Companies partner with Genesis to access job-ready, pre-trained talent. They can co-design role-specific training, mentor students, offer internships, or hire directly from our talent pool — saving time, reducing hiring costs, and improving employee performance from day one.</p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">
+                Can we hire directly from your student pool?
+            </div>
+            <div class="faq-answer">
+                <p>Yes. We offer a streamlined process to source, train, and onboard talent specific to your industry requirements.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock Body %}
+
+{% block Script %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ Accordion Functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                // Toggle current item
+                item.classList.toggle('active');
+                
+                // Close other items in the same category when opening this one
+                if (item.classList.contains('active')) {
+                    const category = item.closest('.faq-category');
+                    category.querySelectorAll('.faq-item').forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('active')) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Tab Filtering Functionality - Fixed Version
+        const tabs = document.querySelectorAll('.faq-tab');
+        const categories = document.querySelectorAll('.faq-category');
+        
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Update active tab
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                const filter = tab.dataset.tab;
+                
+                // Show/hide categories based on filter
+                categories.forEach(category => {
+                    const categoryType = category.dataset.category;
+                    
+                    if (filter === 'all' || categoryType === filter) {
+                        category.style.display = 'block';
+                        
+                        // Show all questions in this category
+                        category.querySelectorAll('.faq-item').forEach(item => {
+                            item.style.display = 'block';
+                        });
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Search Functionality
+        const searchInput = document.querySelector('.search-input');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase().trim();
+            
+            // Reset all filters first
+            tabs.forEach(t => t.classList.remove('active'));
+            document.querySelector('.faq-tab[data-tab="all"]').classList.add('active');
+            categories.forEach(category => {
+                category.style.display = 'block';
+            });
+            
+            if (searchTerm.length < 2) {
+                // Show all if search term is too short
+                faqItems.forEach(item => {
+                    item.style.display = 'block';
+                    item.classList.remove('active');
+                });
+                return;
+            }
+            
+            let hasMatches = false;
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answer = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
+                    item.style.display = 'block';
+                    item.classList.add('active'); // Open matching questions
+                    hasMatches = true;
+                    
+                    // Ensure parent category is visible
+                    item.closest('.faq-category').style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Hide categories with no visible questions
+            if (searchTerm.length >= 2) {
+                categories.forEach(category => {
+                    const visibleItems = category.querySelectorAll('.faq-item[style="display: block;"]').length;
+                    if (visibleItems === 0) {
+                        category.style.display = 'none';
+                    }
+                });
+            }
+        });
+
+        // Scroll animation for categories
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        categories.forEach(category => {
+            category.style.opacity = 0;
+            category.style.transform = 'translateY(20px)';
+            category.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(category);
+        });
+    });
+</script>
+
+{% endblock Script %}

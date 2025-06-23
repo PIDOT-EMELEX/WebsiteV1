@@ -1,0 +1,1150 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}
+  Axiom | PI DOT | Creative Studio
+{% endblock title %}
+
+{% block Style %}
+    <style>
+        :root {
+            --primary: #FFB13B; /* PI DOT orange */
+            --primary-dark: #F69507;
+            --axiom-purple: #8A2BE2;
+            --axiom-dark: #4B0082;
+            --dark: #0B0B0B;
+            --light: #FFFFFF;
+            --gray: #F5F5F5;
+        }
+        
+        /* Modern Base Styles with smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Inter', sans-serif;
+            margin: 0;
+            color: var(--dark);
+            background: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container for consistent width */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Dynamic Gradient Header with Parallax Effect */
+        .hero {
+            background: linear-gradient(135deg, 
+                          var(--axiom-dark) 0%, 
+                          var(--axiom-purple) 50%, 
+                          var(--primary) 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/circuit-pattern.svg') center/cover;
+            opacity: 0.1;
+            animation: patternMove 30s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+        
+        .logo-container {
+            background: white;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .logo-container img {
+            width: 80%;
+            transition: transform 0.5s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .logo-container:hover img {
+            transform: scale(1.1);
+        }
+        
+        .hero-content {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* PI DOT Connection Section */
+        .pidot-connection {
+            padding: 60px 0;
+            text-align: center;
+            background: var(--gray);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pidot-connection img {
+            height: 50px;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+
+        .pidot-connection img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Floating Cards Section */
+        .floating-cards-section {
+            padding: 120px 0;
+            position: relative;
+            background: url('assets/images/dots-pattern.svg') center/cover;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            font-size: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .floating-cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            perspective: 1500px;
+        }
+
+        .floating-card {
+            width: 320px;
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            transform: translateY(50px) rotateX(15deg);
+            animation: cardEntrance 0.8s ease forwards;
+        }
+
+        @keyframes cardEntrance {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotateX(0);
+            }
+        }
+
+        .floating-card:nth-child(1) { animation-delay: 0.2s; }
+        .floating-card:nth-child(2) { animation-delay: 0.4s; }
+        .floating-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .floating-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--axiom-purple);
+            transition: height 0.3s ease;
+        }
+
+        .floating-card:hover {
+            transform: translateY(-20px) rotateX(5deg);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+        }
+
+        .floating-card:hover::before {
+            height: 12px;
+        }
+
+        .floating-card-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 30px;
+            transition: all 0.4s ease;
+        }
+
+        .floating-card:hover .floating-card-icon {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Gradient Section */
+        .gradient-section {
+            padding: 150px 0;
+            background: linear-gradient(135deg, var(--axiom-dark), var(--axiom-purple));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: url('assets/images/hex-pattern.svg') center/contain;
+            opacity: 0.1;
+            animation: rotate 60s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .gradient-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 50px;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .gradient-card:nth-child(1) { animation-delay: 0.2s; }
+        .gradient-card:nth-child(2) { animation-delay: 0.4s; }
+        .gradient-card:nth-child(3) { animation-delay: 0.6s; }
+
+        .gradient-card:hover {
+            transform: scale(1.03) translateY(-10px);
+            background: rgba(255,255,255,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Interactive Grid Section */
+        .interactive-grid-section {
+            padding: 120px 0;
+            background: var(--gray);
+        }
+
+        .interactive-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .grid-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            height: 300px;
+            transition: all 0.4s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .grid-item:nth-child(1) { animation-delay: 0.2s; }
+        .grid-item:nth-child(2) { animation-delay: 0.4s; }
+        .grid-item:nth-child(3) { animation-delay: 0.6s; }
+        .grid-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .grid-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .grid-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .grid-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+
+        .grid-item:hover .grid-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Floating Number Section */
+        .floating-number-section {
+            padding: 120px 0;
+            background: var(--dark);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-number-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/circuit-pattern.svg') center/cover;
+            opacity: 0.05;
+        }
+
+        .number-card {
+            position: relative;
+            background: rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 50px 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .number-card:nth-child(1) { animation-delay: 0.2s; }
+        .number-card:nth-child(2) { animation-delay: 0.4s; }
+        .number-card:nth-child(3) { animation-delay: 0.6s; }
+        .number-card:nth-child(4) { animation-delay: 0.8s; }
+        .number-card:nth-child(5) { animation-delay: 1.0s; }
+        .number-card:nth-child(6) { animation-delay: 1.2s; }
+
+        .number-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .number-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -30px;
+            right: 20px;
+            font-size: 120px;
+            font-weight: 800;
+            color: rgba(255,255,255,0.03);
+            z-index: 0;
+            transition: all 0.4s ease;
+        }
+
+        .number-card:hover::before {
+            transform: scale(1.1);
+            opacity: 0.1;
+        }
+
+        .number-card h3 {
+            position: relative;
+            z-index: 1;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .number-card:hover h3 {
+            color: var(--axiom-purple);
+        }
+
+        /* Core Solutions Grid */
+        .solutions-section {
+            padding: 80px 0;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .axiom-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .axiom-card:nth-child(1) { animation-delay: 0.2s; }
+        .axiom-card:nth-child(2) { animation-delay: 0.4s; }
+        .axiom-card:nth-child(3) { animation-delay: 0.6s; }
+        .axiom-card:nth-child(4) { animation-delay: 0.8s; }
+
+        .axiom-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .axiom-card:hover .card-image img {
+            transform: scale(1.05);
+        }
+
+        .card-content {
+            padding: 30px;
+            position: relative;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: -15px;
+            left: 30px;
+            background: var(--primary);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .axiom-card:hover .card-tag {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Impact Stats */
+        .stats-section {
+            background: var(--dark);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/stats-pattern.svg') center/cover;
+            opacity: 0.1;
+        }
+
+        .stat-item {
+            display: inline-block;
+            margin: 0 30px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.2s; }
+        .stat-item:nth-child(2) { animation-delay: 0.4s; }
+        .stat-item:nth-child(3) { animation-delay: 0.6s; }
+        .stat-item:nth-child(4) { animation-delay: 0.8s; }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover .stat-number {
+            color: var(--axiom-purple);
+            transform: scale(1.1);
+        }
+
+        /* Founder's Vision */
+        .founder-section {
+            padding: 100px 0;
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('assets/images/network-pattern.png') center/cover;
+            position: relative;
+        }
+
+        .founder-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .founder-quote {
+            font-size: 1.4rem;
+            font-weight: 500;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .founder-quote::before,
+        .founder-quote::after {
+            content: '"';
+            font-family: serif;
+            font-size: 60px;
+            color: var(--primary);
+            opacity: 0.2;
+            position: absolute;
+        }
+
+        .founder-quote::before {
+            top: -30px;
+            left: -40px;
+        }
+
+        .founder-quote::after {
+            bottom: -60px;
+            right: -40px;
+        }
+
+        .founder-signature {
+            height: 50px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .founder-signature:hover {
+            transform: scale(1.05);
+        }
+
+        /* Testimonial Carousel */
+        .testimonial-carousel {
+            background: var(--gray);
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards 0.3s;
+        }
+
+        .testimonial-card::before {
+            content: """;
+            font-family: serif;
+            font-size: 100px;
+            color: var(--axiom-purple);
+            opacity: 0.1;
+            position: absolute;
+            top: 20px;
+            left: 30px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-avatar:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 100px 0;
+            text-align: center;
+            background: var(--axiom-purple);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/cta-pattern.svg') center/cover;
+            opacity: 0.1;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.6s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .interactive-grid,
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-cards-container,
+            .gradient-cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+                min-height: auto;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .gradient-card,
+            .number-card {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .floating-cards-container,
+            .gradient-cards-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .stat-item {
+                display: block;
+                margin: 0 auto 30px;
+                width: 100%;
+            }
+            
+            .founder-quote {
+                font-size: 1.2rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 60px 0 40px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+            
+            .floating-card,
+            .gradient-card,
+            .number-card {
+                padding: 25px;
+            }
+            
+            .card-image {
+                height: 150px;
+            }
+        }
+    </style>
+{% endblock Style %}
+
+{% block Body %}
+<!-- Animated Gradient Hero -->
+<section class="hero">
+    <div class="container hero-content">
+        <div class="logo-container">
+            <img src="assets/images/axiom-logo.svg" alt="Axiom Logo">
+        </div>
+        <h1 style="font-size: 3rem; margin-bottom: 20px;">Redefining Business Automation</h1>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+            Cutting-edge automation and outsourcing solutions that streamline operations, amplify brand presence, and drive measurable growth
+        </p>
+    </div>
+</section>
+
+<!-- PI DOT Connection -->
+<section class="pidot-connection">
+    <div class="container">
+        <img src="assets/images/pidot-logo.svg" alt="PI DOT" style="height: 50px; margin-bottom: 20px;">
+        <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem;">
+            Axiom is PI DOT's business automation division, combining strategic innovation with operational excellence to transform how companies scale.
+        </p>
+    </div>
+</section>
+
+<!-- ===== VALUE FOR BUSINESSES ===== -->
+<section class="floating-cards-section">
+    <div class="container">
+        <h2 class="section-title">
+            <span style="color: var(--axiom-dark);">Strategic</span> 
+            <span style="color: var(--primary);">Advantages</span>
+        </h2>
+        
+        <div class="floating-cards-container">
+            <!-- Card 1 -->
+            <div class="floating-card">
+                <div class="floating-card-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <h3>AI-Driven Automation</h3>
+                <p>Intelligent systems that handle repetitive tasks with 99.9% accuracy, freeing your team for strategic work.</p>
+                <div class="highlight" style="margin-top: 20px; padding: 10px; background: rgba(138, 43, 226, 0.1); border-radius: 8px;">
+                    <i class="fas fa-chart-line" style="color: var(--axiom-purple);"></i>
+                    <span style="margin-left: 10px;">70% reduction in operational costs</span>
+                </div>
+            </div>
+            
+            <!-- Card 2 -->
+            <div class="floating-card">
+                <div class="floating-card-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>Global Outsourcing</h3>
+                <p>Access to specialized talent pools with rigorous quality control and cultural alignment.</p>
+                <div class="highlight" style="margin-top: 20px; padding: 10px; background: rgba(138, 43, 226, 0.1); border-radius: 8px;">
+                    <i class="fas fa-chart-line" style="color: var(--axiom-purple);"></i>
+                    <span style="margin-left: 10px;">24/7 operations with 40% cost savings</span>
+                </div>
+            </div>
+            
+            <!-- Card 3 -->
+            <div class="floating-card">
+                <div class="floating-card-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Process Optimization</h3>
+                <p>End-to-end workflow analysis and restructuring for maximum efficiency.</p>
+                <div class="highlight" style="margin-top: 20px; padding: 10px; background: rgba(138, 43, 226, 0.1); border-radius: 8px;">
+                    <i class="fas fa-chart-line" style="color: var(--axiom-purple);"></i>
+                    <span style="margin-left: 10px;">3x productivity improvements</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OUR SOLUTIONS ===== -->
+<section class="gradient-section">
+    <div class="container">
+        <h2 class="section-title" style="position: relative;">
+            Transformative <span style="color: var(--primary);">Solutions</span>
+        </h2>
+        
+        <div class="floating-cards-container" style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <div class="gradient-card">
+                <div style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Workflow Automation</h3>
+                <p style="margin-bottom: 20px;">Custom RPA solutions that integrate with your existing systems.</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                    <i class="fas fa-award" style="color: var(--primary);"></i>
+                    <span style="margin-left: 10px;">85% process automation</span>
+                </div>
+            </div>
+            
+            <div class="gradient-card">
+                <div style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Managed Services</h3>
+                <p style="margin-bottom: 20px;">Complete department outsourcing with SLA-backed performance.</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                    <i class="fas fa-network-wired" style="color: var(--primary);"></i>
+                    <span style="margin-left: 10px;">HR, Finance, Customer Support</span>
+                </div>
+            </div>
+            
+            <div class="gradient-card">
+                <div style="font-size: 3rem; margin-bottom: 20px; color: var(--primary);">
+                    <i class="fas fa-chart-pie"></i>
+                </div>
+                <h3 style="font-size: 1.8rem; margin-bottom: 15px;">Data Intelligence</h3>
+                <p style="margin-bottom: 20px;">AI-powered analytics for actionable business insights.</p>
+                <div style="background: rgba(255,255,255,0.2); padding: 15px; border-radius: 8px;">
+                    <i class="fas fa-headset" style="color: var(--primary);"></i>
+                    <span style="margin-left: 10px;">Real-time decision making</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== OUR SERVICES ===== -->
+<section class="interactive-grid-section">
+    <div class="container">
+        <h2 class="section-title">
+            <span style="color: var(--axiom-dark);">Comprehensive</span> 
+            <span style="color: var(--primary);">Services</span>
+        </h2>
+        
+        <div class="interactive-grid">
+            <!-- Service 1 -->
+            <div class="grid-item">
+                <img src="assets/images/automation-consulting.jpg" alt="Automation Consulting">
+                <div class="grid-content">
+                    <h3>Automation Consulting</h3>
+                    <p>Strategic assessment and roadmap for digital transformation</p>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="grid-item">
+                <img src="assets/images/social-media-management.jpg" alt="Social Media Management">
+                <div class="grid-content">
+                    <h3>Brand Amplification</h3>
+                    <p>Full-service digital presence and social media management</p>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="grid-item">
+                <img src="assets/images/ai-solutions.jpg" alt="AI Solutions">
+                <div class="grid-content">
+                    <h3>AI Solutions</h3>
+                    <p>Custom machine learning models for business challenges</p>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="grid-item">
+                <img src="assets/images/process-optimization.jpg" alt="Process Optimization">
+                <div class="grid-content">
+                    <h3>Process Optimization</h3>
+                    <p>End-to-end workflow analysis and restructuring</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== WHY CHOOSE US ===== -->
+<section class="floating-number-section">
+    <div class="container">
+        <h2 class="section-title">
+            Why <span style="color: var(--primary);">Axiom</span>?
+        </h2>
+        
+        <div class="floating-cards-container" style="display: grid; grid-template-columns: repeat(3, 1fr);">
+            <!-- Reason 1 -->
+            <div class="number-card" data-number="1">
+                <h3>Proven Expertise</h3>
+                <p>200+ successful automation implementations across industries</p>
+            </div>
+            
+            <!-- Reason 2 -->
+            <div class="number-card" data-number="2">
+                <h3>Seamless Integration</h3>
+                <p>Works with your existing tech stack, no rip-and-replace</p>
+            </div>
+            
+            <!-- Reason 3 -->
+            <div class="number-card" data-number="3">
+                <h3>Scalable Solutions</h3>
+                <p>Grow from single-process automation to enterprise-wide transformation</p>
+            </div>
+            
+            <!-- Reason 4 -->
+            <div class="number-card" data-number="4">
+                <h3>ROI Focused</h3>
+                <p>Clear metrics and performance guarantees</p>
+            </div>
+            
+            <!-- Reason 5 -->
+            <div class="number-card" data-number="5">
+                <h3>Security First</h3>
+                <p>Enterprise-grade data protection and compliance</p>
+            </div>
+            
+            <!-- Reason 6 -->
+            <div class="number-card" data-number="6">
+                <h3>Continuous Innovation</h3>
+                <p>Regular updates with emerging technologies</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Core Solutions Grid -->
+<section class="solutions-section container">
+    <h2 class="section-title">
+        Our <span style="color: var(--primary);">Flagship</span> Offerings
+    </h2>
+    
+    <div class="card-grid">
+        <!-- Solution 1 -->
+        <div class="axiom-card">
+            <div class="card-image">
+                <img src="assets/images/axiom-automate.jpg" alt="Axiom Automate">
+            </div>
+            <div class="card-content">
+                <span class="card-tag">Automation</span>
+                <h3 style="margin-top: 20px;">Axiom Automate</h3>
+                <p>End-to-end robotic process automation for repetitive tasks with 99.9% accuracy.</p>
+                <a href="#" style="color: var(--axiom-purple); font-weight: 600; display: inline-block; margin-top: 20px;">
+                    Explore Solution <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Solution 2 -->
+        <div class="axiom-card">
+            <div class="card-image">
+                <img src="assets/images/axiom-outsource.jpg" alt="Axiom Outsource">
+            </div>
+            <div class="card-content">
+                <span class="card-tag">Outsourcing</span>
+                <h3 style="margin-top: 20px;">Axiom Outsource</h3>
+                <p>Complete department management with dedicated offshore teams.</p>
+                <a href="#" style="color: var(--axiom-purple); font-weight: 600; display: inline-block; margin-top: 20px;">
+                    Explore Solution <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Solution 3 -->
+        <div class="axiom-card">
+            <div class="card-image">
+                <img src="assets/images/axiom-ai.jpg" alt="Axiom AI">
+            </div>
+            <div class="card-content">
+                <span class="card-tag">AI Solutions</span>
+                <h3 style="margin-top: 20px;">Axiom AI</h3>
+                <p>Custom machine learning models for predictive analytics and decision making.</p>
+                <a href="#" style="color: var(--axiom-purple); font-weight: 600; display: inline-block; margin-top: 20px;">
+                    Explore Solution <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Solution 4 -->
+        <div class="axiom-card">
+            <div class="card-image">
+                <img src="assets/images/axiom-brand.jpg" alt="Axiom Brand">
+            </div>
+            <div class="card-content">
+                <span class="card-tag">Branding</span>
+                <h3 style="margin-top: 20px;">Axiom Brand</h3>
+                <p>Full-service digital marketing and brand development solutions.</p>
+                <a href="#" style="color: var(--axiom-purple); font-weight: 600; display: inline-block; margin-top: 20px;">
+                    Explore Solution <i class="fas fa-arrow-right" style="margin-left: 5px;"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Impact Stats -->
+<section class="stats-section">
+    <div class="container">
+        <h2 class="section-title">Our Measurable Impact</h2>
+        
+        <div class="stat-item">
+            <div class="stat-number">70%</div>
+            <div>Cost Reduction</div>
+        </div>
+        
+        <div class="stat-item">
+            <div class="stat-number">3.5x</div>
+            <div>Productivity Gain</div>
+        </div>
+        
+        <div class="stat-item">
+            <div class="stat-number">200+</div>
+            <div>Clients Served</div>
+        </div>
+        
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div>Global Operations</div>
+        </div>
+    </div>
+</section>
+
+<!-- Founder's Vision -->
+<section class="founder-section">
+    <div class="container">
+        <div class="founder-content">
+            <img src="assets/images/quote-icon.svg" alt="" style="width: 50px; margin-bottom: 30px;">
+            <p class="founder-quote">
+                "Axiom was born from recognizing that businesses waste millions on inefficient processes. We combine cutting-edge automation with strategic outsourcing to create lean, future-ready organizations that focus on growth rather than operations."
+            </p>
+            <div style="margin-top: 40px;">
+                <img src="assets/images/vamshi-signature.png" alt="Signature" class="founder-signature">
+                <p style="font-weight: 600; margin-top: 10px;">M Vamshi Krishna</p>
+                <p>Founder & CEO, PI DOT</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Carousel -->
+<section class="testimonial-carousel">
+    <div class="container">
+        <div class="testimonial-card">
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 30px; position: relative; z-index: 1;">
+                "Axiom transformed our back-office operations, automating 85% of manual processes. What impressed me most was their phased approach - we saw ROI from the first month while building toward enterprise-wide transformation."
+            </p>
+            <div style="display: flex; align-items: center;">
+                <img src="assets/images/testimonial-3.jpg" alt="COO" class="testimonial-avatar">
+                <div style="margin-left: 20px;">
+                    <p style="font-weight: 600; margin: 0;">Priya Sharma</p>
+                    <p style="margin: 0; color: var(--axiom-purple);">COO, FinTech Solutions</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <h2 class="section-title">Ready to Automate & Scale?</h2>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px;">
+            Discover how Axiom can transform your business operations
+        </p>
+        <a href="#" class="cta-button">
+            Get Started Today
+        </a>
+    </div>
+</section>
+{% endblock Body %}
+
+{% block Script %}
+<script>
+    // Intersection Observer for scroll animations
+    document.addEventListener('DOMContentLoaded', function() {
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.section-title, .floating-card, .gradient-card, .grid-item, .number-card, .axiom-card, .stat-item');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            elements.forEach(element => {
+                observer.observe(element);
+            });
+        };
+        
+        animateOnScroll();
+        
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+{% endblock Script %}

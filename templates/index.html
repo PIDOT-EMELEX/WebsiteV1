@@ -1,0 +1,678 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    {% block title %}
+        PI DOT | Empowering Innovation Through Technology
+    {% endblock title %}
+    </title>
+    <link rel="icon" type="image/x-icon" href="{% static 'logos\PI dot.png' %}">
+    <meta name="description" content="PI DOT transforms businesses through innovative solutions in education, automation, and talent development">
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+    <link rel="stylesheet" href="{% static "css/themes.css" %}" id="theme-style">
+    <link rel="stylesheet" href="{% static "css/animations.css" %}">
+    {% block Style %}
+    <link rel="stylesheet" href="{% static "css/index.css" %}">
+    {% endblock Style %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="light-theme">
+    
+    <!-- Top Announcement Bar -->
+    <div class="announcement-bar">
+        <div class="container">
+            <p>🚀 Now offering free consultations for new clients! <a href="{% url 'contact' %}">Book now →</a></p>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <a href="{% url 'index' %}" class="logo" style="float: left; width: 130px; height: 40px;">
+                <img src="{% static "logos/pidot-logo.svg" %}" style="height: 40px;" alt="PI DOT Logo" >
+            </a>
+            <nav class="navbar">
+                <ul style="float: right;">
+                    <li><a href="{% url 'index' %}#solutions-overview">Services</a></li>
+                    <li class="dropdown">
+                        <a href="#">Products </a>
+                        <!-- <i class="fas fa-chevron-down"></i> -->
+                        <div class="dropdown-content">
+                            <a href="{% url 'product_genesis' %}">Genesis</a>
+                            <a href="{% url 'product_edusphere' %}">Edusphere</a>
+                            <a href="{% url 'under_development' %}">Axiom</a>
+                        </div>
+                    </li>
+                    
+                    <li><a href="{% url 'PiDot_about' %}">About</a></li>
+                    <li><a href="{% url 'PiDot_careers' %}">Join with us</a></li>
+                
+                <div class="header-actions" style="padding-left: 20px;">
+                    <a href="{% url 'contact' %}" class="header-cta">Contact Us</a>
+                    <button id="theme-toggle" class="theme-toggle">
+                        <span class="theme-icon">🌓</span>
+                    </button>
+                </div>
+            </ul>
+            </nav>
+            <button class="mobile-menu-toggle" id="mobile-menu-toggle" style="float: right;">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-menu-header">
+            <a href="{% url 'index' %}">
+                <img src="{% static "logos/pidot-logo.svg" %}" alt="PI DOT Logo" style="width: 130px;">
+            </a>
+            <button class="mobile-menu-close" id="mobile-menu-close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <ul>
+            
+            <li><a href="{% url 'index' %}#solutions-overview">Services</a></li>
+            <li class="mobile-dropdown">
+                <a href="#">Products <i class="fas fa-chevron-down"></i></a>
+                <div class="mobile-dropdown-content">
+                    <a href="{% url 'product_genesis' %}">Genesis</a>
+                    <a href="{% url 'product_edusphere' %}">Edusphere</a>
+                    <a href="{% url 'under_development' %}">Axiom</a>
+                </div>
+            </li>
+            
+            <li><a href="{% url 'PiDot_about' %}">About</a></li>
+            <li><a href="{% url 'PiDot_careers' %}">Join with us</a></li>
+            <li><a href="{% url 'contact' %}">Contact us</a></li>
+            
+        </ul>
+    </div>
+
+
+    {% block Body %}
+    <!-- Hero Section -->
+    <section class="hero-slider" style="position: relative;">
+        <!-- <div class="hero-video">
+            <video autoplay muted loop>
+              <source src="{% static 'videos/hero-background-2.mp4'%}" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+          </div> -->
+
+        <div class="hero-image">
+            <img src="{% static 'images\banners\Home_page_banner-2.png' %}" alt="Hero Background" class="hero-bg-img">
+            <div class="image-overlay"></div>
+        </div>
+
+
+        <!-- Slide 1 -->
+        <div class="hero-slide active" >
+          
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="animate-on-scroll" style="color: var(--primary-dark);">Transforming learning experiences with People and AI.
+            </h1>
+            <p class="animate-on-scroll">Industry-first global learning curriculum designed with academicians and employers from across the globe and implemented with AI
+            </p>
+              <!-- <p class="animate-on-scroll" style="font-size: 1.24rem; margin-top: 17px;">= difference</p> -->
+              <div class="hero-buttons animate-on-scroll">
+                <a href="{% url 'index' %}#solutions-overview" class="cta-button primary">View Programs</a>
+                <a href="{% url 'contact' %}" class="cta-button secondary">Partner With Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        {% comment %} Slide 2
+        <div class="hero-slide">
+         
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="animate-on-scroll">Future-Ready Talent Development</h1>
+              <p class="animate-on-scroll">Industry-aligned curriculum designed with leading employers to build in-demand skills</p>
+              <div class="hero-buttons animate-on-scroll">
+                <a href="curriculum.html" class="cta-button primary">Explore Curriculum</a>
+                <a href="recruit.html" class="cta-button secondary">Hire Our Graduates</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Slide 3 -->
+        <div class="hero-slide">
+          
+          <div class="container">
+            <div class="hero-content">
+              <h1 class="animate-on-scroll">Transformative Learning Ecosystems</h1>
+              <p class="animate-on-scroll">Blending academic excellence with real-world application through technology-enhanced education</p>
+              <div class="hero-buttons animate-on-scroll">
+                <a href="technology.html" class="cta-button primary">Our Platform</a>
+                <a href="demo.html" class="cta-button secondary">Request Demo</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Slider Controls (Hidden arrows) -->
+        <div class="slider-controls">
+          <div class="slider-dots">
+            <button class="dot active" aria-label="Go to slide 1"></button>
+            <button class="dot" aria-label="Go to slide 2"></button>
+            <button class="dot" aria-label="Go to slide 3"></button>
+          </div>
+        </div>{% endcomment %}
+      
+        <!-- Original Scroll Indicator -->
+        <div class="scroll-indicator">
+            <span>Scroll</span>
+            <div class="arrow-down"></div>
+        </div> 
+
+      </section>
+
+    <!-- Trusted By Section -->
+    <section class="trusted-by">
+        <div class="container">
+            <p >Partners & Supporters</p>
+            <div class="logo-marquee">
+                <div class="logo-track">
+                    <!-- First set of logos (visible) -->
+                    <img src="{% static 'images\clients\AgHub.png'%}" alt="AgHub" loading="lazy">
+                    <img src="{% static 'images\clients\AISEC.png'%}" alt="AISEC" loading="lazy">
+                    <img src="{% static 'images\clients\Formi.png'%}" alt="Formi" loading="lazy">
+                    <img src="{% static 'images\clients\Bombay Central.png'%}" alt="Bombay Central" loading="lazy">
+                    <img src="{% static 'images\clients\chocolat-damour.png'%}" alt="chocolat-damour" loading="lazy">
+                    <img src="{% static 'images\clients\Hyderabad Angels.png'%}" alt="Hyderabad Angels" loading="lazy">
+                    <img src="{% static 'images\clients\Mru.png'%}" alt="MRUH" loading="lazy">
+                    <!-- <img src="{% static 'images\clients\NextWave.png'%}" alt="NextWave" loading="lazy"> -->
+                    <img src="{% static 'images\clients\onyx.png'%}" alt="Onyx" loading="lazy">
+                    <img src="{% static 'images\clients\Rajthali.png'%}" alt="Rajthali" loading="lazy">
+                    
+                    <!-- Duplicated set for seamless looping -->
+                    <img src="{% static 'images\clients\Recline-and-design.png'%}" alt="Recline-and-design" loading="lazy">
+                    <img src="{% static 'images\clients\Rotary Club.png'%}" alt="Rotary Club" loading="lazy">
+                    <img src="{% static 'images\clients\Solar Bull.png'%}" alt="Solar Bull" loading="lazy">
+                    <img src="{% static 'images\clients\St. Martins.png'%}" alt="St. Martins" loading="lazy">
+                    <img src="{% static 'images\clients\Thinespo.png'%}" alt="Thinespo" loading="lazy">
+                    <img src="{% static 'images\clients\Thub.png'%}" alt="THUB-LOGO" loading="lazy">
+                    <img src="{% static 'images\clients\Unreal-cafe.png'%}" alt="Unreal-cafe" loading="lazy">
+                    <img src="{% static 'images\clients\Unschool.png'%}" alt="Unschool" loading="lazy">
+                    <img src="{% static 'images\clients\WeHub.png'%}" alt="WeHub" loading="lazy">
+                    <img src="{% static 'images\clients\Wishwa.png'%}" alt="Wishwa" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- Solutions Overview -->
+    <section class="solutions-overview" id="solutions-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Comprehensive Solutions</h2>
+                <p>Tailored to meet your unique business challenges and drive sustainable growth</p>
+            </div>
+            <div class="solutions-grid">
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">
+                        <img src="{% static 'logos\Edusphere-icon-black.svg' %}" alt="">
+                        <!-- <i class="fas fa-graduation-cap"></i> -->
+                    </div>
+                    <h3>Edusphere</h3>
+                    <p>Revolutionizing children’s learning through global experiential experiences with people and AI.</p>
+                    <a href="{% url 'product_edusphere' %}" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">
+                        <img src="{% static 'logos\Genesis-icon-black.svg' %}" alt="">
+                        <!-- <i class="fas fa-briefcase"></i> -->
+                    </div>
+                    <h3>Genesis</h3>
+                    <p>Bridging the gap between academia and industry with corporate-led training programs.</p>
+                    <a href="{% url 'product_genesis' %}" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="solution-card animate-on-scroll">
+                    <div class="solution-icon">
+                        <img src="{% static 'logos\Axiom-icon-black.svg' %}" style="width: 70%;">
+                        <!-- <i class="fas fa-robot"></i> -->
+                    </div>
+                    <h3>AXIOM Creative Studio</h3>
+                    <p> Your full-service creative outsourcing studio, purpose-built to excelerate growth and scale.</p>
+                    <a href="{% url 'under_development' %}" class="learn-more">Learn more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    {% comment %} <section class="stats-section">
+        <div class="container" style="text-align: center; color: var(--text-dark);  letter-spacing: 2px;">
+            <h2>#Mission2030</h2>
+
+            <div class="stats-grid">
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-count="314">0</div>
+                    <div class="stat-label">Million People</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Corporate Partners</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-count="25">0</div>
+                    <div class="stat-label">Global Partners</div>
+                </div>
+                <div class="stat-item animate-on-scroll">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Countries</div>
+                </div>
+            </div> 
+        </div>
+    </section> {% endcomment %}
+
+    <section class="stats-section">
+        <div class="container">
+            <div class="mission-heading">
+                <h2 class="mission-title">#MISSION2040</h2>
+                <p class="mission-subtitle">Our Global Impact Goals</p>
+                <div class="mission-underline"></div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="314">0</span>
+                        <span class="stat-suffix">M+</span>
+                    </div>
+                    <div class="stat-label">People To Impact</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="500">0</span>
+                        <span class="stat-suffix">+</span>
+                    </div>
+                    <div class="stat-label">Corporate Partners</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-suffix">+</span>
+                    </div>
+                    <div class="stat-label">Countries Of Existence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies">
+        <div class="container">
+            <div class="section-header">
+                <h2>Success Stories</h2>
+                <p>Discover how we've helped organizations achieve remarkable results</p>
+            </div>
+            <div class="case-study-slider">
+                
+                <div class="case-study">
+                    <div class="case-study-image">
+                        <img src="{% static 'images\GenSuccess.jpg' %}" alt="Case Study" loading="lazy">
+                    </div>
+                    <div class="case-study-content">
+                        <span class="case-study-category">Corporate Training</span>
+                        <h3>Upskilling Workforce for Tech Giants</h3>
+                        <p>Genesis, designed to reduce onboarding time and resources by over 40% for growing and transforming organizations while improving retention by 53%.</p>
+                        <a href="#" class="read-case-study">Read Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="case-study">
+                    <div class="case-study-image">
+                        <img src="{% static 'images\EduSuccess.jpg' %}" alt="Case Study" loading="lazy">
+                    </div>
+                    <div class="case-study-content">
+                        <span class="case-study-category">Education Sector</span>
+                        <h3>Transforming Rural Education in India</h3>
+                        <p>Edusphere, designed and built to scale seamlessly across India — reaching learners in Tier 1 to Tier 6 cities, across diverse regions, languages, and financial backgrounds.</p>
+                        <a href="#" class="read-case-study">Read Case Study <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="slider-controls-2">
+                <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section class="milestones">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 style="color: var(--text-light);">Our Mission</h2>
+                <p>Key Goals in our Achievement</p>
+            </div>
+
+            <div class="milestones-grid">
+                <div class="milestone-card animate-on-scroll">
+                    <div class="milestone-number">314M+</div>
+                    <div class="milestone-text">Indians Impact</div>
+                </div>
+                <div class="milestone-card animate-on-scroll">
+                    <div class="milestone-number">150+</div>
+                    <div class="milestone-text">Corporate Partners</div>
+                </div>
+                 <div class="milestone-card animate-on-scroll">
+                    <div class="milestone-number">5K+</div>
+                    <div class="milestone-text">Educational Institutions</div>
+                </div>
+                <div class="milestone-card animate-on-scroll">
+                    <div class="milestone-number">25</div>
+                    <div class="milestone-text">States Reached</div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Clients Say</h2>
+                <p>Hear from organizations that have transformed with our solutions</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>PI DOT took my billion-dollar baby idea, slapped their design magic on it, and boom - branding so good it makes my other ventures look like lemonade stands. PI DOT & AXIOM isn’t just another firm; they’re your ticket to the big leagues.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Client" loading="lazy">
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <span>HR Director, Onyx</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>With PI DOT & Genesis handling our HR training and outsourcing, we've seen a noticeable boost in team efficiency and professionalism. It's been one of our smartest decisions.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Client" loading="lazy">
+                        <div class="author-info">
+                            <h4>Priya Patel</h4>
+                            <span>Principal, Chocolat D'amour</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <div class="quote-icon">
+                            <i class="fas fa-quote-left"></i>
+                        </div>
+                        <p>Thanks to PI DOT, Unreal Cafe now runs smoother than ever. Their AI automation streamlined our operations and gave us back time to focus on our customers.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="Client" loading="lazy">
+                        <div class="author-info">
+                            <h4>Rahul Sharma</h4>
+                            <span>HR Director, Unreal Cafe</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Organization?</h2>
+                <p>Schedule a consultation with our experts to discover how PI DOT can help you achieve your goals</p>
+                <div class="cta-buttons">
+                    <a href="{% url "contact" %}" class="cta-button primary">Get Started</a>
+                    <a href="{% url "PiDot_about" %}" class="cta-button secondary">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Insights -->
+    <section class="latest-insights">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Insights</h2>
+                <p>Explore our thought leadership and industry perspectives</p>
+            </div>
+            <div class="insights-grid">
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1698993082050-19ca94c62fb8?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Insight" loading="lazy">
+                        <span class="insight-category">Education</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3><a href="#">The Future of Experiential Learning in India</a></h3>
+                        <p class="insight-excerpt">How technology is reshaping education delivery and student engagement in the post-pandemic world...</p>
+                        <div class="insight-meta">
+                            <span class="date">June 15, 2023</span>
+                            <a href="{% url 'resc_insights'%}" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1716191299980-a6e8827ba10b?q=80&w=2125&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Insight" loading="lazy">
+                        <span class="insight-category">Automation</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3><a href="#">AI-Driven Automation for SMEs</a></h3>
+                        <p class="insight-excerpt">Practical ways small and medium enterprises can leverage automation to compete with larger players...</p>
+                        <div class="insight-meta">
+                            <span class="date">May 28, 2023</span>
+                            <a href="{% url 'resc_insights'%}" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+                <article class="insight-card">
+                    <div class="insight-image">
+                        <img src="https://images.unsplash.com/photo-1734542380880-2ad85bd9be09?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Insight" loading="lazy">
+                        <span class="insight-category">Talent</span>
+                    </div>
+                    <div class="insight-content">
+                        <h3><a href="#">Bridging the Industry-Academia Gap</a></h3>
+                        <p class="insight-excerpt">Why corporate-led education programs are essential for developing workforce-ready graduates...</p>
+                        <div class="insight-meta">
+                            <span class="date">April 10, 2023</span>
+                            <a href="{% url 'resc_insights'%}" class="read-more">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+            <div class="view-all">
+                <a href="{% url 'resc_insights'%}" class="view-all-button">View All Insights <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    {% comment %} <section class="newsletter">
+        <div class="container">
+            <div class="newsletter-content">
+                <div class="newsletter-text">
+                    <h3>Stay Updated</h3>
+                    <p>Subscribe to our newsletter for the latest insights, news, and updates</p>
+                </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+    </section> {% endcomment %}
+
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="animate-on-scroll">Frequently Asked Questions</h2>
+            <div class="faq-container" hidden-faqs>
+                <!-- FAQ Item 1 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        What is PI DOT?
+                    </div>
+                    <div class="faq-answer">
+                        <p>PI DOT is a social-impact driven organization focused on transforming education and career readiness. We build experiential curriculums and industry-led training programs to bridge the gap between what is taught in schools and colleges and what the real world demands.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Who can benefit from PI DOT?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Students (Grades 5–10 and college), parents, educational institutions, and companies looking for industry-ready talent can all benefit from PI DOT’s offerings.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        What makes PI DOT different from other education platforms?
+                    </div>
+                    <div class="faq-answer">
+                        <p>We combine education, technology, psychology, and empathy to offer globally aware, India-rooted experiential learning that goes beyond the classroom. Our curriculums are practical, skill-driven, and mentorship-led — not exam-focused.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Which PI DOT program is built for schools?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Edusphere is PI DOT’s global experiential learning curriculum for students from Grade 5 to 10. It teaches life skills, public speaking, innovation, empathy, AI, global awareness, and more — in a fun, hands-on way.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Which program connects companies to trained, job-ready talent?
+                    </div>
+                    <div class="faq-answer">
+                        <p>That’s Genesis — our corporate-led education and hiring platform. Genesis trains college students in real-world skills through industry-backed modules and connects them directly to companies looking for pre-trained, role-specific talent.</p>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 6 -->
+                <div class="faq-item animate-on-scroll">
+                    <div class="faq-question">
+                        Why does PI DOT offer multiple programs instead of just one?
+                    </div>
+                    <div class="faq-answer">
+                        <p>Because one-size-fits-none.
+Students in school and college face very different challenges, and companies need talent that’s ready on day one. PI DOT is built to bridge these gaps across all levels — from school to career — with focused, purpose-driven programs that create real impact where it’s needed most.
+</p>
+                    </div>
+                </div>
+            </div>
+            <div id="button-FAQ" style="display: flex; justify-content: center; align-items: center;">
+                <button class="see-more-btn animate-on-scroll">See More FAQs</button>
+            </div>
+        </div>
+    </section>
+
+    {% endblock Body %}
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <a href="{% url 'index' %}">
+                            <img src="{% static 'logos/pidot-logo-white.svg' %}" alt="PI DOT Logo" width="150px"> 
+                        </a>
+                    </div>
+                    <p class="footer-about" style="font-size: 0.75rem;">Empower Elevate Excelerate</p>
+                    <!-- PI DOT is where empowerment meets innovation, and where acceleration shapes the future. We're committed to driving people, businesses, and communities beyond conventional boundaries. -->
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/pi-dot/"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/pidot.in/"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Solutions</h4>
+                    <ul>
+                        <li><a href="{% url 'product_edusphere' %}">Edusphere</a></li>
+                        <li><a href="{% url 'product_genesis' %}">Genesis</a></li>
+                        <li><a href="{% url 'under_development' %}">Axiom</a></li>
+                        {% comment %} <li><a href="{% url 'index' %}#solutions-overview">All Solutions</a></li> {% endcomment %}
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="{% url "PiDot_about" %}">About Us</a></li>
+                        {% comment %} <li><a href="{% url 'PiDot_leadership' %}">Leadership</a></li> {% endcomment %}
+                        <li><a href="{% url 'PiDot_careers' %}">Careers</a></li>
+                        <li><a href="{% url 'under_development' %}">Newsroom</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="{% url 'resc_insights'%}">Insights</a></li>
+                        {% comment %} <li><a href="case-studies.html">Case Studies</a></li> {% endcomment %}
+                        <li><a href="{% url 'faq'%}">FAQ</a></li>
+                        <li><a href="{% url 'resc_login'%}">EMELEX Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-map-marker-alt"></i> Hyderabad, Telangana, India</li>
+                        <li><i class="fas fa-phone"></i> +91 91547 76110</li>
+                        <li><i class="fas fa-envelope"></i> info@pidot.in</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2025 EMELEX Business Solutions LLP. All rights reserved.</p>
+                </div>
+                <div class="footer-bottom-right">
+                    <a href="{% url 'privacy_policy'%}">Privacy Policy</a>
+                    <a href="{% url 'terms_coditions'%}">Terms of Service</a>
+                    <a href="{% url 'terms_coditions'%}">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="{% static "js/main.js" %}"></script>
+    <script src="{% static "js/theme-switcher.js" %}"></script>
+    <script src="{% static "js/animations.js" %}"></script>
+
+    {% block Script %}
+        <script src="{% static "js/index.js" %}"></script>
+    {% endblock Script %}
+</body>
+</html>

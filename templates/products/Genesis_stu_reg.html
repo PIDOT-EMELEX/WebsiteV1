@@ -1,0 +1,727 @@
+{% extends "index.html" %}
+
+{% load static %}
+{% block title %}
+  Genesis | PI DOT | Student Registration Form
+{% endblock title %}
+{% block Style %}
+<link rel="stylesheet" href="{% static "css/products/genesis.css" %}">
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<style>
+    /* Genesis Student Registration Form Styles */
+    
+    
+    .form-container {
+        max-width: 900px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .step-navigation {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+    
+    .step-navigation:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: #e0e0e0;
+        z-index: 1;
+    }
+    
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: #e0e0e0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 1rem;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 3px solid white;
+    }
+    
+    .step-icon i {
+        font-size: 1.5rem;
+        color: #757575;
+    }
+    
+    .step-icon.active {
+        background: var(--genesis-dark);
+        transform: scale(1.1);
+    }
+    
+    .step-icon.active i {
+        color: white;
+    }
+    
+    .step-icon.completed {
+        background: var(--genesis-color);
+    }
+    
+    .step-icon.completed i {
+        color: white;
+    }
+    
+    .form-step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+    
+    .form-step.active {
+        display: block;
+    }
+    
+    .success-screen {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+    }
+    
+    .success-screen.active {
+        display: block;
+    }
+    
+    .success-screen i {
+        font-size: 4rem;
+        color: #4CAF50;
+        margin-bottom: 1.5rem;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    fieldset {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    legend {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--genesis-dark);
+        padding: 0 1rem;
+        width: auto;
+    }
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: #424242;
+    }
+    
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #bdbdbd;
+        border-radius: 4px;
+        font-size: 1rem;
+        transition: border-color 0.3s;
+    }
+    
+    .form-group input[type="text"]:focus,
+    .form-group input[type="email"]:focus,
+    .form-group input[type="tel"]:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        border-color: var(--genesis-dark);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(57, 73, 171, 0.2);
+    }
+    
+    .form-group textarea {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .form-group input[type="file"] {
+        padding: 0.5rem;
+    }
+    
+    .form-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+    
+    .form-navigation button {
+        padding: 0.8rem 1.5rem;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .form-navigation .prev-btn {
+        background: #e0e0e0;
+        color: #424242;
+    }
+    
+    .form-navigation .next-btn,
+    .form-navigation .submit-btn {
+        background: var(--genesis-dark);
+        color: white;
+    }
+    
+    .form-navigation button:hover {
+        opacity: 0.9;
+        transform: translateY(-2px);
+    }
+    
+    .form-navigation button:disabled {
+        background: #e0e0e0;
+        color: #9e9e9e;
+        cursor: not-allowed;
+        transform: none;
+    }
+    
+    .submit-group {
+        text-align: center;
+        margin-top: 2rem;
+    }
+    
+    .submit-group button {
+        padding: 1rem 2rem;
+        background: var(--genesis-dark);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+    
+    .submit-group button:hover {
+        background: #303f9f;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    #status {
+        margin: 1rem 0;
+        padding: 1rem;
+        border-radius: 4px;
+        text-align: center;
+    }
+    
+    .success-message {
+        background: #e8f5e9;
+        color: #2e7d32;
+    }
+    
+    .error-message {
+        background: #ffebee;
+        color: #c62828;
+    }
+    
+    .submission-message {
+        background: #e3f2fd;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-top: 2rem;
+        color: #1565c0;
+    }
+    
+    .submission-message p {
+        margin-bottom: 1rem;
+    }
+    
+    .submission-message p:last-child {
+        margin-bottom: 0;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .form-container {
+            padding: 1rem;
+        }
+        
+        fieldset {
+            padding: 1rem;
+        }
+        
+        .step-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 0.5rem;
+        }
+        
+        .step-icon i {
+            font-size: 1.2rem;
+        }
+        
+        .GenesisStuReg-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .GenesisStuReg-hero p {
+            font-size: 1rem;
+        }
+    }
+</style>
+<style>
+    /* Loading animation styles */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.8);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+    
+    .loading-content {
+        text-align: center;
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid #f3f3f3;
+        border-top: 5px solid #3949ab;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1rem;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+</style>
+{% endblock Style %}
+    
+{% block Body %}
+    <!-- Registration Hero -->
+    <section class="GenesisStuReg-hero">
+        <div class="container">
+            <div class="GenesisStuReg-content">
+                <h1 class="animate-on-scroll">Student Registration</h1>
+                <p class="animate-on-scroll">Join Genesis and unlock your potential in blockchain technology and decentralized systems.</p>
+            </div>
+        </div>
+    </section> 
+    
+    <section class="form-container">
+        <!-- Step Navigation with Bootstrap Icons -->
+        <div class="step-navigation">
+            <div class="step-icon active" data-step="1" title="Personal Details">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="step-icon" data-step="2" title="Education">
+                <i class="bi bi-book-fill"></i>
+            </div>
+            <div class="step-icon" data-step="3" title="Experience">
+                <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div class="step-icon" data-step="4" title="Psychometric">
+                <i class="bi bi-clipboard2-pulse-fill"></i>
+            </div>
+            <div class="step-icon" data-step="5" title="Referral">
+                <i class="bi bi-people-fill"></i>
+            </div>
+        </div>
+
+        <!-- Form Steps -->
+        <form id="genesisForm">
+            <!-- Personal Details -->
+            <div id="step-1" class="form-step active">
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone No</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cityState">City & State</label>
+                        <input type="text" id="cityState" name="cityState" placeholder="Enter city and state" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" id="gender" name="gender" placeholder="Enter your gender" required>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="prev-btn" disabled>Previous</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Educational Background -->
+            <div id="step-2" class="form-step">
+                <fieldset>
+                    <legend>Educational Background</legend>
+                    <div class="form-group">
+                        <label for="college">College/University Name</label>
+                        <input type="text" id="college" name="college" placeholder="Enter college name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="degree">Degree & Specialization</label>
+                        <input type="text" id="degree" name="degree" placeholder="Enter degree and specialization" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gradYear">Year of Graduation (if pursuing)</label>
+                        <input type="text" id="gradYear" name="gradYear" placeholder="Enter graduation year" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="academicYear">Current Academic Year</label>
+                        <input type="text" id="academicYear" name="academicYear" placeholder="Enter current academic year" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cgpa">CGPA</label>
+                        <input type="text" id="cgpa" name="cgpa" placeholder="Enter your CGPA" required>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Career & Experience -->
+            <div id="step-3" class="form-step">
+                <fieldset>
+                    <legend>Career & Experience</legend>
+                    <div class="form-group">
+                        <label for="experience">Do you have any work experience?</label>
+                        <select id="experience" name="experience" required>
+                            <option value="" disabled selected>Select experience</option>
+                            <option value="No experience yet">No experience yet</option>
+                            <option value="Internship">Internship</option>
+                            <option value="Part-time or freelance work">Part-time or freelance work</option>
+                            <option value="Full-time">Full-time</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="resumeFile">Upload Resume</label>
+                        <input type="file" id="resumeFile" name="resumeFile" accept=".pdf,.doc,.docx" required>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Psychometric Test -->
+            <div id="step-4" class="form-step">
+                <fieldset>
+                    <legend>Psychometric Test</legend>
+                    <div class="form-group">
+                        <label for="learningApproach">Which best describes your learning approach?</label>
+                        <select id="learningApproach" name="learningApproach" required>
+                            <option value="" disabled selected>Select learning approach</option>
+                            <option value="I prefer step-by-step guidance">I prefer step-by-step guidance</option>
+                            <option value="I like figuring things out myself">I like figuring things out myself</option>
+                            <option value="I learn better in a group">I learn better in a group</option>
+                            <option value="I like hands-on practice more than theory">I like hands-on practice more than theory</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="careerApproach">Which best describes your career approach right now?</label>
+                        <select id="careerApproach" name="careerApproach" required>
+                            <option value="" disabled selected>Select career approach</option>
+                            <option value="I'm actively exploring options and want clarity">I'm actively exploring options and want clarity</option>
+                            <option value="I know my direction but need skills">I know my direction but need skills</option>
+                            <option value="I'm job hunting and need help getting placed">I'm job hunting and need help getting placed</option>
+                            <option value="I'm casually looking at opportunities">I'm casually looking at opportunities</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="teamValues">What values or principles guide your behavior when working with others?</label>
+                        <textarea id="teamValues" name="teamValues" placeholder="Describe your teamwork values" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="proudAchievement">What personal achievement are you most proud of — and why?</label>
+                        <textarea id="proudAchievement" name="proudAchievement" placeholder="Share your proudest achievement" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="comfortZone">Imagine you've been given a task completely outside your comfort zone. What's your first step?</label>
+                        <textarea id="comfortZone" name="comfortZone" placeholder="Describe your approach" required></textarea>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="button" class="next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Referral Source -->
+            <div id="step-5" class="form-step">
+                <fieldset>
+                    <legend>How did you hear about Genesis?</legend>
+                    <div class="form-group">
+                        <label for="referral">Select referral source</label>
+                        <select id="referral" name="referral" required>
+                            <option value="" disabled selected>Select referral source</option>
+                            <option value="Social Media (Instagram/LinkedIn/Facebook)">Social Media (Instagram/LinkedIn/Facebook)</option>
+                            <option value="Friend/College mate referral">Friend/College mate referral</option>
+                            <option value="College/University announcement">College/University announcement</option>
+                            <option value="Pi Dot website">Pi Dot website</option>
+                            <option value="Workshop/Event">Workshop/Event</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="prev-btn">Previous</button>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Success Screen -->
+        <div id="success-screen" class="success-screen">
+            <i class="bi bi-check-circle-fill"></i>
+            <h2>Registration Successful!</h2>
+            <p>Thank you for registering with Genesis. Our team will review your application and contact you soon.</p>
+            <div class="submission-message">
+                <p>This is the first step toward building a strong foundation for your career. Our team will carefully review your application based on your background, responses, and career goals. If shortlisted, you'll be contacted for a quick 1:1 counselling session where we'll guide you to the most suitable course track.</p>
+                <p>Selection is based on intent, readiness, and alignment with the program's outcomes.</p>
+                <p>Keep an eye on your email and WhatsApp for further updates.</p>
+            </div>
+        </div>
+
+        <div id="status"></div>
+    </section>
+{% endblock Body %}
+
+{% block Script %}
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const steps = document.querySelectorAll(".form-step");
+    const stepIcons = document.querySelectorAll(".step-icon");
+    const form = document.getElementById('genesisForm');
+    const successScreen = document.getElementById('success-screen');
+    const statusElement = document.getElementById('status');
+    let currentStep = 1;
+
+    // Create loading element
+    const loadingElement = document.createElement('div');
+    loadingElement.className = 'loading-overlay';
+    loadingElement.innerHTML = `
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>Submitting your application...</p>
+        </div>
+    `;
+    document.body.appendChild(loadingElement);
+
+    // Navigation functions
+    function showStep(step) {
+        steps.forEach((s, index) => {
+            s.classList.toggle("active", index + 1 === step);
+        });
+        
+        stepIcons.forEach((icon, index) => {
+            const iconStep = parseInt(icon.getAttribute("data-step"));
+            icon.classList.toggle("active", iconStep === step);
+            icon.classList.toggle("completed", iconStep < step);
+        });
+        
+        currentStep = step;
+    }
+
+    function validateStep(step) {
+        const currentFormStep = document.getElementById(`step-${step}`);
+        const inputs = currentFormStep.querySelectorAll("input, select, textarea");
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if (!input.checkValidity()) {
+                isValid = false;
+                input.reportValidity();
+            }
+        });
+        
+        return isValid;
+    }
+
+    function goToStep(step) {
+        if (step < 1 || step > steps.length) return;
+        
+        if (step > currentStep) {
+            if (!validateStep(currentStep)) return;
+        }
+        
+        showStep(step);
+    }
+
+    function goToNextStep() {
+        if (validateStep(currentStep)) {
+            goToStep(currentStep + 1);
+        }
+    }
+
+    function goToPrevStep() {
+        goToStep(currentStep - 1);
+    }
+
+    // Event listeners
+    stepIcons.forEach(icon => {
+        icon.addEventListener("click", function() {
+            const step = parseInt(this.getAttribute("data-step"));
+            if (step <= currentStep) {
+                goToStep(step);
+            }
+        });
+    });
+
+    document.querySelectorAll(".next-btn").forEach(btn => {
+        btn.addEventListener("click", goToNextStep);
+    });
+
+    document.querySelectorAll(".prev-btn").forEach(btn => {
+        btn.addEventListener("click", goToPrevStep);
+    });
+
+    // Form submission
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const file = document.getElementById('resumeFile').files[0];
+
+        if (!file) {
+            statusElement.innerText = "Please upload a resume file.";
+            statusElement.className = "error-message";
+            return;
+        }
+
+        // Show loading animation
+        loadingElement.style.display = 'flex';
+        document.querySelector('.submit-btn').disabled = true;
+
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64 = reader.result.split(',')[1];
+
+            const data = {
+                firstName: form.firstName.value,
+                lastName: form.lastName.value,
+                email: form.email.value,
+                phone: form.phone.value,
+                cityState: form.cityState.value,
+                gender: form.gender.value,
+                college: form.college.value,
+                degree: form.degree.value,
+                gradYear: form.gradYear.value,
+                academicYear: form.academicYear.value,
+                cgpa: form.cgpa.value,
+                experience: form.experience.value,
+                learningApproach: form.learningApproach.value,
+                careerApproach: form.careerApproach.value,
+                teamValues: form.teamValues.value,
+                proudAchievement: form.proudAchievement.value,
+                comfortZone: form.comfortZone.value,
+                referral: form.referral.value,
+                fileName: file.name,
+                mimeType: file.type,
+                fileBase64: base64
+            };
+
+            const formData = new FormData();
+            formData.append("data", JSON.stringify(data));
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbz1vGvL6XmwsZWSm3qEixfCoVYBOXB6eg_xkIpDm2JYdhtCAgjkDkw78AusY8P-ymrKPA/exec";
+            try {
+                const res = await fetch(scriptURL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                // Hide loading animation
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+
+                const responseText = await res.text();
+                
+                // Show success message
+                form.style.display = 'none';
+                successScreen.classList.add('active');
+                document.querySelector('.step-navigation').style.display = 'none';
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    form.reset();
+                    successScreen.classList.remove('active');
+                    form.style.display = 'block';
+                    document.querySelector('.step-navigation').style.display = 'flex';
+                    showStep(1);
+                }, 5000);
+                
+            } catch (error) {
+                console.error("Error during fetch:", error);
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                statusElement.innerText = "Error submitting form. Please try again later.";
+                statusElement.className = "error-message";
+            }
+        };
+
+        reader.readAsDataURL(file);
+    });
+
+    // Initialize with first step visible
+    showStep(1);
+});
+</script>
+
+
+
+<script src="{% static 'js/scroll.js' %}"></script>
+{% endblock Script %}

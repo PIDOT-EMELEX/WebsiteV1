@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}
+  Careers | PI DOT | Build Your Career With Purpose
+{% endblock title %}
+
+{% block Style %}
+<link rel="stylesheet" href="css/style.css">
+{% endblock Style %} 
+    
+{% block Body %}
+    <!-- Careers Hero -->
+    <section class="careers-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="animate-on-scroll" >Build Your Career With Purpose</h1>
+                <p class="animate-on-scroll">Join us in transforming education and business across India</p>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Why Join Us -->
+    <main>
+        <section id="job-application" style="align-items: center; text-align: center;">
+            <!-- <h2>Job Application Form</h2> -->
+            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8sGalyFXNi-dUwnAmZPRka4HXylWT7LIZ0Ui6C0E7tsL-SA/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+            {% comment %} <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdD2RLFbc_R-tfl0HaQg6le6sA-ZAbsn9gjmhpA1H9yHwX_aA/viewform?embedded=true" width=100% height=1500px frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> {% endcomment %}
+        </section>
+
+        </main>
+
+    <!-- Footer (Same as homepage) -->
+
+{% endblock Body %}
+
+{% block Script %}
+    <script src="js\scroll.js"></script>
+    <script src="js/careers-filter.js"></script>
+{% endblock Script %}
