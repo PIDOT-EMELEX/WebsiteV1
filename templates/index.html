@@ -673,6 +673,20 @@ Students in school and college face very different challenges, and companies nee
 
     {% block Script %}
         <script src="{% static "js/index.js" %}"></script>
+
+        <script>
+        fetch("https://websitev1-3bc9.onrender.com/api/products/")
+          .then(res => res.json())
+          .then(data => {
+            const ul = document.getElementById("product-list");
+            data.forEach(product => {
+              const li = document.createElement("li");
+              li.innerText = product.name;
+              ul.appendChild(li);
+            });
+          });
+        </script>
+
     {% endblock Script %}
 </body>
 </html>
