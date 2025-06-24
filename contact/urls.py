@@ -6,5 +6,5 @@ urlpatterns = [
     path('faq/', faq, name='faq'),
     path('cookie_policy/', cookie_policy, name='cookie_policy'),
     path('privacy_policy/', privacy_policy, name='privacy_policy'),
-    path('terms_coditions/', terms_coditions, name='terms_coditions'),
+    path('terms_conditions/', terms_conditions, name='terms_conditions'),
 ]

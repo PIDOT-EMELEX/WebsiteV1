@@ -49,7 +49,7 @@
             margin-bottom: 20px;
         }
 
-        .last-updated {
+        .effective-date {
             font-style: italic;
             opacity: 0.9;
             color: var(--primary-light);
@@ -96,26 +96,19 @@
         }
 
         .cookie-table th {
-            background-color: var(--primary-color);
-            color: var(--text-light);
+            background-color: var(--primary-light);
+            color: var(--text-dark);
             text-align: left;
-            padding: 12px 15px;
+            padding: 12px;
         }
 
         .cookie-table td {
-            padding: 12px 15px;
+            padding: 12px;
             border-bottom: 1px solid var(--card-bg);
         }
 
         .cookie-table tr:nth-child(even) {
             background-color: var(--card-bg);
-        }
-
-        .cookie-controls {
-            background-color: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            margin: 40px 0;
         }
 
         .contact-info-2 {
@@ -149,9 +142,9 @@
 {% block Body %}
 <!-- Cookie Policy Header -->
 <section class="cookie-header">
-    <div class="container-2">
-        <h1>Cookie Policy</h1>
-        <p class="last-updated">Last Updated: [Insert Date]</p>
+    <div class="container">
+        <h1>🍪 Cookie Policy</h1>
+        <p class="effective-date">Effective Date: [Insert Date]</p>
     </div>
 </section>
 
@@ -159,129 +152,162 @@
 <section class="cookie-content">
     <div class="container-2">
         <div class="section">
-            <p>This Cookie Policy explains how BMEEX Business Solutions LLP ("we," "us," or "our") uses cookies and similar tracking technologies when you visit our websites and use our services within the PI DOT ecosystem, including Edusphere, Genesis, and Axiom platforms (collectively, the "Services").</p>
+            <h2>1. Introduction</h2>
+            <p>This Cookie Policy explains how PIDOT PRIVATE LIMITED ("Pidot", "we", "our", or "us") uses cookies and similar tracking technologies when you visit our website <a href="https://www.pidot.in">https://www.pidot.in</a> ("Website"). It should be read together with our <a href="#">Privacy Policy</a>, which explains how we use personal data.</p>
+            <p>By using our website, you agree that we can store and access cookies and similar technologies on your device in accordance with this policy.</p>
         </div>
 
         <div class="section">
-            <h2>1. What Are Cookies?</h2>
-            <p>Cookies are small text files that are placed on your computer, smartphone, or other device when you visit a website. They are widely used to make websites work more efficiently and to provide information to website owners.</p>
+            <h2>2. What Are Cookies?</h2>
+            <p>Cookies are small text files stored on your computer, tablet, or mobile device when you visit a website. They help websites function correctly and efficiently, and provide information to the website owner.</p>
             
-            <p>We use both session cookies (which expire when you close your browser) and persistent cookies (which remain on your device for a set period or until you delete them).</p>
+            <h3>Types of Cookies</h3>
+            <p>Cookies can be:</p>
+            <ul>
+                <li><strong>First-party cookies</strong> – set by our website</li>
+                <li><strong>Third-party cookies</strong> – set by external domains providing services on our site</li>
+            </ul>
+            
+            <p>Cookies can also be categorized by duration:</p>
+            <ul>
+                <li><strong>Session cookies</strong> – temporary and deleted when you close your browser</li>
+                <li><strong>Persistent cookies</strong> – remain on your device until they expire or are deleted</li>
+            </ul>
         </div>
 
         <div class="section">
-            <h2>2. How We Use Cookies</h2>
-            <p>We use cookies for the following purposes:</p>
+            <h2>3. Why We Use Cookies</h2>
+            <p>We use cookies for a variety of purposes:</p>
             
-            <h3>Essential Cookies</h3>
-            <p>These are necessary for the website to function and cannot be switched off. They are usually only set in response to actions you take such as logging in or filling in forms.</p>
-            
-            <h3>Performance Cookies</h3>
-            <p>These allow us to count visits and traffic sources so we can measure and improve the performance of our site.</p>
-            
-            <h3>Functional Cookies</h3>
-            <p>These enable the website to provide enhanced functionality and personalization.</p>
-            
-            <h3>Targeting Cookies</h3>
-            <p>These cookies may be set through our site by our advertising partners to build a profile of your interests.</p>
-        </div>
-
-        <div class="section">
-            <h2>3. Types of Cookies We Use</h2>
             <table class="cookie-table">
                 <thead>
                     <tr>
-                        <th>Cookie Name</th>
+                        <th>Category</th>
                         <th>Purpose</th>
-                        <th>Duration</th>
-                        <th>Type</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>session_id</td>
-                        <td>Maintains your session state across page requests</td>
-                        <td>Session</td>
-                        <td>Essential</td>
+                        <td><strong>Essential / Strictly Necessary</strong></td>
+                        <td>Enable website navigation, security, and access to secure areas (e.g., login sessions). Without these, the site may not function.</td>
                     </tr>
                     <tr>
-                        <td>user_preferences</td>
-                        <td>Stores your language and display preferences</td>
-                        <td>1 year</td>
-                        <td>Functional</td>
+                        <td><strong>Performance / Analytics</strong></td>
+                        <td>Collect anonymous data on how users interact with the site, helping us improve usability and performance (e.g., Google Analytics).</td>
                     </tr>
                     <tr>
-                        <td>_ga</td>
-                        <td>Google Analytics - distinguishes unique users</td>
-                        <td>2 years</td>
-                        <td>Performance</td>
+                        <td><strong>Functionality</strong></td>
+                        <td>Remember user preferences such as language, region, and font size to enhance user experience.</td>
                     </tr>
                     <tr>
-                        <td>_gid</td>
-                        <td>Google Analytics - distinguishes unique users</td>
-                        <td>24 hours</td>
-                        <td>Performance</td>
-                    </tr>
-                    <tr>
-                        <td>_gat</td>
-                        <td>Google Analytics - throttles request rate</td>
-                        <td>1 minute</td>
-                        <td>Performance</td>
-                    </tr>
-                    <tr>
-                        <td>fr</td>
-                        <td>Facebook Pixel - advertising and conversion tracking</td>
-                        <td>3 months</td>
-                        <td>Targeting</td>
+                        <td><strong>Marketing / Targeting</strong></td>
+                        <td>Track browsing habits to deliver personalized ads and content (only with consent). May be used by third-party advertisers.</td>
                     </tr>
                 </tbody>
             </table>
         </div>
 
         <div class="section">
-            <h2>4. Third-Party Cookies</h2>
-            <p>We may also use various third-party cookies, including:</p>
+            <h2>4. Types of Cookies We Use</h2>
+            <p>Below are examples of cookies that may be used on our website:</p>
+            
+            <h3>A. Essential Cookies</h3>
             <ul>
-                <li><strong>Google Analytics:</strong> To understand how visitors engage with our Services</li>
-                <li><strong>Hotjar:</strong> To better understand user behavior and improve user experience</li>
-                <li><strong>Facebook Pixel:</strong> To measure the effectiveness of our advertising</li>
-                <li><strong>LinkedIn Insight Tag:</strong> For advertising and analytics</li>
+                <li><strong>PHPSESSID</strong> – Maintains user session state across page requests</li>
+                <li><strong>XSRF-TOKEN</strong> – Prevents cross-site request forgery (CSRF) attacks</li>
             </ul>
-            <p>These third-party services may use cookies and similar technologies that are subject to their own privacy policies.</p>
+            
+            <h3>B. Analytics Cookies</h3>
+            <ul>
+                <li><strong>_ga / _gid / _gat</strong> (Google Analytics) – Track user behavior, distinguish sessions
+                    <ul>
+                        <li>IP addresses anonymized</li>
+                        <li>Used to improve site content and layout</li>
+                    </ul>
+                </li>
+            </ul>
+            
+            <h3>C. Functionality Cookies</h3>
+            <ul>
+                <li><strong>language_preference</strong> – Saves your selected language or region</li>
+                <li><strong>remember_me</strong> – Keeps users logged in on repeat visits (if login feature exists)</li>
+            </ul>
+            
+            <h3>D. Consent and Settings Cookies</h3>
+            <ul>
+                <li><strong>cookie_consent</strong> – Stores your cookie consent preferences</li>
+                <li><strong>privacy_notice_dismissed</strong> – Records if the cookie banner has been dismissed</li>
+            </ul>
         </div>
 
         <div class="section">
-            <h2>5. Your Cookie Choices</h2>
-            <div class="cookie-controls">
-                <h3>Browser Controls</h3>
-                <p>Most browsers allow you to control cookies through their settings preferences. However, if you limit the ability of websites to set cookies, you may worsen your overall user experience.</p>
-                
-                <h3>Opt-Out Tools</h3>
-                <p>You can opt out of certain third-party cookies:</p>
-                <ul>
-                    <li><a href="https://tools.google.com/dlpage/gaoptout" style="color: var(--primary-color);">Google Analytics Opt-out</a></li>
-                    <li><a href="https://www.facebook.com/ads/preferences" style="color: var(--primary-color);">Facebook Ad Preferences</a></li>
-                    <li><a href="https://www.linkedin.com/psettings/guest-controls" style="color: var(--primary-color);">LinkedIn Cookie Settings</a></li>
-                </ul>
-                
-                <h3>Our Cookie Consent Tool</h3>
-                <p>When you first visit our website, you will be presented with a cookie consent banner where you can manage your preferences.</p>
-            </div>
+            <h2>5. Third-Party Cookies</h2>
+            <p>Some cookies may be set by third-party services integrated into our site, such as:</p>
+            <ul>
+                <li><strong>Google Analytics</strong></li>
+                <li><strong>YouTube or Vimeo</strong> (for embedded videos)</li>
+                <li><strong>LinkedIn or Facebook Pixel</strong> (if used for remarketing)</li>
+            </ul>
+            <p>These third parties may use cookies for their own purposes and are governed by their respective privacy policies.</p>
         </div>
 
         <div class="section">
-            <h2>6. Changes to This Cookie Policy</h2>
-            <p>We may update this Cookie Policy from time to time. We will notify you of any changes by posting the new Cookie Policy on this page and updating the "Last Updated" date.</p>
+            <h2>6. How You Can Manage Cookies</h2>
+            <p>You can manage cookies in the following ways:</p>
+            
+            <h3>A. Website Cookie Banner</h3>
+            <p>On your first visit to our site, you'll see a cookie banner requesting your consent. You can:</p>
+            <ul>
+                <li>Accept all cookies</li>
+                <li>Reject non-essential cookies</li>
+                <li>Customize your preferences</li>
+            </ul>
+            <p>You can update your preferences at any time by clicking the <strong>"Privacy & Cookie Settings"</strong> link in the footer.</p>
+            
+            <h3>B. Browser Settings</h3>
+            <p>You can also manage cookies via your browser settings:</p>
+            <ul>
+                <li>Block all cookies</li>
+                <li>Delete specific cookies</li>
+                <li>Set preferences for individual websites</li>
+            </ul>
+            <p>Helpful resources:</p>
+            <ul>
+                <li><a href="https://support.google.com/chrome/answer/95647" target="_blank">Google Chrome</a></li>
+                <li><a href="https://support.mozilla.org/en-US/kb/enable-and-disable-cookies" target="_blank">Mozilla Firefox</a></li>
+                <li><a href="https://support.microsoft.com/en-us/microsoft-edge" target="_blank">Microsoft Edge</a></li>
+                <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank">Safari</a></li>
+            </ul>
         </div>
 
         <div class="section">
-            <h2>7. Contact Us</h2>
+            <h2>7. Consequences of Disabling Cookies</h2>
+            <p>If you disable cookies:</p>
+            <ul>
+                <li>Some parts of the site may not work properly</li>
+                <li>You may need to manually re-enter preferences</li>
+                <li>Logins, forms, or interactive features may not function</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>8. Do Not Track (DNT)</h2>
+            <p>Some browsers offer a "Do Not Track" feature. Our website does not currently respond to DNT signals, but we are monitoring industry developments in this area.</p>
+        </div>
+
+        <div class="section">
+            <h2>9. Updates to This Policy</h2>
+            <p>We may update this Cookie Policy from time to time in line with legal, technical, or business developments. The most current version will always be available on our website, with the effective date clearly stated.</p>
+        </div>
+
+        <div class="section">
+            <h2>10. Contact Us</h2>
             <div class="contact-info-2">
-                <p>If you have any questions about this Cookie Policy, please contact us:</p>
+                <p>For questions about our use of cookies or this Cookie Policy:</p>
+                <p><strong>PIDOT PRIVATE LIMITED</strong></p>
                 <ul>
-                    <li><strong>By email:</strong> privacy@pidot.in</li>
-                    <li><strong>By mail:</strong> BMEEX Business Solutions LLP, Mykotabad, India</li>
-                    <li><strong>By phone:</strong> +91 0154 77610</li>
+                    <li>📧 Email: <a href="mailto:contact@pidot.in">contact@pidot.in</a></li>
+                    <li>🌐 Website: <a href="https://www.pidot.in">https://www.pidot.in</a></li>
                 </ul>
             </div>
         </div>

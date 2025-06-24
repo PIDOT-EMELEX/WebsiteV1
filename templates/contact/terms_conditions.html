@@ -1,0 +1,314 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block Style %}
+<style>
+    :root {
+        --primary-color: #FFB13B;
+        --primary-dark: #F69507;
+        --primary-light: #FFD08A;
+        --text-dark: #0B0B0B;
+        --text-light: #FFFFFF;
+        --text-gray: #AAAAAA;
+        --bg-light: #FFFFFF;
+        --bg-dark: #0B0B0B;
+        --card-bg: #F5F5F5;
+        --genesis-color: #56848C;
+        --genesis-dark: #122E32;
+        --edusphere-color: #38B6FF;
+        --edusphere-dark: #00A3FF;
+        --axiom-color: #0B0B0B;
+        --axiom-dark: #333333;
+    }
+    
+    body {
+        font-family: 'Poppins', 'Inter', sans-serif;
+        margin: 0;
+        color: var(--text-dark);
+        background: var(--bg-light);
+        line-height: 1.6;
+    }
+
+    .tos-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    .tos-header {
+        background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+        color: var(--text-light);
+        padding: 100px 0 60px;
+        text-align: center;
+    }
+
+    .tos-header h1 {
+        font-size: 2.8rem;
+        margin-bottom: 20px;
+    }
+
+    .effective-date {
+        font-style: italic;
+        opacity: 0.9;
+        color: var(--primary-light);
+        margin-bottom: 10px;
+    }
+
+    .tos-content {
+        padding: 60px 0;
+    }
+
+    .section {
+        margin-bottom: 50px;
+    }
+
+    .section h2 {
+        color: var(--primary-color);
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid var(--card-bg);
+    }
+
+    .section h3 {
+        font-size: 1.4rem;
+        margin: 30px 0 15px;
+        color: var(--text-dark);
+    }
+
+    .section p, .section ul, .section ol {
+        margin-bottom: 20px;
+    }
+
+    .section ul, .section ol {
+        padding-left: 20px;
+    }
+
+    .section li {
+        margin-bottom: 10px;
+    }
+
+    .notice-box {
+        background-color: var(--card-bg);
+        border-left: 4px solid var(--primary-color);
+        padding: 15px 20px;
+        margin: 25px 0;
+    }
+
+    .contact-info-box {
+        background: var(--card-bg);
+        padding: 30px;
+        border-radius: 8px;
+        margin-top: 40px;
+    }
+
+    a {
+        color: var(--primary-dark);
+        text-decoration: none;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+        .tos-header h1 {
+            font-size: 2.2rem;
+        }
+        
+        .section h2 {
+            font-size: 1.6rem;
+        }
+        
+        .section h3 {
+            font-size: 1.2rem;
+        }
+    }
+</style>
+{% endblock Style %}
+
+{% block Body %}
+<!-- Terms of Service Header -->
+<section class="tos-header">
+    <div class="container">
+        <h1>📜 Terms of Service</h1>
+        <p class="effective-date">Effective Date: [Insert Date]</p>
+    </div>
+</section>
+
+<!-- Terms of Service Content -->
+<section class="tos-content">
+    <div class="tos-container">
+        <div class="section">
+            <h2>1. Agreement to Terms</h2>
+            <p>These Terms of Service ("Terms") constitute a legally binding agreement between you ("you", "your", or "user") and <strong>PIDOT PRIVATE LIMITED</strong> ("Pidot", "we", "our", or "us"), concerning your access to and use of the website located at <a href="https://www.pidot.in">https://www.pidot.in</a> (the "Website") and any of our other linked products or services.</p>
+            <div class="notice-box">
+                <p>By accessing or using our Website, you confirm that you have read, understood, and agree to be bound by these Terms. If you do not agree, you must not use our services.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Company Information</h2>
+            <p>PIDOT PRIVATE LIMITED is an Indian-based technology company focused on innovation, design, product development, and strategic solutions. The Website provides information about our services, insights, contact forms, and access to resources.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Eligibility</h2>
+            <p>To use this Website, you must:</p>
+            <ul>
+                <li>Be at least 18 years of age (or have legal parental/guardian consent)</li>
+                <li>Be capable of entering into a binding agreement under applicable law</li>
+                <li>Use the Website only for lawful purposes</li>
+            </ul>
+            <p>If you use the Website on behalf of a company or other legal entity, you represent that you are authorized to bind that entity to these Terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Changes to Terms</h2>
+            <p>We reserve the right to change, modify, or replace these Terms at any time. If changes are significant, we will provide notice via email or on the Website.</p>
+            <div class="notice-box">
+                <p><strong>Continued use of the Website following changes constitutes your acceptance of those changes.</strong></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>5. Use of the Website</h2>
+            <p>You agree to use the Website for lawful purposes only and agree that you will not:</p>
+            <ul>
+                <li>Violate any applicable law or regulation</li>
+                <li>Attempt to gain unauthorized access to systems or networks</li>
+                <li>Upload or transmit viruses, malware, or harmful code</li>
+                <li>Impersonate any person or entity</li>
+                <li>Infringe on our intellectual property or the rights of others</li>
+                <li>Harvest or scrape data from the Website without permission</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>6. Account Registration (if applicable)</h2>
+            <p>If the Website provides the option to create an account:</p>
+            <ul>
+                <li>You agree to provide accurate and complete information</li>
+                <li>You are responsible for maintaining the confidentiality of your login credentials</li>
+                <li>You are responsible for any activity conducted under your account</li>
+            </ul>
+            <p>We reserve the right to suspend or terminate your account if we believe it has been compromised or used in violation of these Terms.</p>
+        </div>
+
+        <div class="section">
+            <h2>7. Intellectual Property Rights</h2>
+            <p>All intellectual property on the Website — including text, logos, trademarks, graphics, icons, images, audio clips, videos, and software — is the property of <strong>PIDOT PRIVATE LIMITED</strong> or licensed third parties.</p>
+            <div class="notice-box">
+                <p>You may not reproduce, distribute, modify, or exploit any of our content without our prior written permission.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>8. User-Submitted Content</h2>
+            <p>If the Website allows for submission of content (e.g., comments, inquiries, uploaded files):</p>
+            <ul>
+                <li>You retain ownership of your content, but grant us a non-exclusive, royalty-free, worldwide license to use, reproduce, display, and distribute your content in connection with the Website and our services</li>
+                <li>You represent and warrant that your content is lawful, does not violate any third-party rights, and complies with these Terms</li>
+                <li>We reserve the right to remove any content for any reason at our sole discretion</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>9. Third-Party Links</h2>
+            <p>Our Website may contain links to external websites or services that are not owned or controlled by PIDOT. We are not responsible for the content, privacy policies, or practices of any third-party site or service.</p>
+            <div class="notice-box">
+                <p><strong>Your use of third-party services is at your own risk.</strong></p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>10. Privacy</h2>
+            <p>Your use of the Website is also governed by our <a href="https://www.pidot.in/privacy-policy">Privacy Policy</a>, which explains how we collect, use, and protect your data.</p>
+            <p>By using our Website, you consent to the processing of your data as outlined in that policy.</p>
+        </div>
+
+        <div class="section">
+            <h2>11. Disclaimers</h2>
+            
+            <h3>A. General Disclaimer</h3>
+            <p>The Website is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, whether express or implied. We do not warrant that:</p>
+            <ul>
+                <li>The Website will be error-free or uninterrupted</li>
+                <li>The Website will meet your expectations or requirements</li>
+                <li>The information on the Website is accurate, complete, or current</li>
+            </ul>
+            
+            <h3>B. No Professional Advice</h3>
+            <p>Information provided on our Website does not constitute professional or legal advice. You should seek independent counsel or guidance where appropriate.</p>
+        </div>
+
+        <div class="section">
+            <h2>12. Limitation of Liability</h2>
+            <p>To the maximum extent permitted by law, PIDOT PRIVATE LIMITED will not be liable for any direct, indirect, incidental, special, punitive, or consequential damages arising from your use of (or inability to use) the Website, including but not limited to:</p>
+            <ul>
+                <li>Data loss or corruption</li>
+                <li>Loss of revenue or profits</li>
+                <li>Website downtime or service interruption</li>
+                <li>Viruses or malware from third-party services</li>
+            </ul>
+            <p>This applies even if we have been advised of the possibility of such damages.</p>
+        </div>
+
+        <div class="section">
+            <h2>13. Indemnification</h2>
+            <p>You agree to defend, indemnify, and hold harmless PIDOT PRIVATE LIMITED, its affiliates, officers, directors, employees, and agents from and against any claims, damages, liabilities, losses, and expenses (including legal fees) arising out of:</p>
+            <ul>
+                <li>Your use or misuse of the Website</li>
+                <li>Your violation of these Terms</li>
+                <li>Your infringement of any third-party rights</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>14. Termination</h2>
+            <p>We may suspend or terminate your access to the Website, without notice, for any reason, including but not limited to:</p>
+            <ul>
+                <li>Breach of these Terms</li>
+                <li>Use of Website in violation of applicable law</li>
+                <li>Activities that compromise the integrity or security of our systems</li>
+            </ul>
+            <p>Upon termination, all rights granted to you under these Terms will cease.</p>
+        </div>
+
+        <div class="section">
+            <h2>15. Governing Law and Jurisdiction</h2>
+            <p>These Terms are governed by and construed in accordance with the laws of <strong>India</strong>. Any disputes arising under these Terms shall be subject to the exclusive jurisdiction of the courts located in <strong>[Insert City, e.g., Bengaluru, Karnataka]</strong>, India.</p>
+        </div>
+
+        <div class="section">
+            <h2>16. Force Majeure</h2>
+            <p>We will not be held liable for any failure or delay in our performance due to events beyond our reasonable control, including natural disasters, war, terrorism, cyber-attacks, civil unrest, labor shortages, or legal restrictions.</p>
+        </div>
+
+        <div class="section">
+            <h2>17. Entire Agreement</h2>
+            <p>These Terms constitute the entire agreement between you and PIDOT PRIVATE LIMITED regarding your use of the Website. They supersede any prior agreements or communications between us.</p>
+        </div>
+
+        <div class="section">
+            <h2>18. Waiver and Severability</h2>
+            <p>Our failure to enforce any provision of these Terms is not a waiver of that right. If any part of these Terms is found to be unlawful or unenforceable, the remainder will remain in full force.</p>
+        </div>
+
+        <div class="section">
+            <h2>19. Contact Us</h2>
+            <div class="contact-info-box">
+                <p>For any inquiries related to these Terms:</p>
+                <p><strong>PIDOT PRIVATE LIMITED</strong></p>
+                <ul>
+                    <li>📧 Email: <a href="mailto:contact@pidot.in">contact@pidot.in</a></li>
+                    <li>🌐 Website: <a href="https://www.pidot.in">https://www.pidot.in</a></li>
+                    <li>📍 Address: [Insert your registered business address]</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock Body %}

@@ -10,8 +10,8 @@ def faq(request):
 def cookie_policy(request):
     return render(request, 'contact/cookie_policy.html')
 
-def terms_coditions(request):
-    return render(request, 'contact/terms_coditions.html')
+def terms_conditions(request):
+    return render(request, 'contact/terms_conditions.html')
 
 def privacy_policy(request):
     return render(request, 'contact/privacy_policy.html')
