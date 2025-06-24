@@ -1869,7 +1869,8 @@
     color: var(--text-light);
     padding: 8rem 0 4rem;
     display: flex;
-    min-height: 400px; /* Minimum height for smaller screens */
+    /* min-height: 400px; */
+    /* Minimum height for smaller screens */
     
 }
 
@@ -1896,7 +1897,7 @@
 @media (max-width: 1024px) {
     .GenesisStuReg-hero {
         padding: 6rem 0 3rem;
-        min-height: 350px;
+        /* min-height: 350px; */
     }
     
     .GenesisStuReg-hero h1 {
@@ -1908,7 +1909,7 @@
 @media (max-width: 768px) {
     .GenesisStuReg-hero {
         padding: 5rem 0 2.5rem;
-        min-height: 300px;
+        /* min-height: 300px; */
         text-align: center;
     }
     
@@ -1926,7 +1927,7 @@
 @media (max-width: 576px) {
     .GenesisStuReg-hero {
         padding: 4rem 0 2rem;
-        min-height: 250px;
+        /* min-height: 250px; */
     }
     
     .GenesisStuReg-hero h1 {
@@ -1947,7 +1948,7 @@
 @media (max-width: 400px) {
     .GenesisStuReg-hero {
         padding: 3rem 0 1.5rem;
-        min-height: 200px;
+        /* min-height: 200px; */
     }
     
     .GenesisStuReg-hero h1 {
