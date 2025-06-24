@@ -336,7 +336,7 @@
         <div class="container">
             <div class="GenesisStuReg-content">
                 <h1 class="animate-on-scroll">Student Registration</h1>
-                <p class="animate-on-scroll">Join Genesis and unlock your potential in blockchain technology and decentralized systems.</p>
+                <p class="animate-on-scroll">Join Genesis and unlock opportunities with career focused training and expert mentorship.</p>
             </div>
         </div>
     </section> 
@@ -389,8 +389,15 @@
                     </div>
                     <div class="form-group">
                         <label for="gender">Gender</label>
-                        <input type="text" id="gender" name="gender" placeholder="Enter your gender" required>
+                        <select id="gender" name="gender" required>
+                            <option value="" disabled selected>Enter your gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Prefer not to say">Prefer not to say</option>
+                            <option value="Other">Other</option>
+                        </select>
                     </div>
+                    
                 </fieldset>
                 <div class="form-navigation">
                     <button type="button" class="prev-btn" disabled>Previous</button>
@@ -411,13 +418,13 @@
                         <input type="text" id="degree" name="degree" placeholder="Enter degree and specialization" required>
                     </div>
                     <div class="form-group">
-                        <label for="gradYear">Year of Graduation (if pursuing)</label>
+                        <label for="gradYear">Year of Graduation</label>
                         <input type="text" id="gradYear" name="gradYear" placeholder="Enter graduation year" required>
                     </div>
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label for="academicYear">Current Academic Year</label>
                         <input type="text" id="academicYear" name="academicYear" placeholder="Enter current academic year" required>
-                    </div>
+                    </div> -->
                     <div class="form-group">
                         <label for="cgpa">CGPA</label>
                         <input type="text" id="cgpa" name="cgpa" placeholder="Enter your CGPA" required>
@@ -499,6 +506,11 @@
 
             <!-- Referral Source -->
             <div id="step-5" class="form-step">
+                <div class="submission-message">
+                    <p>This is the first step toward building a strong foundation for your career. Our team will carefully review your application based on your background, responses, and career goals. If shortlisted, you'll be contacted for a quick 1:1 counselling session where we'll guide you to the most suitable course track.</p>
+                    <p>Selection is based on intent, readiness, and alignment with the program's outcomes.</p>
+                    <p>Keep an eye on your email and WhatsApp for further updates.</p>
+                </div>
                 <fieldset>
                     <legend>How did you hear about Genesis?</legend>
                     <div class="form-group">
@@ -506,6 +518,9 @@
                         <select id="referral" name="referral" required>
                             <option value="" disabled selected>Select referral source</option>
                             <option value="Social Media (Instagram/LinkedIn/Facebook)">Social Media (Instagram/LinkedIn/Facebook)</option>
+                            <option value="LinkedIn">LinkedIn</option>
+                            <option value="Instagram">Instagram</option>
+                            <option value="WhatsApp">WhatsApp</option>
                             <option value="Friend/College mate referral">Friend/College mate referral</option>
                             <option value="College/University announcement">College/University announcement</option>
                             <option value="Pi Dot website">Pi Dot website</option>
@@ -656,7 +671,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 college: form.college.value,
                 degree: form.degree.value,
                 gradYear: form.gradYear.value,
-                academicYear: form.academicYear.value,
+                
                 cgpa: form.cgpa.value,
                 experience: form.experience.value,
                 learningApproach: form.learningApproach.value,
