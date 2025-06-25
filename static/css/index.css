@@ -1,6 +1,7 @@
 .hero-content{
      position: absolute; 
      top: 20vh;
+     bottom: 30vh;
      }
      
 .hero-content h1 {
@@ -103,9 +104,9 @@
 
 @media (max-width: 768px) {
 
-    .hero-slider{
+    /* .hero-slider{
         height: 95vh;
-    }
+    } */
 
   .hero {
     padding-top: 80px;
@@ -148,9 +149,9 @@
 
 @media (max-width: 576px) {
 
-    .hero-slider{
+    /* .hero-slider{
         height: 92vh;
-    }
+    } */
 
   .hero-content {
     padding-left: 0px;
@@ -176,9 +177,9 @@
 
 @media (max-width: 385px) {
 
-    .hero-slider{
+    /* .hero-slider{
         height: 92vh;
-    }
+    } */
 
   .hero-content {
     padding-left: 0px;
