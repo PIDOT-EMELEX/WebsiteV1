@@ -1,18 +1,17 @@
 .hero-content{
      position: absolute; 
      top: 20vh;
-     bottom: 30vh;
      }
      
 .hero-content h1 {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
+    font-size: 6vh;
+    margin-bottom: 3vh;
     /* margin-top: 200px; */
     }
         
 .hero-content p {
-    font-size: 1.3rem;
-    margin-bottom: 2.5rem;
+    font-size: 2.6vh;
+    margin-bottom: 5vh;
   }
 
 
@@ -36,14 +35,14 @@
   }
 
   .hero-content h1 {
-    font-size: 5.4rem;
+    font-size: 10.8vh;
     /* margin-top: 160px; */
-    margin-bottom: 1rem;
+    margin-bottom: 2vh;
   }
 
   .hero-content p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 2.2vh;
+    margin-bottom: 4vh;
   }
 
   /* .hero-buttons {
@@ -72,24 +71,24 @@
 
 @media (max-width: 1200px) {
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 5vh;
         /* margin-top: 180px; */
     }
 
     .hero-content p {
-        font-size: 1.1rem;
+        font-size: 2.2vh;
     }
     }
 
 @media (max-width: 992px) {
   .hero-content h1 {
-    font-size: 3.2rem;
+    font-size: 6.4vh;
     /* margin-top: 175px; */
     text-align: left;
   }
 
   .hero-content p {
-    font-size: 1rem;
+    font-size: 2vh;
     text-align: left;
   }
 
@@ -104,9 +103,9 @@
 
 @media (max-width: 768px) {
 
-    /* .hero-slider{
+    .hero-slider{
         height: 95vh;
-    } */
+    }
 
   .hero {
     padding-top: 80px;
@@ -119,7 +118,7 @@
   }
 
   .hero-content h1 {
-    font-size: 2.8rem;
+    font-size: 5.6vh;
     /* margin-top: 120px; */
     text-align: left;
     padding-left: 0px;
@@ -127,7 +126,7 @@
   }
 
   .hero-content p {
-    font-size: 0.95rem;
+    font-size: 1.9vh;
     text-align: left;
   }
 
@@ -149,23 +148,23 @@
 
 @media (max-width: 576px) {
 
-    /* .hero-slider{
+    .hero-slider{
         height: 92vh;
-    } */
+    }
 
   .hero-content {
     padding-left: 0px;
   }
 
   .hero-content h1 {
-    font-size: 2.6rem;
+    font-size: 5.2vh;
     /* margin-top: 135px; */
     text-align: left;
     padding-left: 0px;
   }
 
   .hero-content p {
-    font-size: 0.9rem;
+    font-size: 1.8vh;
     text-align: left;
   }
 
@@ -177,32 +176,29 @@
 
 @media (max-width: 385px) {
 
-    /* .hero-slider{
+    .hero-slider{
         height: 92vh;
-    } */
+    }
 
   .hero-content {
     padding-left: 0px;
   }
 
   .hero-content h1 {
-    font-size: 2rem;
+    font-size: 4vh;
     /* margin-top: 100px; */
     text-align: left;
     padding-left: 0px;
   }
 
   .hero-content p {
-    font-size: 0.7rem;
+    font-size: 1.4vh;
     text-align: left;
   }
 
   .scroll-indicator {
     bottom: 20px;
     font-size: 12px;
-  }
-  .scroll-div{
-    margin-top: 5vh;
   }
 }
 
@@ -245,31 +241,32 @@
 }
 
 
-        /* Hero Slider Base Styles */
-        .hero-slider {
-          position: relative;
-          /* height: 100vh; */
-          overflow: hidden;
-          transition: none;
-        }
-      
-        .hero-slide {
-          position: absolute;
-          /* width: 100%;
-          height: 100%; */
-          opacity: 0;
-          transform: translateY(100%);
-          transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
-          z-index: 0;
-          position: relative;
-          z-index: 2
-        }
-        
-        .hero-slide.active {
-          opacity: 1;
-          transform: translateY(0);
-          z-index: 1;
-        } 
+/* Hero Slider Base Styles */
+.hero-slider {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  transition: none;
+}
+
+.hero-slide {
+  position: absolute;
+  /* width: 100%;
+  height: 100%; */
+  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55), opacity 0.5s ease-in-out;
+  z-index: 0;
+  position: relative;
+  z-index: 2
+}
+
+.hero-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  z-index: 1;
+}
+
         
         
     
