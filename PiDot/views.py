@@ -35,7 +35,10 @@ def careers(request):
 
 
 def careers_register(request):
-    return render(request, 'PiDot/Careers_register.html')
+    active_jobs = ActiveRole.objects.filter(status='Active')
+    return render(request, 'PiDot/Careers_register.html', {
+        'jobs': active_jobs
+    })
 
 # Job Description Page (slug-based routing)
 def job_description_view(request, slug):
