@@ -3,39 +3,1038 @@
 {% load static %}
 
 {% block title %}
-  Careers | PI DOT | Build Your Career With Purpose
+    Careers | PI DOT | Job Application Form
 {% endblock title %}
 
 {% block Style %}
-<link rel="stylesheet" href="css/style.css">
-{% endblock Style %} 
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<!-- Select2 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<style>
+    :root {
+        --primary-color: #FFB13B;
+        --primary-dark: #F69507;
+        --primary-light: #FFD08A;
+        --text-dark: #0B0B0B;
+        --text-light: #FFFFFF;
+        --text-gray: #6c757d;
+        --bg-light: #FFFFFF;
+        --bg-dark: #0B0B0B;
+        --card-bg: #F8F9FA;
+        --success-green: #28a745;
+        --error-red: #dc3545;
+        --border-radius: 8px;
+        --box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        --section-padding: 5rem 0;
+    }
+
+    body {
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: var(--bg-light);
+        color: var(--text-dark);
+        line-height: 1.6;
+    }
+
+    {% comment %} /* Hero Section */
+    .careers-hero {
+        background-color: var(--primary-dark);
+        color: var(--text-light);
+        text-align: center;
+        padding: 4rem 1rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .careers-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0) 100%);
+    }
+
+    .careers-hero .container {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .careers-hero h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+
+    .careers-hero p {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        animation: fadeInUp 0.8s ease-out 0.2s;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    } {% endcomment %}
+
+
+    .careers-hero h1{
+        float: none;
+    }
+
+    .careers-section{
+        text-align: center;
+    }
+
+    .hero-content{
+        max-width: 100%;
+        text-align: center;
+    }
+
+    /* Form Container */
+    .form-container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2.5rem;
+        background: var(--bg-light);
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        position: relative;
+        top: -50px;
+        margin-bottom: -50px;
+    }
+
+    /* Step Navigation */
+    .step-navigation {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 3rem;
+        position: relative;
+    }
+
+    .step-navigation:before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--card-bg);
+        z-index: 1;
+        transform: translateY(-50%);
+    }
+
+    .step-icon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background: var(--card-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 1rem;
+        position: relative;
+        z-index: 2;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        border: 3px solid var(--bg-light);
+    }
+
+    .step-icon i {
+        font-size: 1.25rem;
+        color: var(--text-gray);
+        transition: all 0.3s ease;
+    }
+
+    .step-icon.active {
+        background: var(--primary-dark);
+        transform: scale(1.1);
+    }
+
+    .step-icon.active i {
+        color: var(--text-light);
+    }
+
+    .step-icon.completed {
+        background: var(--primary-color);
+    }
+
+    .step-icon.completed i {
+        color: var(--text-light);
+    }
+
+    /* Form Steps */
+    .form-step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .form-step.active {
+        display: block;
+    }
+
+    fieldset {
+        border: 1px solid #e0e0e0;
+        border-radius: var(--border-radius);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+    }
+
+    legend {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--primary-dark);
+        padding: 0 1rem;
+        width: auto;
+        background: var(--bg-light);
+        {% comment %} position: relative; {% endcomment %}
+        top: -15px;
+    }
+
+    /* Form Elements */
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+        color: var(--text-dark);
+        font-size: 0.95rem;
+    }
+
+    .required-asterisk {
+        color: var(--error-red);
+        margin-left: 3px;
+    }
+
+    .form-control {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        border: 1px solid var(--card-bg);
+        border-radius: var(--border-radius);
+        font-size: 0.95rem;
+        transition: all 0.3s;
+        background-color: var(--bg-light);
+    }
+
+    .form-control:focus {
+        border-color: var(--primary-dark);
+        outline: none;
+        box-shadow: 0 0 0 3px var(--primary-light);
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+    }
+
+    /* File Upload */
+    .file-upload-wrapper {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .file-upload-label {
+        display: block;
+        padding: 1.5rem;
+        border: 2px dashed var(--card-bg);
+        border-radius: var(--border-radius);
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        background-color: rgba(255, 209, 138, 0.1);
+    }
+
+    .file-upload-label:hover {
+        border-color: var(--primary-color);
+        background-color: rgba(255, 209, 138, 0.2);
+    }
+
+    .file-upload-label i {
+        font-size: 1.75rem;
+        color: var(--primary-dark);
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .file-upload-input {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+
+    .file-name {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-gray);
+    }
+
+    /* Form Navigation */
+    .form-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.8rem 1.75rem;
+        border: none;
+        border-radius: var(--border-radius);
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: var(--primary-dark);
+        color: var(--text-light);
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-color);
+        transform: translateY(-2px);
+        box-shadow: var(--box-shadow);
+    }
+
+    .btn-secondary {
+        background: var(--card-bg);
+        color: var(--text-dark);
+    }
+
+    .btn-secondary:hover {
+        background: #e9ecef;
+    }
+
+    .btn:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+        transform: none !important;
+    }
+
+    /* Success Screen */
+    .success-screen {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .success-screen.active {
+        display: block;
+    }
+
+    .success-screen i {
+        font-size: 4rem;
+        color: var(--success-green);
+        margin-bottom: 1.5rem;
+    }
+
+    .submission-message {
+        background: var(--primary-light);
+        padding: 1.5rem;
+        border-radius: var(--border-radius);
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        color: var(--text-dark);
+        border: 1px solid var(--primary-color);
+    }
+
+    /* Loading Animation */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.9);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .loading-content {
+        text-align: center;
+        background: var(--bg-light);
+        padding: 2rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--box-shadow);
+        max-width: 400px;
+        width: 90%;
+    }
+
+    .spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid var(--card-bg);
+        border-top: 5px solid var(--primary-dark);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 1.5rem;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .careers-hero {
+            padding: 3rem 1rem;
+        }
+        
+        .careers-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .form-container {
+            padding: 1.5rem;
+            top: -30px;
+            margin-bottom: -30px;
+        }
+        
+        fieldset {
+            padding: 1.5rem;
+        }
+        
+        .step-icon {
+            width: 40px;
+            height: 40px;
+            margin: 0 0.5rem;
+        }
+        
+        .step-icon i {
+            font-size: 1rem;
+        }
+
+        .container {
+            margin-top: 3rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .careers-hero h1 {
+            font-size: 1.75rem;
+        }
+        
+        .careers-hero p {
+            font-size: 1rem;
+        }
+        
+        .form-navigation {
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .btn {
+            width: 100%;
+        }
+
+        .container {
+            margin-top: 3rem;
+        }
+    }
+
+    /* Enhanced Skills Section */
+    .skills-tags-container {
+        border: 1px solid var(--card-bg);
+        border-radius: var(--border-radius);
+        padding: 0.5rem;
+        background: var(--bg-light);
+    }
     
+    .skills-input-wrapper {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .skills-input-wrapper input {
+        flex: 1;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .skills-input-wrapper input:focus {
+        box-shadow: none;
+    }
+    
+    .skills-input-wrapper button {
+        padding: 0.5rem 1rem;
+    }
+    
+    .skills-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+    
+    .skill-tag {
+        background-color: var(--primary-light);
+        color: var(--text-dark);
+        padding: 0.4rem 0.8rem;
+        border-radius: 16px;
+        display: inline-flex;
+        align-items: center;
+        font-size: 0.85rem;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    
+    .skill-tag .remove-skill {
+        margin-left: 0.5rem;
+        background: none;
+        border: none;
+        color: var(--text-gray);
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1;
+        padding: 0 0.2rem;
+    }
+    
+    .skill-tag .remove-skill:hover {
+        color: var(--error-red);
+    }
+
+
+        /* Enhanced Radio Buttons */
+    .radio-group-enhanced {
+        margin-top: 1rem;
+    }
+    
+    .radio-group-enhanced label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .radio-group-enhanced input[type="radio"] {
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        border: 2px solid var(--card-bg);
+        border-radius: 50%;
+        margin-right: 0.75rem;
+        position: relative;
+        cursor: pointer;
+        transition: all 0.2s;
+    }
+    
+    .radio-group-enhanced input[type="radio"]:checked {
+        border-color: var(--primary-dark);
+    }
+    
+    .radio-group-enhanced input[type="radio"]:checked::after {
+        content: '';
+        position: absolute;
+        top: 2px;
+        left: 2px;
+        width: 10px;
+        height: 10px;
+        background: var(--primary-dark);
+        border-radius: 50%;
+    }
+    
+    .radio-group-enhanced label:hover input[type="radio"] {
+        border-color: var(--primary-color);
+    }
+    
+    .radio-group-enhanced label:hover input[type="radio"]:checked {
+        border-color: var(--primary-dark);
+    }
+
+</style>
+{% endblock Style %}
+
 {% block Body %}
     <!-- Careers Hero -->
     <section class="careers-hero">
         <div class="container">
             <div class="hero-content">
-                <h1 class="animate-on-scroll" >Build Your Career With Purpose</h1>
+                <h1 class="animate-on-scroll">Build Your Career With Purpose</h1>
                 <p class="animate-on-scroll">Join us in transforming education and business across India</p>
             </div>
         </div>
-    </section> 
+    </section>
 
-    <!-- Why Join Us -->
-    <main>
-        <section id="job-application" style="align-items: center; text-align: center;">
-            <!-- <h2>Job Application Form</h2> -->
-            <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd8sGalyFXNi-dUwnAmZPRka4HXylWT7LIZ0Ui6C0E7tsL-SA/viewform?embedded=true" width="100%" height="1500" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-            {% comment %} <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdD2RLFbc_R-tfl0HaQg6le6sA-ZAbsn9gjmhpA1H9yHwX_aA/viewform?embedded=true" width=100% height=1500px frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe> {% endcomment %}
-        </section>
+    <section class="form-container" style="margin-bottom: 1rem">
+        <!-- Step Navigation -->
+        <div class="step-navigation">
+            <div class="step-icon active" data-step="1" title="Personal Info">
+                <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="step-icon" data-step="2" title="Education">
+                <i class="bi bi-mortarboard-fill"></i>
+            </div>
+            <div class="step-icon" data-step="3" title="Experience">
+                <i class="bi bi-briefcase-fill"></i>
+            </div>
+            <div class="step-icon" data-step="4" title="Availability">
+                <i class="bi bi-calendar-check-fill"></i>
+            </div>
+            <div class="step-icon" data-step="5" title="Documents">
+                <i class="bi bi-file-earmark-fill"></i>
+            </div>
+        </div>
 
-        </main>
+        <form id="careersForm" enctype="multipart/form-data">
+            <!-- Step 1: Personal Details -->
+            <div id="step-1" class="form-step active">
+                <fieldset>
+                    <legend>Personal Information</legend>
+                    <div class="form-group">
+                        <label for="fullName">Full Name <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address <span class="required-asterisk">*</span></label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number <span class="required-asterisk">*</span></label>
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="+91 9876543210" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="linkedin">LinkedIn Profile</label>
+                        <input type="url" class="form-control" id="linkedin" name="linkedin" placeholder="https://linkedin.com/in/yourprofile">
+                    </div>
+                    <div class="form-group">
+                        <label for="github">GitHub Profile</label>
+                        <input type="url" class="form-control" id="github" name="github" placeholder="https://github.com/yourprofile">
+                    </div>
+                    <div class="form-group">
+                        <label for="applyingFor">Position Applying For <span class="required-asterisk">*</span></label>
+                        <select class="form-control" id="applyingFor" name="applyingFor" required>
+                            <option value="">Select a position</option>
+                            {% for job in jobs %}
+                                <option value="{{ job.job_title }}">{{ job.job_title }}</option>
+                            {% endfor %}
+                            {% comment %} <option value="Data Analyst">Data Analyst</option>
+                            <option value="UI/UX Designer">UI/UX Designer</option>
+                            <option value="Marketing Specialist">Marketing Specialist</option>
+                            <option value="Business Development">Business Development</option> {% endcomment %}
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-btn" disabled>Previous</button>
+                    <button type="button" class="btn btn-primary next-btn">Next</button>
+                </div>
+            </div>
 
-    <!-- Footer (Same as homepage) -->
+            <!-- Step 2: Educational Background -->
+            <div id="step-2" class="form-step">
+                <fieldset>
+                    <legend>Educational Background</legend>
+                    <div class="form-group">
+                        <label for="specialization">Area of Study/Specialization <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" id="specialization" name="specialization" placeholder="Computer Science, Business Administration, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="institution">University/College Name <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" id="institution" name="institution" placeholder="Your university name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="cgpa">Current CGPA/Percentage <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" id="cgpa" name="cgpa" placeholder="8.5 or 85%" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="graduation">Expected Graduation Date <span class="required-asterisk">*</span></label>
+                        <input type="date" class="form-control" id="graduation" name="graduation" required>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                    <button type="button" class="btn btn-primary next-btn">Next</button>
+                </div>
+            </div>
 
+            <!-- Step 3: Professional Information -->
+            <div id="step-3" class="form-step">
+                <fieldset>
+                    <legend>Professional Information</legend>
+                    <div class="form-group">
+                        <label for="skills">Technical Skills/Abilities <span class="required-asterisk">*</span></label>
+                        <div class="skills-tags-container">
+                            <div class="skills-input-wrapper">
+                                <input type="text" id="skills-input" class="form-control" placeholder="Type skill and press Enter">
+                                <button id="add-skill-btn" class="btn btn-sm btn-primary">Add</button>
+                            </div>
+                            <div id="skills-tags" class="skills-tags">
+                                <!-- Default skills will be added here -->
+                                <div class="skill-tag">
+                                    Python <button class="remove-skill" data-skill="Python">×</button>
+                                </div>
+                                <div class="skill-tag">
+                                    JavaScript <button class="remove-skill" data-skill="JavaScript">×</button>
+                                </div>
+                            </div>
+                            <input type="hidden" id="skills" name="skills" value="Python,JavaScript" required>
+                        </div>
+                        <small class="text-muted">Type to add skills (press Enter or click Add)</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="experience">Past Internships/Work Experience <span class="required-asterisk">*</span></label>
+                        <textarea class="form-control" id="experience" name="experience" placeholder="Describe your relevant experience" required></textarea>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                    <button type="button" class="btn btn-primary next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 4: Availability -->
+            <div id="step-4" class="form-step">
+                <fieldset>
+                    <legend>Availability</legend>
+                    <div class="form-group">
+                        <label for="availability">When can you start? <span class="required-asterisk">*</span></label>
+                        {% comment %} <input type="text" class="form-control" id="availability" name="availability" placeholder="Immediately, 2 weeks notice, etc." required> {% endcomment %}
+                        <select class="form-control" id="availability" name="availability" required>
+                            <option value="" disabled selected>Select approximate time-period</option>
+                            <option value="LinkedIn">Immediately</option>
+                            <option value="Instagram">15 Days</option>
+                            <option value="WhatsApp">One Month</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="hoursPerWeek">Hours per week you can commit <span class="required-asterisk">*</span></label>
+                        <input type="text" class="form-control" id="hoursPerWeek" name="hoursPerWeek" placeholder="e.g., 20 hours, Full-time" required>
+                    </div>
+                    <div class="form-group">
+                        <label>This is a remote opportunity with max 4 offline meetings/month. Okay? <span class="required-asterisk">*</span></label>
+                        <div class="radio-group-enhanced">
+                            <label><input type="radio" name="remoteOk" value="Yes" required> Yes, I'm comfortable with this arrangement</label>
+                            <label><input type="radio" name="remoteOk" value="No"> No, I prefer a different arrangement</label>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                    <button type="button" class="btn btn-primary next-btn">Next</button>
+                </div>
+            </div>
+
+            <!-- Step 5: Documents -->
+            <div id="step-5" class="form-step">
+                <div class="submission-message">
+                    <p>Almost done! Please upload your documents to complete your application.</p>
+                </div>
+                <fieldset>
+                    <legend>Documents</legend>
+                    <div class="form-group">
+                        <label for="resume">Upload Resume <span class="required-asterisk">*</span></label>
+                        <div class="file-upload-wrapper">
+                            <label class="file-upload-label" for="resumeFile">
+                                <i class="bi bi-cloud-arrow-up"></i>
+                                <p>Click to upload resume (PDF, DOC, DOCX)</p>
+                                <small>Max file size: 5MB</small>
+                            </label>
+                            <input type="file" id="resumeFile" name="resumeFile" class="file-upload-input" accept=".pdf,.doc,.docx">
+                            <div class="file-name" id="resumeFileName">No file selected</div>
+                        </div>
+                    </div>
+                    {% comment %} <div class="form-group">
+                        <label for="coverLetter">Upload Cover Letter</label>
+                        <div class="file-upload-wrapper">
+                            <label class="file-upload-label" for="coverLetterFile">
+                                <i class="bi bi-cloud-arrow-up"></i>
+                                <p>Click to upload cover letter (PDF, DOC, DOCX)</p>
+                                <small>Max file size: 5MB</small>
+                            </label>
+                            <input type="file" id="coverLetterFile" name="coverLetterFile" class="file-upload-input" accept=".pdf,.doc,.docx">
+                            <div class="file-name" id="coverLetterFileName">No file selected</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="additionalDocs">Additional Documents</label>
+                        <div class="file-upload-wrapper">
+                            <label class="file-upload-label" for="additionalDocsFile">
+                                <i class="bi bi-cloud-arrow-up"></i>
+                                <p>Click to upload additional documents (PDF, DOC, DOCX)</p>
+                                <small>Max file size: 5MB each</small>
+                            </label>
+                            <input type="file" id="additionalDocsFile" name="additionalDocsFile" class="file-upload-input" accept=".pdf,.doc,.docx" multiple>
+                            <div class="file-name" id="additionalDocsFileName">No files selected</div>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="form-group">
+                        <label for="intro">Unique Introduction (required if no resume)</label>
+                        <textarea class="form-control" id="intro" name="intro" placeholder="Show us your personality! Be creative..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="additional">Anything else we should know? <span class="required-asterisk">*</span></label>
+                        <textarea class="form-control" id="additional" name="additional" placeholder="Additional qualifications, portfolio links, etc." required></textarea>
+                    </div>
+                </fieldset>
+                <div class="form-navigation">
+                    <button type="button" class="btn btn-secondary prev-btn">Previous</button>
+                    <button type="submit" class="btn btn-primary submit-btn">Submit Application</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Success Screen -->
+        <div id="success-screen" class="success-screen">
+            <i class="bi bi-check-circle-fill"></i>
+            <h2>Application Submitted!</h2>
+            <p>Thank you for applying to Pi Dot. We'll review your application shortly.</p>
+            <div class="submission-message">
+                <p>Our team will carefully review your application. If your profile matches our requirements, we'll contact you for the next steps.</p>
+                <p>You should hear back from us within 2-3 weeks.</p>
+            </div>
+        </div>
+
+        <div id="status"></div>
+    </section>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <h3>Processing Your Application</h3>
+            <p>Please wait while we submit your information...</p>
+        </div>
+    </div>
 {% endblock Body %}
 
 {% block Script %}
-    <script src="js\scroll.js"></script>
-    <script src="js/careers-filter.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const steps = document.querySelectorAll(".form-step");
+    const stepIcons = document.querySelectorAll(".step-icon");
+    const form = document.getElementById('careersForm');
+    const successScreen = document.getElementById('success-screen');
+    const statusElement = document.getElementById('status');
+    let currentStep = 1;
+
+    const loadingElement = document.querySelector('.loading-overlay');
+
+    // Skills Management
+    const skillsInput = document.getElementById('skills-input');
+    const addSkillBtn = document.getElementById('add-skill-btn');
+    const skillsTags = document.getElementById('skills-tags');
+    const skillsHiddenInput = document.getElementById('skills');
+    let skills = ['Python', 'JavaScript']; // Default skills
+    
+    function updateSkillsInput() {
+        skillsHiddenInput.value = skills.join(',');
+        skillsHiddenInput.dispatchEvent(new Event('change'));
+    }
+    
+    function addSkill(skill) {
+        skill = skill.trim();
+        if (skill && !skills.includes(skill)) {
+            skills.push(skill);
+            
+            const tag = document.createElement('div');
+            tag.className = 'skill-tag';
+            tag.innerHTML = `
+                ${skill} <button class="remove-skill" data-skill="${skill}">×</button>
+            `;
+            skillsTags.appendChild(tag);
+            
+            updateSkillsInput();
+        }
+    }
+    
+    function removeSkill(skill) {
+        skills = skills.filter(s => s !== skill);
+        updateSkillsInput();
+    }
+    
+    // Add skill events
+    skillsInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            addSkill(this.value);
+            this.value = '';
+        }
+    });
+    
+    addSkillBtn.addEventListener('click', function() {
+        addSkill(skillsInput.value);
+        skillsInput.value = '';
+    });
+    
+    // Remove skill event delegation
+    skillsTags.addEventListener('click', function(e) {
+        if (e.target.classList.contains('remove-skill')) {
+            const skill = e.target.getAttribute('data-skill');
+            e.target.parentElement.remove();
+            removeSkill(skill);
+        }
+    });
+
+    function showStep(step) {
+        steps.forEach((s, index) => {
+            s.classList.toggle("active", index + 1 === step);
+        });
+
+        stepIcons.forEach((icon, index) => {
+            const iconStep = parseInt(icon.getAttribute("data-step"));
+            icon.classList.toggle("active", iconStep === step);
+            icon.classList.toggle("completed", iconStep < step);
+        });
+
+        currentStep = step;
+    }
+
+    function validateStep(step) {
+        const currentFormStep = document.getElementById(`step-${step}`);
+        const inputs = currentFormStep.querySelectorAll("input, select, textarea");
+        let isValid = true;
+
+        inputs.forEach(input => {
+            if (!input.checkValidity()) {
+                isValid = false;
+                input.reportValidity();
+            }
+        });
+
+        return isValid;
+    }
+
+    function goToStep(step) {
+        if (step < 1 || step > steps.length) return;
+        if (step > currentStep && !validateStep(currentStep)) return;
+        showStep(step);
+    }
+
+    function goToNextStep() {
+        if (validateStep(currentStep)) {
+            goToStep(currentStep + 1);
+        }
+    }
+
+    function goToPrevStep() {
+        goToStep(currentStep - 1);
+    }
+
+    stepIcons.forEach(icon => {
+        icon.addEventListener("click", function () {
+            const step = parseInt(this.getAttribute("data-step"));
+            if (step <= currentStep) {
+                goToStep(step);
+            }
+        });
+    });
+
+    document.querySelectorAll(".next-btn").forEach(btn => {
+        btn.addEventListener("click", goToNextStep);
+    });
+
+    document.querySelectorAll(".prev-btn").forEach(btn => {
+        btn.addEventListener("click", goToPrevStep);
+    });
+
+    // Form Submission
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const resumeInput = document.getElementById('resumeFile');
+        const resumeFile = resumeInput.files[0];
+
+        if (!resumeFile) {
+            statusElement.innerText = "Please upload a resume file.";
+            statusElement.className = "error-message";
+            return;
+        }
+
+        loadingElement.style.display = 'flex';
+        document.querySelector('.submit-btn').disabled = true;
+
+        const reader = new FileReader();
+        reader.onload = async function () {
+            const base64 = reader.result.split(',')[1];
+
+            const data = {
+                fullName: document.getElementById('fullName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                linkedin: document.getElementById('linkedin').value || '',
+                github: document.getElementById('github').value || '',
+                applyingFor: document.getElementById('applyingFor').value,
+                specialization: document.getElementById('specialization').value,
+                institution: document.getElementById('institution').value,
+                cgpa: document.getElementById('cgpa').value,
+                graduation: document.getElementById('graduation').value,
+                skills: skillsHiddenInput.value,
+                experience: document.getElementById('experience').value,
+                availability: document.getElementById('availability').value,
+                hoursPerWeek: document.getElementById('hoursPerWeek').value,
+                remoteOk: document.querySelector('input[name="remoteOk"]:checked').value,
+                uniqueIntro: document.getElementById('intro').value || '',
+                additionalInfo: document.getElementById('additional').value,
+                fileName: resumeFile.name,
+                mimeType: resumeFile.type,
+                fileBase64: base64
+            };
+
+            const formData = new FormData();
+            formData.append("data", JSON.stringify(data));
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbyTaZ09uWChY5pY45sNN6TO8RaiYsAqFBEQkqkivrZOkse7iheU1ofF82fw-R4hvBnD/exec";
+
+            try {
+                const res = await fetch(scriptURL, {
+                    method: "POST",
+                    body: formData
+                });
+
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+
+                if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+                const responseText = await res.text();
+                console.log(responseText);
+
+                form.style.display = 'none';
+                successScreen.classList.add('active');
+                document.querySelector('.step-navigation').style.display = 'none';
+
+                setTimeout(() => {
+                    form.reset();
+                    successScreen.classList.remove('active');
+                    form.style.display = 'block';
+                    document.querySelector('.step-navigation').style.display = 'flex';
+                    showStep(1);
+                }, 15000);
+
+            } catch (err) {
+                console.error("Submission failed:", err);
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                statusElement.innerText = "Error submitting form. Please try again later.";
+                statusElement.className = "error-message";
+            }
+        };
+
+        reader.readAsDataURL(resumeFile);
+    });
+
+    // Initial step
+    showStep(1);
+});
+</script>
+<script src="{% static 'js/scroll.js' %}"></script>
 {% endblock Script %}
