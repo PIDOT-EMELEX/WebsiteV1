@@ -137,3 +137,8 @@ EMAIL_HOST_USER = 'info@pidot.in'  # Your email address
 EMAIL_HOST_PASSWORD = 'PiDotinternal@0303'  # Your email password
 DEFAULT_FROM_EMAIL = 'info@pidot.in' #  Make sure this is set
 RECIPIENT_EMAIL = 'dinesh@pidot.in' # Add this line.
+
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://www.pidot.in',
+]
