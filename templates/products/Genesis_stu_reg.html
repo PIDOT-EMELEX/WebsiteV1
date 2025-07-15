@@ -509,7 +509,7 @@
             <!-- Referral Source -->
             <div id="step-5" class="form-step">
                 <div class="submission-message" style="margin-bottom: 2rem;">
-                    <p>This is the first step toward building a strong foundation for your career. Our team will carefully review your application based on your background, responses, and career goals. If shortlisted, you'll be contacted for a quick 1:1 interview where we’ll assess and guide you to the most suitable course track.</p>
+                    <p>This is the first step toward building a strong foundation for your career. Our team will carefully review your application based on your background, responses, and career goals. If shortlisted, you'll be contacted for a quick 1:1 counselling session where we'll guide you to the most suitable course track.</p>
                     <p>Selection is based on intent, readiness, and alignment with the program's outcomes.</p>
                     <p>Keep an eye on your email and WhatsApp for further updates.</p>
                 </div>
@@ -665,7 +665,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.onload = async function () {
             const base64 = reader.result.split(',')[1];
 
-            const formData = {
+            const data = {
                 firstName: form.firstName.value,
                 lastName: form.lastName.value,
                 email: form.email.value,
@@ -687,82 +687,57 @@ document.addEventListener("DOMContentLoaded", function () {
                 fileBase64: base64
             };
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxvKe2C2-_8VC9yEytKyZJtJQy0z0gRLCN8XhsDmt6SRG6SW_XcRXibAHqRcN2--189qg/exec";
-            
+            const formData = new FormData();
+            formData.append("data", JSON.stringify(data));
+
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxMsWOih3TkaUy_Q_jnHBq2F8uJEWfdj_ApPQp1yvWJGlpOiTktd2DzUcJHATi9aJRzNA/exec";
             try {
-                // First try with CORS mode
-                let res = await fetch(scriptURL, {
+                const res = await fetch(scriptURL, {
                     method: "POST",
-                    mode: "cors",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(formData)
+                    body: formData
                 });
 
-                // If CORS fails, try with no-cors as fallback
+                // Hide loading animation
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+
                 if (!res.ok) {
-                    res = await fetch(scriptURL, {
-                        method: "POST",
-                        mode: "no-cors",
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded',
-                        },
-                        body: "data=" + encodeURIComponent(JSON.stringify(formData))
-                    });
-                    // With no-cors we can't read response, so assume success
-                    showSuccess();
-                    return;
+                    throw new Error(`HTTP error! status: ${res.status}`);
                 }
 
-                // Try to parse JSON response
-                const result = await res.json();
+                const responseText = await res.text();
                 
-                if (result.status === "success") {
-                    showSuccess();
-                } else {
-                    throw new Error(result.message || "Submission failed");
-                }
+                // Show success message
+                form.style.display = 'none';
+                successScreen.classList.add('active');
+                document.querySelector('.step-navigation').style.display = 'none';
+                
+                // Reset form after 5 seconds
+                setTimeout(() => {
+                    form.reset();
+                    successScreen.classList.remove('active');
+                    form.style.display = 'block';
+                    document.querySelector('.step-navigation').style.display = 'flex';
+                    showStep(1);
+                }, 15000);
                 
             } catch (error) {
-                console.error("Error:", error);
-                // Even if error, show success but with note about checking email
-                showSuccess(true);
+                console.error("Error during fetch:", error);
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+                statusElement.innerText = "Error submitting form. Please try again later.";
+                statusElement.className = "error-message";
             }
         };
 
         reader.readAsDataURL(file);
     });
 
-    function showSuccess(withWarning = false) {
-        // Hide loading animation
-        loadingElement.style.display = 'none';
-        document.querySelector('.submit-btn').disabled = false;
-
-        // Show success message
-        form.style.display = 'none';
-        successScreen.classList.add('active');
-        document.querySelector('.step-navigation').style.display = 'none';
-        
-        if (withWarning) {
-            statusElement.innerText = "Form submitted! If you don't receive a confirmation email, please contact us.";
-            statusElement.className = "success-message";
-        }
-        
-        // Reset form after 15 seconds
-        setTimeout(() => {
-            form.reset();
-            successScreen.classList.remove('active');
-            form.style.display = 'block';
-            document.querySelector('.step-navigation').style.display = 'flex';
-            showStep(1);
-        }, 15000);
-    }
-
     // Initialize with first step visible
     showStep(1);
 });
 </script>
+
 
 
 <script src="{% static 'js/scroll.js' %}"></script>
