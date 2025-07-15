@@ -687,27 +687,28 @@ document.addEventListener("DOMContentLoaded", function () {
                 fileBase64: base64
             };
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycbxMsWOih3TkaUy_Q_jnHBq2F8uJEWfdj_ApPQp1yvWJGlpOiTktd2DzUcJHATi9aJRzNA/exec";
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxvKe2C2-_8VC9yEytKyZJtJQy0z0gRLCN8XhsDmt6SRG6SW_XcRXibAHqRcN2--189qg/exec";
             try {
                 const res = await fetch(scriptURL, {
                     method: "POST",
-                    mode: "cors",
                     headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Type': 'application/json',
                     },
-                    body: "data=" + encodeURIComponent(JSON.stringify(formData))
+                    body: JSON.stringify(formData)
                 });
 
-                // Hide loading animation
-                loadingElement.style.display = 'none';
-                document.querySelector('.submit-btn').disabled = false;
-
+                // First check if response is OK
                 if (!res.ok) {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
 
+                // Try to parse JSON
                 const result = await res.json();
                 
+                // Hide loading animation
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
+
                 if (result.status === "success") {
                     // Show success message
                     form.style.display = 'none';
