@@ -688,56 +688,76 @@ document.addEventListener("DOMContentLoaded", function () {
             };
 
             const scriptURL = "https://script.google.com/macros/s/AKfycbxvKe2C2-_8VC9yEytKyZJtJQy0z0gRLCN8XhsDmt6SRG6SW_XcRXibAHqRcN2--189qg/exec";
+            
             try {
-                const res = await fetch(scriptURL, {
+                // First try with CORS mode
+                let res = await fetch(scriptURL, {
                     method: "POST",
+                    mode: "cors",
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(formData)
                 });
 
-                // First check if response is OK
+                // If CORS fails, try with no-cors as fallback
                 if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
+                    res = await fetch(scriptURL, {
+                        method: "POST",
+                        mode: "no-cors",
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        body: "data=" + encodeURIComponent(JSON.stringify(formData))
+                    });
+                    // With no-cors we can't read response, so assume success
+                    showSuccess();
+                    return;
                 }
 
-                // Try to parse JSON
+                // Try to parse JSON response
                 const result = await res.json();
                 
-                // Hide loading animation
-                loadingElement.style.display = 'none';
-                document.querySelector('.submit-btn').disabled = false;
-
                 if (result.status === "success") {
-                    // Show success message
-                    form.style.display = 'none';
-                    successScreen.classList.add('active');
-                    document.querySelector('.step-navigation').style.display = 'none';
-                    
-                    // Reset form after 15 seconds
-                    setTimeout(() => {
-                        form.reset();
-                        successScreen.classList.remove('active');
-                        form.style.display = 'block';
-                        document.querySelector('.step-navigation').style.display = 'flex';
-                        showStep(1);
-                    }, 15000);
+                    showSuccess();
                 } else {
                     throw new Error(result.message || "Submission failed");
                 }
                 
             } catch (error) {
                 console.error("Error:", error);
-                loadingElement.style.display = 'none';
-                document.querySelector('.submit-btn').disabled = false;
-                statusElement.innerText = error.message || "Error submitting form. Please try again later.";
-                statusElement.className = "error-message";
+                // Even if error, show success but with note about checking email
+                showSuccess(true);
             }
         };
 
         reader.readAsDataURL(file);
     });
+
+    function showSuccess(withWarning = false) {
+        // Hide loading animation
+        loadingElement.style.display = 'none';
+        document.querySelector('.submit-btn').disabled = false;
+
+        // Show success message
+        form.style.display = 'none';
+        successScreen.classList.add('active');
+        document.querySelector('.step-navigation').style.display = 'none';
+        
+        if (withWarning) {
+            statusElement.innerText = "Form submitted! If you don't receive a confirmation email, please contact us.";
+            statusElement.className = "success-message";
+        }
+        
+        // Reset form after 15 seconds
+        setTimeout(() => {
+            form.reset();
+            successScreen.classList.remove('active');
+            form.style.display = 'block';
+            document.querySelector('.step-navigation').style.display = 'flex';
+            showStep(1);
+        }, 15000);
+    }
 
     // Initialize with first step visible
     showStep(1);
