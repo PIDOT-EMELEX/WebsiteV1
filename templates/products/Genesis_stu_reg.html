@@ -687,25 +687,25 @@ document.addEventListener("DOMContentLoaded", function () {
                 fileBase64: base64
             };
 
-            const scriptURL = "https://script.google.com/macros/s/AKfycby8AzcahcvvjhpifVfrYfX_y_CIShzViGIpDdIrEraR-eXoLieVYFbLC_Z1Oq5oKdVUzQ/exec"; // Replace with your deployed script URL
-try {
-    const res = await fetch(scriptURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
-    });
+            const formData = new FormData();
+            formData.append("data", JSON.stringify(data));
 
-    // Hide loading animation
-    loadingElement.style.display = 'none';
-    document.querySelector('.submit-btn').disabled = false;
+            const scriptURL = "https://script.google.com/macros/s/AKfycbxMsWOih3TkaUy_Q_jnHBq2F8uJEWfdj_ApPQp1yvWJGlpOiTktd2DzUcJHATi9aJRzNA/exec";
+            try {
+                const res = await fetch(scriptURL, {
+                    method: "POST",
+                    body: formData
+                });
 
-    if (!res.ok) {
-        throw new Error(`HTTP error! status: ${res.status}`);
-    }
+                // Hide loading animation
+                loadingElement.style.display = 'none';
+                document.querySelector('.submit-btn').disabled = false;
 
-    const responseData = await res.json();
-    console.log("Server response:", responseData);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
 
+                const responseText = await res.text();
                 
                 // Show success message
                 form.style.display = 'none';
