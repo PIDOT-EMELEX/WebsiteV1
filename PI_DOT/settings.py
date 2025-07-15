@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-6aa1ldu+6igun!l-s!7%zr#)@4$+cwa-o0spff89sxbe5p%)z&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['websitev1-3bc9.onrender.com', 'www.pidot.in', 'pidot.in']
+ALLOWED_HOSTS = ['websitev1-3bc9.onrender.com', 'www.pidot.in', 'pidot.in', '*']
 
 
 
