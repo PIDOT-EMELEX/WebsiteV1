@@ -665,7 +665,7 @@ document.addEventListener("DOMContentLoaded", function () {
         reader.onload = async function () {
             const base64 = reader.result.split(',')[1];
 
-            const data = {
+            const formData = {
                 firstName: form.firstName.value,
                 lastName: form.lastName.value,
                 email: form.email.value,
@@ -687,14 +687,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 fileBase64: base64
             };
 
-            const formData = new FormData();
-            formData.append("data", JSON.stringify(data));
-
             const scriptURL = "https://script.google.com/macros/s/AKfycbxMsWOih3TkaUy_Q_jnHBq2F8uJEWfdj_ApPQp1yvWJGlpOiTktd2DzUcJHATi9aJRzNA/exec";
             try {
                 const res = await fetch(scriptURL, {
                     method: "POST",
-                    body: formData
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
                 });
 
                 // Hide loading animation
@@ -705,27 +705,31 @@ document.addEventListener("DOMContentLoaded", function () {
                     throw new Error(`HTTP error! status: ${res.status}`);
                 }
 
-                const responseText = await res.text();
+                const result = await res.json();
                 
-                // Show success message
-                form.style.display = 'none';
-                successScreen.classList.add('active');
-                document.querySelector('.step-navigation').style.display = 'none';
-                
-                // Reset form after 5 seconds
-                setTimeout(() => {
-                    form.reset();
-                    successScreen.classList.remove('active');
-                    form.style.display = 'block';
-                    document.querySelector('.step-navigation').style.display = 'flex';
-                    showStep(1);
-                }, 15000);
+                if (result.status === "success") {
+                    // Show success message
+                    form.style.display = 'none';
+                    successScreen.classList.add('active');
+                    document.querySelector('.step-navigation').style.display = 'none';
+                    
+                    // Reset form after 15 seconds
+                    setTimeout(() => {
+                        form.reset();
+                        successScreen.classList.remove('active');
+                        form.style.display = 'block';
+                        document.querySelector('.step-navigation').style.display = 'flex';
+                        showStep(1);
+                    }, 15000);
+                } else {
+                    throw new Error(result.message || "Submission failed");
+                }
                 
             } catch (error) {
-                console.error("Error during fetch:", error);
+                console.error("Error:", error);
                 loadingElement.style.display = 'none';
                 document.querySelector('.submit-btn').disabled = false;
-                statusElement.innerText = "Error submitting form. Please try again later.";
+                statusElement.innerText = error.message || "Error submitting form. Please try again later.";
                 statusElement.className = "error-message";
             }
         };
@@ -737,7 +741,6 @@ document.addEventListener("DOMContentLoaded", function () {
     showStep(1);
 });
 </script>
-
 
 
 <script src="{% static 'js/scroll.js' %}"></script>
