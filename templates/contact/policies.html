@@ -1,0 +1,281 @@
+{% extends "index.html" %}
+
+{% load static %}
+
+{% block title %}
+  Policies | PI DOT 
+{% endblock title %}
+
+{% block Style %}
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/path/to/your/style.css">
+    <style>
+        /* Additional CSS for policies page */
+        .policies-hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://www.pidot.in/images/banners/Pi_banner.png');
+            background-size: cover;
+            background-position: center;
+            color: var(--text-light);
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .policies-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .policies-hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .policies-content {
+            padding: var(--section-padding);
+        }
+
+        .policies-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            box-shadow: var(--box-shadow);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .policies-table th {
+            background-color: var(--primary-dark);
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: left;
+        }
+
+        .policies-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--card-bg);
+            vertical-align: middle;
+        }
+
+        .policies-table tr:nth-child(even) {
+            background-color: var(--card-bg);
+        }
+
+        .policies-table tr:hover {
+            background-color: var(--primary-light);
+        }
+
+        .doc-link {
+            color: var(--primary-dark);
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .doc-link:hover {
+            color: var(--primary-color);
+            transform: translateX(5px);
+        }
+
+        .doc-link i {
+            font-size: 0.8rem;
+        }
+
+        .doc-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background-color: var(--primary-light);
+            color: var(--primary-dark);
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .policies-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .policies-hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .policies-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .policies-table th,
+            .policies-table td {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+{% endblock Style %}
+
+{% block Body %}
+    
+    <!-- Hero Section -->
+    <section class="policies-hero">
+        <div class="container">
+            <h1>EMELEX BUSINESS SOLUTIONS LLP</h1>
+            <h1>PI DOT</h1>
+            <p>Rules / Guidelines / Policies</p>
+        </div>
+    </section>
+
+    <!-- Policies Content -->
+    <section class="policies-content">
+        <div class="container">
+            <table class="policies-table">
+                <thead>
+                    <tr>
+                        <th>S. No.</th>
+                        <th>Type of Document</th>
+                        <th>Document</th>
+                        <th>Link</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Operational Policies</td>
+                        <td>Non-Disclosure Agreement (NDA)</td>
+                        <td><a href="https://docs.google.com/document/d/1qZgylwyprHXeMqhKB0eENgj5fqA7jzRB7vaa_ujQKwc/edit?usp=sharing" class="doc-link">NDA <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Operational Policies</td>
+                        <td>Intellectual Property Agreement</td>
+                        <td><a href="https://docs.google.com/document/d/1YRzBxnZJtWetCVZFOydWdVWkiG-wNqk045E2EpUykOU/edit?usp=sharing" class="doc-link">IPA <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Operational Policies</td>
+                        <td>Non-Compete and Non-Solicitation Agreement</td>
+                        <td><a href="https://docs.google.com/document/d/1zuGUIUTz9rUHQcdozkCdWx5kMZDBQ-VOtFoykR3FJDg/edit?tab=t.0" class="doc-link">Non-Compete and Non-Solicitation Agreement <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Operational Policies</td>
+                        <td>Executive Employment Agreement (Detailed Terms)</td>
+                        <td><a href="https://docs.google.com/document/d/1Y9eGlFEib2V_tW_XAyZdJoISMnZ-BAjz5qXPp8UBCwA/edit?tab=t.0" class="doc-link">Executive Employment Agreement <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Operational Policies</td>
+                        <td>Company Policies</td>
+                        <td><a href="https://docs.google.com/document/d/1-iu1RkxjOjL3HMcoCWD7bPVaf7CRSCDiI8bQijOKAls/edit?tab=t.0" class="doc-link">Company Policies <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Operational Policies</td>
+                        <td>Privacy Policy</td>
+                        <td><a href="https://docs.google.com/document/d/1HHyln0IqR1Uy5DX62UytRQ-TnL6EFgFHAej4bpfCnuk/edit?usp=sharing" class="doc-link">Pi Dot Privacy Policy <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Operational Policies</td>
+                        <td>Code of Conduct</td>
+                        <td><a href="https://docs.google.com/document/d/1g6CvyJHxtQpqGy6qEsmFkPYn7Jf1XIQS3Q2cFs1q08Q/edit?tab=t.0" class="doc-link">Code Of Conduct <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Operational Policies</td>
+                        <td>Terms of Service</td>
+                        <td><a href="https://docs.google.com/document/d/1Wf80ni5uOxZKbQYGPNiaNkFm7w7n_p4PNa5L98Cf-og/edit?tab=t.0" class="doc-link">Terms of Service <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Operational Policies</td>
+                        <td>Grievance Redressal Policy</td>
+                        <td><a href="https://docs.google.com/document/d/1xG9Ra-Q5aTfNYPoVp5a3LAivkVbkkEh5r1SpN6-qvGU/edit?tab=t.0" class="doc-link">Grievance Redressal Policy <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Operational Policies</td>
+                        <td>Withdrawal and Refund Policy</td>
+                        <td><a href="https://docs.google.com/document/d/1FxqQDzUiNjjrN9W7o6S6mzs-bFCjDH2x9SDvzzp3WhQ/edit?tab=t.0" class="doc-link">Withdrawal and Refund Policy <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td>Operational Policies</td>
+                        <td>Non-Discrimination and Anti-Harassment Policy</td>
+                        <td><a href="https://docs.google.com/document/d/1kzmUor0lP948X-TOfPX6kCQmrV-P4mtk9sZYooJTQDo/edit?tab=t.0" class="doc-link">Non-Discrimination and Anti-Harassment Policy <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td>Operational Policies</td>
+                        <td>Liability Waiver</td>
+                        <td><a href="https://docs.google.com/document/d/1G_GEwcikdPkxTnH5WreWIcn3-g0wzNh85xWmlqIBzlo/edit?tab=t.0" class="doc-link">Liability Waiver <i class="fas fa-external-link-alt"></i></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    
+{% endblock Body %}
+
+{% block Script %}
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const mobileMenuClose = document.getElementById('mobileMenuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+        
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        // Header Scroll Effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('header-scrolled');
+            } else {
+                header.classList.remove('header-scrolled');
+            }
+        });
+        
+        // Theme Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-theme')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Make table rows clickable
+        document.querySelectorAll('.policies-table tbody tr').forEach(row => {
+            const link = row.querySelector('.doc-link');
+            if (link) {
+                row.style.cursor = 'pointer';
+                row.addEventListener('click', (e) => {
+                    // Don't trigger if clicking on the link itself
+                    if (!e.target.closest('a')) {
+                        link.click();
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock Script %}

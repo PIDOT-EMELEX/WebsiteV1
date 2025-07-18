@@ -17,10 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from PiDot.views import index
+from contact.views import policies_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
+    path('policies/', policies_view, name='policies'),
     path('PiDot/', include('PiDot.urls')),
     path('products/', include('products.urls')),
     path('resources/', include('resources.urls')),

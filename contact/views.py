@@ -15,3 +15,6 @@ def terms_conditions(request):
 
 def privacy_policy(request):
     return render(request, 'contact/privacy_policy.html')
+
+def policies_view(request):
+    return render(request, 'contact/policies.html')
