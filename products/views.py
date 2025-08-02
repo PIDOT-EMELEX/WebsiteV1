@@ -15,3 +15,6 @@ def solutions(request):
 
 def Genesis_stu_reg(request):
     return render(request, 'products/Genesis_stu_reg.html')
+
+def Genesis_stu_booking(request):
+    return render(request, 'products/Genesis_stu_booking.html')
