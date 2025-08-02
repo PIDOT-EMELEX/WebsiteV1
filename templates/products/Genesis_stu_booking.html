@@ -1,424 +1,324 @@
-{% extends "index.html" %}
-
-{% load static %}
-{% block title %}
-  Genesis | PI DOT | Student Registration Form
-{% endblock title %}
-
-{% block Style %}
-<link rel="stylesheet" href="{% static "css/products/genesis.css" %}">
-<link rel="stylesheet" href="{% static "css/style.css" %}">
-<style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --gray-100: #f3f4f6;
-      --gray-200: #e5e7eb;
-      --gray-700: #374151;
-      --gray-900: #111827;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.5;
-      color: var(--gray-900);
-      background-color: #f9fafb;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .container {
-      max-width: 640px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-    }
-    
-    .header {
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-    
-    .logo {
-      width: 120px;
-      margin-bottom: 1rem;
-    }
-    
-    h1 {
-      font-size: 1.75rem;
-      font-weight: 700;
-      color: var(--gray-900);
-      margin-bottom: 0.5rem;
-    }
-    
-    .subtitle {
-      color: var(--gray-700);
-      margin-bottom: 2rem;
-    }
-    
-    .card {
-      background: white;
-      border-radius: 0.5rem;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      padding: 2rem;
-      margin-bottom: 2rem;
-    }
-    
-    .form-group {
-      margin-bottom: 1.5rem;
-    }
-    
-    label {
-      display: block;
-      font-weight: 500;
-      margin-bottom: 0.5rem;
-      color: var(--gray-700);
-    }
-    
-    input, select {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid var(--gray-200);
-      border-radius: 0.375rem;
-      font-size: 1rem;
-    }
-    
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-    }
-    
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.375rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      border: none;
-      width: 100%;
-    }
-    
-    .btn-primary {
-      background-color: var(--primary);
-      color: white;
-    }
-    
-    .btn-primary:hover {
-      background-color: var(--primary-dark);
-    }
-    
-    .btn-google {
-      background-color: white;
-      color: var(--gray-700);
-      border: 1px solid var(--gray-200);
-    }
-    
-    .btn-google:hover {
-      background-color: var(--gray-100);
-    }
-    
-    .google-icon {
-      width: 20px;
-      margin-right: 0.75rem;
-    }
-    
-    .slots-container {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-    
-    .slot {
-      padding: 0.75rem;
-      border-radius: 0.375rem;
-      text-align: center;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      border: 1px solid transparent;
-    }
-    
-    .slot-available {
-      background-color: #ecfdf5;
-      color: #065f46;
-      border-color: #a7f3d0;
-    }
-    
-    .slot-available:hover {
-      background-color: #d1fae5;
-    }
-    
-    .slot-booked {
-      background-color: #fee2e2;
-      color: #991b1b;
-      border-color: #fecaca;
-      cursor: not-allowed;
-    }
-    
-    .divider {
-      display: flex;
-      align-items: center;
-      margin: 1.5rem 0;
-      color: var(--gray-700);
-    }
-    
-    .divider::before, .divider::after {
-      content: "";
-      flex: 1;
-      border-bottom: 1px solid var(--gray-200);
-    }
-    
-    .divider::before {
-      margin-right: 1rem;
-    }
-    
-    .divider::after {
-      margin-left: 1rem;
-    }
-    
-    @media (max-width: 480px) {
-      .slots-container {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* Loading indicator */
-    .loading {
-      display: none;
-      text-align: center;
-      margin: 10px 0;
-    }
-    .loading-spinner {
-      border: 3px solid #f3f3f3;
-      border-top: 3px solid #3498db;
-      border-radius: 50%;
-      width: 20px;
-      height: 20px;
-      animation: spin 1s linear infinite;
-      display: inline-block;
-      margin-right: 10px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-</style>
-{% endblock Style %}
-    
-{% block Body %}
-  <div class="container">
-    <div class="header">
-      <img src="{% static "logos\PI dot.png" %}" alt="Pi DOT" class="logo">
-      <h1>Book a Session</h1>
-      <p class="subtitle">Select your preferred date and time for a consultation</p>
-    </div>
-    
-    <div class="card">
-      <div class="form-group">
-        <label for="date">Select Date</label>
-        <input type="date" id="date" required>
-      </div>
-      
-      <button id="signin-btn" class="btn btn-google">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="google-icon">
-        Sign in with Google to view availability
-      </button>
-      <div id="loading" class="loading">
-        <div class="loading-spinner"></div>
-        <span>Signing in...</span>
-      </div>
-      
-      <div class="divider">or</div>
-      
-      <div class="form-group">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email" required>
-      </div>
-      
-      <h3>Available Time Slots</h3>
-      <div id="slots" class="slots-container"></div>
-    </div>
-  </div>
-{% endblock Body %}
-
-{% block Script %}
-  <script src="https://apis.google.com/js/api.js"></script>
-  <script>
-    // Updated credentials - remove trailing slash from CLIENT_ID
-    const CLIENT_ID = '871637573358-tbjc1fk5hk36oadit9gg6mdughbqae89.apps.googleusercontent.com';
-    const API_KEY = 'AIzaSyD65KJUP-25nmJrVhYCQJQN05SBfZtlByg';
-    const DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
-    const SCOPES = "https://www.googleapis.com/auth/calendar";
-    const calendarId = 'primary';
-
-    function initGoogleAuth() {
-        console.log("Initializing Google API...");
-        gapi.load('client:auth2', () => {
-            gapi.client.init({
-                apiKey: API_KEY,
-                clientId: CLIENT_ID,
-                discoveryDocs: DISCOVERY_DOCS,
-                scope: SCOPES
-            }).then(() => {
-                console.log("Google API initialized successfully");
-                // Handle successful initialization
-            }).catch(err => {
-                console.error("Google API initialization error:", err);
-                alert("Failed to initialize Google services. Error details in console.");
-            });
-        }, (err) => {
-            console.error("Failed to load Google API client:", err);
-            alert("Failed to load Google services. Error details in console.");
-        });
-    }
-
-    // Update UI based on sign-in status
-    function updateSigninStatus(isSignedIn) {
-      const signinBtn = document.getElementById('signin-btn');
-      if (isSignedIn) {
-        signinBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="google-icon"> Signed in as ' + 
-                             googleAuth.currentUser.get().getBasicProfile().getEmail();
-        signinBtn.disabled = true;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Session | PI DOT</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-700: #374151;
+            --gray-900: #111827;
+        }
         
-        // If date is already selected, load slots
-        if (selectedDate) {
-          listSlots();
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.5;
+            color: var(--gray-900);
+            background-color: #f9fafb;
+            margin: 0;
+            padding: 20px;
         }
-      } else {
-        signinBtn.innerHTML = '<img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google" class="google-icon"> Sign in with Google to view availability';
-        signinBtn.disabled = false;
-      }
-      document.getElementById('loading').style.display = 'none';
-    }
-
-    // Handle date selection
-    document.getElementById("date").addEventListener("change", function() {
-      const value = this.value;
-      if (value) {
-        selectedDate = new Date(value + "T00:00:00");
-        if (googleAuth && googleAuth.isSignedIn.get()) {
-          listSlots();
-        }
-      }
-    });
-
-    // Handle Google Sign-In button click
-    document.getElementById("signin-btn").addEventListener("click", function() {
-      if (!googleAuth) {
-        alert("Google services not initialized yet. Please wait...");
-        return;
-      }
-      
-      document.getElementById('loading').style.display = 'block';
-      
-      googleAuth.signIn().then(() => {
-        if (selectedDate) {
-          listSlots();
-        }
-      }).catch(err => {
-        console.error("Google Sign-In error:", err);
-        document.getElementById('loading').style.display = 'none';
         
-        // Specific error handling
-        if (err.error === 'popup_closed_by_user') {
-          alert("Sign-in window was closed. Please try again.");
-        } else if (err.error === 'access_denied') {
-          alert("You denied the permission request. Please accept to continue.");
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 25px;
+        }
+        
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: var(--gray-700);
+            margin-bottom: 25px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--gray-200);
+            border-radius: 6px;
+            font-size: 16px;
+        }
+        
+        .google-btn-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--gray-700);
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--gray-200);
+        }
+        
+        .divider::before {
+            margin-right: 15px;
+        }
+        
+        .divider::after {
+            margin-left: 15px;
+        }
+        
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .time-slot {
+            padding: 12px;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .available {
+            background-color: #e6f7ee;
+            border: 1px solid #a3e9c7;
+        }
+        
+        .booked {
+            background-color: #feecec;
+            border: 1px solid #f8b9b9;
+            cursor: not-allowed;
+        }
+        
+        .loading {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid var(--primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book a Session</h1>
+        <p class="subtitle">Select your preferred date and time</p>
+        
+        <div class="form-group">
+            <label for="date">Select Date</label>
+            <input type="date" id="date" required>
+        </div>
+        
+        <div class="google-btn-container">
+            <div id="g_id_onload"
+                data-client_id="YOUR_CLIENT_ID.apps.googleusercontent.com"
+                data-context="signin"
+                data-callback="handleGoogleSignIn"
+                data-auto_prompt="false">
+            </div>
+            <div class="g_id_signin"
+                data-type="standard"
+                data-shape="rectangular"
+                data-theme="outline"
+                data-text="signin_with"
+                data-size="large"
+                data-logo_alignment="left">
+            </div>
+        </div>
+        
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <span>Loading...</span>
+        </div>
+        
+        <div class="divider">or</div>
+        
+        <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Enter your name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+        
+        <h3>Available Time Slots</h3>
+        <div id="slots" class="time-slots"></div>
+    </div>
+
+    <!-- Google Identity Services -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<script>
+  const CLIENT_ID = '871637573358-tbjc1fk5hk36oadit9gg6mdughbqae89.apps.googleusercontent.com';
+  let accessToken = null;
+  let selectedDate = null;
+
+  // Handle Google Sign-In
+  function handleGoogleSignIn(response) {
+    showLoading(true);
+    verifyToken(response.credential)
+      .then(data => {
+        if (data.success) {
+          accessToken = data.token; // access_token returned from Django
+          if (selectedDate) {
+            loadAvailableSlots();
+          }
         } else {
-          alert("Sign-in failed. Please check console for details.");
+          throw new Error(data.message || "Authentication failed");
         }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert(error.message);
+      })
+      .finally(() => {
+        showLoading(false);
       });
-    });
+  }
 
-    // List available time slots
-    function listSlots() {
-      if (!selectedDate) return;
-      
-      const baseDate = new Date(selectedDate);
-      const startTime = new Date(baseDate.setHours(9, 0, 0, 0));
-      const endTime = new Date(baseDate.setHours(17, 0, 0, 0));
+  function verifyToken(id_token) {
+    return fetch('/api/verify/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id_token })
+    }).then(res => res.json());
+  }
 
-      const slots = [];
-      for (let i = 0; i < 8; i++) {
-        const start = new Date(startTime.getTime() + i * 60 * 60 * 1000);
-        const end = new Date(start.getTime() + 60 * 60 * 1000);
-        slots.push({ start, end });
-      }
+  document.getElementById('date').addEventListener('change', function () {
+    selectedDate = this.value;
+    if (accessToken) loadAvailableSlots();
+  });
 
-      gapi.client.calendar.freebusy.query({
-        timeMin: slots[0].start.toISOString(),
-        timeMax: slots[slots.length - 1].end.toISOString(),
-        items: [{ id: calendarId }]
-      }).then(response => {
-        const busyTimes = response.result.calendars[calendarId].busy || [];
-        const slotContainer = document.getElementById('slots');
-        slotContainer.innerHTML = '';
+  function loadAvailableSlots() {
+    showLoading(true);
 
-        slots.forEach(slot => {
-          const isBusy = busyTimes.some(b => {
-            return new Date(b.start) < slot.end && new Date(b.end) > slot.start;
-          });
+    fetch('/api/slots/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date: selectedDate, token: accessToken })
+    })
+      .then(res => res.json())
+      .then(data => {
+        const slotsContainer = document.getElementById('slots');
+        slotsContainer.innerHTML = '';
+
+        const busy = data.busy.map(b => ({
+          start: new Date(b.start),
+          end: new Date(b.end)
+        }));
+
+        for (let hour = 9; hour < 17; hour++) {
+          const slotStart = new Date(`${selectedDate}T${hour.toString().padStart(2, '0')}:00:00`);
+          const slotEnd = new Date(slotStart.getTime() + 60 * 60 * 1000);
+          const isBusy = busy.some(b => new Date(b.start) < slotEnd && new Date(b.end) > slotStart);
 
           const div = document.createElement('div');
-          div.className = 'slot ' + (isBusy ? 'slot-booked' : 'slot-available');
-          div.textContent = `${slot.start.getHours()}:00 - ${slot.end.getHours()}:00`;
+          div.className = `time-slot ${isBusy ? 'booked' : 'available'}`;
+          div.textContent = `${hour}:00 - ${hour + 1}:00`;
 
           if (!isBusy) {
-            div.onclick = () => bookSlot(slot.start, slot.end);
+            div.addEventListener('click', () => bookSlot(slotStart.toISOString(), slotEnd.toISOString()));
           }
 
-          slotContainer.appendChild(div);
-        });
-      }).catch(err => {
-        console.error("Error checking availability:", err);
-        alert("Error checking availability. Please try again.");
+          slotsContainer.appendChild(div);
+        }
+      })
+      .catch(err => {
+        console.error('Error loading slots:', err);
+        alert('Failed to load available slots.');
+      })
+      .finally(() => {
+        showLoading(false);
       });
+  }
+
+  function bookSlot(start, end) {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+
+    if (!name || !email) {
+      alert("Please enter your name and email");
+      return;
     }
 
-    // Book a time slot
-    function bookSlot(start, end) {
-      const name = document.getElementById('name').value.trim();
-      const email = document.getElementById('email').value.trim();
+    showLoading(true);
 
-      if (!name || !email) {
-        alert("Please enter your name and email before booking.");
-        return;
-      }
-
-      const event = {
-        summary: `Consultation with ${name}`,
-        description: `Booked via Pi DOT website by ${name} (${email})`,
-        start: { dateTime: start.toISOString() },
-        end: { dateTime: end.toISOString() },
-        attendees: [{ email }],
-        reminders: { useDefault: true }
-      };
-
-      gapi.client.calendar.events.insert({
-        calendarId: calendarId,
-        resource: event
-      }).then(() => {
-        alert('Your session has been booked successfully!');
-        listSlots(); // refresh slots
-      }).catch(err => {
+    fetch('/api/book/', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        token: accessToken,
+        name,
+        email,
+        start,
+        end
+      })
+    })
+      .then(res => res.json())
+      .then(data => {
+        if (data.success) {
+          alert('✅ Slot booked successfully!');
+          loadAvailableSlots();
+        } else {
+          alert('❌ Booking failed.');
+        }
+      })
+      .catch(err => {
         console.error('Booking error:', err);
-        alert("Failed to book slot. Please try again.");
+        alert('Something went wrong.');
+      })
+      .finally(() => {
+        showLoading(false);
       });
-    }
+  }
 
-    // Initialize Google Auth when API is loaded
-    window.onload = function() {
-      initGoogleAuth();
-    };
-  </script>
+  function showLoading(show) {
+    document.getElementById('loading').style.display = show ? 'flex' : 'none';
+  }
 
-  <script src="{% static 'js/scroll.js' %}"></script>
-{% endblock Script %}
+  window.onload = function () {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').min = today;
+  };
+</script>
+
+</body>
+</html>
